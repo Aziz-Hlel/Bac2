@@ -1,0 +1,86 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  DISABLED 
+  DELETED
+}
+
+
+model User {
+  id    String     @id @default(uuid())
+  authId String @unique
+  email String?  @unique
+  provider String
+  username String?
+  role Role @default(ADMIN)
+  isEmailVerified Boolean @default(false)
+  status Status @default(ACTIVE)
+
+  school School?
+  profile Profile?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Profile {
+  id String @id @default(uuid())
+  phoneNumber String?
+  address String?
+  avatar String?
+
+  userId String @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+enum MediaStatus {
+  PENDING
+  CONFIRMED
+  DELETED
+  FAILED
+}
+
+
+model Media {
+  id           String      @id @default(uuid())
+  key          String     @unique
+  baseName     String
+  fileType     String
+  mimeType     String
+  fileSize     Int?
+  status       MediaStatus @default(PENDING)
+
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+  confirmedAt  DateTime?
+
+
+}
+
+
+
+
+

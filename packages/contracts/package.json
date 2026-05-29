@@ -1,0 +1,13 @@
+{
+  "name": "@bac/contracts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && tsc -p tsconfig.build.json"
+  },
+  "exports": {
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  }
+}

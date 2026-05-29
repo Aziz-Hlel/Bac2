@@ -1,0 +1,84 @@
+@apiKey = AIzaSyDWKplAl5Vp43pG0j5j3vnThRJIPwv1E44
+@firebaseUrl = https://identitytoolkit.googleapis.com/v1
+
+@baseUrl = http://localhost:10000/api
+
+@superAdminEmail = tigana137@gmail.com
+@superAdminPassword = 12345678
+
+@schoolOwnerEmail = test6@gmail.com
+@schoolOwnerPassword = 12345678
+
+
+###########################
+# 1- create school with user as super admin
+###########################
+
+
+###
+# @name firebaseLoginSuperAdmin
+POST {{firebaseUrl}}/accounts:signInWithPassword?key={{apiKey}}
+Content-Type: application/json
+
+{
+  "email": "{{superAdminEmail}}",
+  "password": "{{superAdminPassword}}",
+  "returnSecureToken": true
+}
+
+
+
+###
+# @name createSchoolWithUser
+POST {{baseUrl}}/schools/with-user
+Content-Type: application/json
+Authorization: Bearer {{firebaseLoginSuperAdmin.response.body.idToken}}
+
+{
+  "user": {
+    "username": "school1",
+    "email": "{{schoolOwnerEmail}}",
+    "password": "{{schoolOwnerPassword}}"
+  },
+  "school": {
+    "name": "School 1",
+    "publicId": "school1-public-id",
+    "city": "SOUSSE"
+  }
+}
+
+
+
+###########################
+# 2- login to the created user and verify it has a school and updated it 
+###########################
+
+###
+# @name firebaseLogin
+POST {{firebaseUrl}}/accounts:signInWithPassword?key={{apiKey}}
+Content-Type: application/json
+
+{
+  "email": "{{schoolOwnerEmail}}",
+  "password": "{{schoolOwnerPassword}}",
+  "returnSecureToken": true
+}
+
+###
+# @name getMySchool
+GET {{baseUrl}}/schools/me
+Content-Type: application/json
+Authorization: Bearer {{firebaseLogin.response.body.idToken}}
+
+
+###
+# @name updateMySchool
+PUT {{baseUrl}}/schools/{{getMySchool.response.body.id}}
+Content-Type: application/json
+Authorization: Bearer {{firebaseLogin.response.body.idToken}}
+
+{
+  "name": "School 1 Updated",
+  "publicId": "school1-public-id-updated",
+  "city": "MONASTIR"
+}

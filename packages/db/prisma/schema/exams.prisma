@@ -1,0 +1,291 @@
+
+enum TimeOfDayEnum {
+  MORNING
+  EVENING
+}
+
+enum SubjectEnum {
+  ALGO
+  FRENCH
+  ENGLISH
+  MATH
+  PHYSICS
+  CHEMISTRY
+  BIOLOGY
+  HISTORY
+  GEOGRAPHY
+  ECONOMICS
+  COMPUTER_SCIENCE
+  SPORT
+  MANDARIN
+  MUSIC
+  SPANISH
+  GERMAN
+  ITALIAN
+  ARABIC
+}
+
+enum ElectiveExamEnum {
+  SPANISH
+  MUSIC
+  ITALIAN
+  MANDARIN
+  MATH
+  GERMAN
+}
+
+enum MajorEnum {
+  COMPUTER_SCIENCE
+  MATH
+  SCIENCE
+  LETTRE
+  TECHNIQUE
+  ECO
+  INFORMATIQUE
+  SPORT
+}
+
+enum TermEnum {
+  PRINCIPAL
+  RETAKE
+}
+
+
+model Major {
+    id String @id @default(uuid()) @db.Uuid
+    name MajorEnum @unique
+    
+
+    exams Exam[]
+    schools SchoolMajors[]
+    schoolsCapacities SchoolCapacityStats[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ElectiveExam{
+    id String @id @default(uuid()) @db.Uuid
+    name ElectiveExamEnum @unique
+
+    exams Exam[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+
+
+model Exam {
+    id String @id @default(uuid()) @db.Uuid
+    subject SubjectEnum 
+
+    date DateTime @db.Date
+    startTime DateTime @db.Time
+    endTime DateTime @db.Time
+    timeOfDay TimeOfDayEnum
+    term TermEnum 
+    isOptional Boolean @default(false)
+
+
+    majorId String? @db.Uuid
+    major Major? @relation(fields: [majorId], references: [id])
+
+    electiveExamId String? @db.Uuid
+    electiveExam ElectiveExam? @relation(fields: [electiveExamId], references: [id], onDelete: Cascade) // * if exam is deleted, elective exam should be deleted
+
+    examSessions ExamSession[]
+    schoolsElectiveExams SchoolElectiveExam[]
+    schoolCapacities SchoolCapacityStats[]
+    
+    @@index([term,subject,isOptional])
+    
+    @@unique([majorId, subject, term])
+
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+}
+
+
+enum CityEnum {
+    SOUSSE
+    TUNIS
+    SFAX
+    BIZERTE
+    KAIROUAN
+    GABES
+    MONASTIR
+    NABEUL
+    BEJA
+    JENDOUBA
+    KEF
+    SILIANA
+    KASSERINE
+    TOZEUR
+    GAFSA
+    MEDENINE
+    TATAOUINE
+    ZAGHOUAN
+    MANOUBA
+    ARIANA
+    BEN_AROUS
+}
+
+
+model SchoolMajors{
+    id String @id @default(uuid()) @db.Uuid
+
+    schoolId String @db.Uuid
+    school School @relation(fields: [schoolId], references: [id],onDelete: Cascade)
+
+    majorId String @db.Uuid
+    major Major @relation(fields: [majorId], references: [id],onDelete: Cascade)
+
+    nbrClasses Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model SchoolElectiveExam{
+    id String @id @default(uuid())
+    
+    schoolId String @db.Uuid
+    school School @relation(fields: [schoolId], references: [id],onDelete: Cascade)
+ 
+    examId String? @db.Uuid
+    exam Exam? @relation(fields: [examId], references: [id],onDelete: Cascade)
+    
+    nbrClasses Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+enum CapacityTypeEnum {
+  MAJOR
+  ELECTIVE
+}
+
+model SchoolCapacityStats {
+    id String @id @default(uuid())
+    
+    schoolId String @db.Uuid
+    school School @relation(fields: [schoolId], references: [id],onDelete: Cascade)
+
+    majorId String? @db.Uuid
+    major Major? @relation(fields: [majorId], references: [id],onDelete: Cascade)
+
+    examId String? @db.Uuid
+    exam Exam? @relation(fields: [examId], references: [id],onDelete: Cascade)
+    
+    nbrClasses Int
+
+    type CapacityTypeEnum
+
+    @@unique([schoolId, majorId])
+    @@unique([schoolId, examId])
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+
+model School {
+    id String @id @default(uuid()) @db.Uuid
+    name String @db.VarChar(255)
+    publicId String // @unique
+    city CityEnum 
+
+    userId String @unique
+    user User @relation(fields: [userId], references: [id])
+
+    majors SchoolMajors[]
+    electiveExams SchoolElectiveExam[]
+    capacities SchoolCapacityStats[]
+
+    classes Class[]
+    teachers Teacher[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+
+model Class {
+    id String @id @default(uuid()) @db.Uuid
+    name String @db.VarChar(255)
+
+    schoolId String @db.Uuid
+    school School @relation(fields: [schoolId], references: [id])
+
+    examSessions ExamSession[]
+
+    @@unique([schoolId, name])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+
+
+model Teacher{
+  id String @id @default(uuid()) @db.Uuid
+  publicId String @db.VarChar(255)
+  lastName String @db.VarChar(255)
+  firstName String @db.VarChar(255)
+  
+  isTeacher Boolean
+  subject SubjectEnum?
+
+  schoolId String @db.Uuid
+  school School @relation(fields: [schoolId], references: [id])
+
+  primaryMaleTeacherExamSession TeacherExamSession[] @relation("PrimaryMaleTeacher")
+  primaryFemaleTeacherExamSession TeacherExamSession[] @relation("PrimaryFemaleTeacher")
+  secondaryTeacherExamSession TeacherExamSession[] @relation("SecondaryTeacher")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+}
+
+
+model ExamSession { 
+  id String @id @default(uuid()) @db.Uuid
+
+  classId String @db.Uuid
+  class Class @relation(fields: [classId], references: [id],onDelete: Cascade)
+  
+  examId String @db.Uuid
+  exam Exam @relation(fields: [examId], references: [id],onDelete: Cascade)
+
+  teacherExamSession TeacherExamSession?
+
+  @@unique([classId, examId])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TeacherExamSession {
+  id String @id @default(uuid()) @db.Uuid
+
+  primaryMaleTeacherId String @db.Uuid 
+  primaryMaleTeacher Teacher @relation("PrimaryMaleTeacher", fields: [primaryMaleTeacherId], references: [id])
+
+  primaryFemaleTeacherId String @db.Uuid 
+  primaryFemaleTeacher Teacher @relation("PrimaryFemaleTeacher", fields: [primaryFemaleTeacherId], references: [id])
+
+
+  secondaryTeacherId String @db.Uuid 
+  secondaryTeacher Teacher @relation("SecondaryTeacher", fields: [secondaryTeacherId], references: [id])
+
+  examSessionId String @db.Uuid @unique
+  examSession ExamSession @relation(fields: [examSessionId], references: [id],onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

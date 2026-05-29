@@ -1,0 +1,40 @@
+{
+  "name": "@bac/db",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./prisma/*": {
+      "default": "./src/generated/*.ts"
+    }
+  },
+  "scripts": {
+    "db:build": "prisma generate && tsc",
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "postinstall": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:start": "docker compose up -d",
+    "db:reset": "prisma migrate reset",
+    "db:watch": "docker compose up",
+    "db:stop": "docker compose stop",
+    "db:down": "docker compose down"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
+    "@bac/env": "workspace:*",
+    "dotenv": "catalog:",
+    "pg": "^8.17.1",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node":"catalog:",
+    "@bac/config": "workspace:*",
+    "@types/pg": "^8.16.0",
+    "prisma": "catalog:",
+    "typescript": "catalog:"
+  }
+}

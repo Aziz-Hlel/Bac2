@@ -1,0 +1,51 @@
+{
+  "name": "bac",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "format": "pnpm -r exec prettier --write .",
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "check-types": "pnpm -r check-types",
+    "db:push": "pnpm --filter @bac/db db:push",
+    "db:build": "pnpm --filter @bac/db db:build",
+    "db:studio": "pnpm --filter @bac/db db:studio",
+    "db:generate": "pnpm --filter @bac/db db:generate",
+    "db:migrate": "pnpm --filter @bac/db db:migrate",
+    "db:start": "pnpm --filter @bac/db db:start",
+    "db:watch": "pnpm --filter @bac/db db:watch",
+    "db:stop": "pnpm --filter @bac/db db:stop",
+    "db:down": "pnpm --filter @bac/db db:down",
+    "db:reset": "pnpm --filter @bac/db db:reset",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "docker:local": "node scripts/docker/index.js local",
+    "docker:dev": "node scripts/docker/index.js dev",
+    "docker:stage": "node scripts/docker/index.js stage",
+    "docker:prod": "node scripts/docker/index.js prod",
+    "gen:module": "node scripts/gen-module/index.js",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@bac/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@bac/config": "workspace:*",
+    "@types/node": "^22.13.14",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "typescript": "catalog:"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}": "prettier --write --ignore-unknown"
+  },
+  "packageManager": "pnpm@10.33.0"
+}
