@@ -5,9 +5,9 @@ import { updateUserProfileRequestSchema } from '@bac/contracts/schemas/profile/u
 import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
 import { queryParamsSchema } from '@bac/contracts/schemas/user/UserPageQuery';
 import { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
-import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
-import { Page } from '@repo/contracts/types/page/Page';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import { SimpleApiResponse } from '@bac/contracts/types/api/SimpleApiResponse.dto';
+import { Page } from '@bac/contracts/types/page/Page';
+import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
 import { Response } from 'express';
 import { AuthenticatedRequest } from '../../../types/auth/AuthenticatedRequest';
 import { IUserAppService } from '../Service/user.app.service';

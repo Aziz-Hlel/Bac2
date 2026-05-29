@@ -36,7 +36,7 @@ import {
   type CreateUserProfileRequest,
   type CreateUserProfileSchemaOutput,
 } from '@bac/contracts/schemas/profile/createUserProfileRequest';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
 import { toast } from 'sonner';
 
 const AddUser = () => {

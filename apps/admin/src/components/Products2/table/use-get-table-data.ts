@@ -1,9 +1,9 @@
+import type { Pageable } from '@bac/contracts/types/page/Pageable';
 import { useQuery } from '@tanstack/react-query';
-import type { TableRowType } from '../core/types';
-import useQueryParams from './use-query-params';
-import type { Pageable } from '@repo/contracts/types/page/Pageable';
 import { MODULE_NAME } from '../core/core';
 import { operations } from '../core/services';
+import type { TableRowType } from '../core/types';
+import useQueryParams from './use-query-params';
 
 const blankPagination: Pageable = {
   size: 0,

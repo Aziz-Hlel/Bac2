@@ -1,9 +1,9 @@
+import notificationService from '@/Api/service/notificationService';
+import type { Pageable } from '@bac/contracts/types/page/Pageable';
 import { useQuery } from '@tanstack/react-query';
+import { MODULE_NAME } from '../core/core';
 import type { TableRowType } from '../core/types';
 import useQueryParams from './use-query-params';
-import type { Pageable } from '@repo/contracts/types/page/Pageable';
-import { MODULE_NAME } from '../core/core';
-import notificationService from '@/Api/service/notificationService';
 
 const blankPagination: Pageable = {
   size: 0,

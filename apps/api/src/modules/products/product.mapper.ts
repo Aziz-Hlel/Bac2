@@ -2,8 +2,8 @@ import { ProductWithThumbnail } from '@/types/getPayload';
 import { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
 import { ProductResponse } from '@bac/contracts/schemas/product/productResponse';
 import { ProductRowResponse } from '@bac/contracts/schemas/product/productRowResponse';
-import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
-import { Page } from '@repo/contracts/types/page/Page';
+import { DefaultSearchParams } from '@bac/contracts/types/api/DefaultSeachParams';
+import { Page } from '@bac/contracts/types/page/Page';
 
 export class ProductMapper {
   static toResponse(params: { product: ProductWithThumbnail; thumbnail: MediaResponse | null }): ProductResponse {

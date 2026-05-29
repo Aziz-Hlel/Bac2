@@ -1,4 +1,4 @@
-import type { ProviderType } from '@repo/contracts/map/ProvidersMapping';
+import type { ProviderType } from '@bac/contracts/map/ProvidersMapping';
 import type { JSX } from 'react';
 
 const googleSvg = (

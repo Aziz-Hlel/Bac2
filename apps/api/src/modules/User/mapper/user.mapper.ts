@@ -5,8 +5,8 @@ import {
   UserProfileRowResponse,
   UserRowResponse,
 } from '@bac/contracts/schemas/user/UserRowResponse';
-import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
-import { Page } from '@repo/contracts/types/page/Page';
+import { DefaultSearchParams } from '@bac/contracts/types/api/DefaultSeachParams';
+import { Page } from '@bac/contracts/types/page/Page';
 import { Role } from '../../../generated/prisma/browser';
 import { User } from '../../../generated/prisma/client';
 import { UserCreateInput } from '../../../generated/prisma/models';

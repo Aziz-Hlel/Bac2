@@ -1,6 +1,6 @@
 import type { CreateNotificationRequest } from '@bac/contracts/schemas/notification/createNotification';
 import type { NotificationResponse } from '@bac/contracts/schemas/notification/notificationResponse';
-import type { Page } from '@repo/contracts/types/page/Page';
+import type { Page } from '@bac/contracts/types/page/Page';
 import { apiService } from '../apiService';
 import apiRoutes from '../routes/routes';
 

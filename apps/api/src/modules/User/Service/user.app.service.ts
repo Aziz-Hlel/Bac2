@@ -15,8 +15,8 @@ import {
   UserPageQuery,
 } from '@bac/contracts/schemas/user/UserPageQuery';
 import { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
-import { Page } from '@repo/contracts/types/page/Page';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import { Page } from '@bac/contracts/types/page/Page';
+import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
 import { prisma } from '../../../bootstrap/db.init';
 import { UserOrderByWithRelationInput, UserWhereInput } from '../../../generated/prisma/models';
 import UserMapper from '../mapper/user.mapper';

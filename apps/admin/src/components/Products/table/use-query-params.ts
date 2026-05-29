@@ -1,8 +1,8 @@
+import { ProductStatus } from '@bac/contracts/types/enums/enums';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import z from 'zod';
 import { sortableColumnKeys } from './tableDeclarations/typesAndFieldsDeclaration';
-import { useSearchParams } from 'react-router-dom';
-import { useMemo } from 'react';
-import { ProductStatus } from '@repo/contracts/types/enums/enums';
 
 const csvEnumArray = <T extends string[]>(values: T) =>
   z

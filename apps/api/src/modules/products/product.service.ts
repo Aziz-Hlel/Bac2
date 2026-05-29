@@ -6,7 +6,7 @@ import { CreateProductRequest } from '@bac/contracts/schemas/product/createProdu
 import { ProductPageQuery } from '@bac/contracts/schemas/product/ProductPageQuery';
 import { ProductResponse } from '@bac/contracts/schemas/product/productResponse';
 import { UpdateProductRequest } from '@bac/contracts/schemas/product/updateProductRequest';
-import { Page } from '@repo/contracts/types/page/Page';
+import { Page } from '@bac/contracts/types/page/Page';
 import { ProductMapper } from './product.mapper';
 import { ProductRepo } from './product.repo';
 

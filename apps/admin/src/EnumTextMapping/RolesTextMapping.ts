@@ -1,4 +1,4 @@
-import type { Role } from '@repo/contracts/types/enums/enums';
+import type { Role } from '@bac/contracts/types/enums/enums';
 
 const RolesTextMapping: Record<Role, string> = {
   ADMIN: 'Admin',

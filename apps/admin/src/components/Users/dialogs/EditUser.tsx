@@ -30,8 +30,8 @@ import {
   updateUserProfileRequestSchema,
   type UpdateUserProfileRequest,
 } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
+import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
 import { zodResolver } from '@hookform/resolvers/zod';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';

@@ -1,5 +1,5 @@
+import { SimpleApiResponse } from '@bac/contracts/types/api/SimpleApiResponse.dto';
 import { Request, Response } from 'express';
-import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
 import { HealthzResponseDto } from './schemas/healthzResponse.dto';
 
 export class RootController {

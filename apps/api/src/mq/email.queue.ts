@@ -1,7 +1,7 @@
 import redis from '@/bootstrap/redis.init';
+import QUEUE_NAMES from '@bac/contracts/const/queues.name';
+import { EmailJob } from '@bac/contracts/jobs/emailJob';
 import { Queue } from 'bullmq';
-import QUEUE_NAMES from '@repo/contracts/const/queues.name';
-import { EmailJob } from '@repo/contracts/jobs/emailJob';
 
 export const emailQueue = new Queue<EmailJob>(QUEUE_NAMES.email, {
   connection: redis,

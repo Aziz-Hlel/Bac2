@@ -1,11 +1,6 @@
 import { CircleMinus, EllipsisVertical, Trash2, UserPen } from 'lucide-react';
 
-import React, { Fragment } from 'react';
-import type { TableRowType } from '../tableDeclarations/typesAndFieldsDeclaration';
-import type { Row } from '@tanstack/react-table';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
-import { useUser } from '@/context/UserContext';
-import { useSelectedRow } from '../../context/selected-row-provider';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +9,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useUser } from '@/context/UserContext';
+import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
+import type { Row } from '@tanstack/react-table';
+import React, { Fragment } from 'react';
+import { useSelectedRow } from '../../context/selected-row-provider';
 import RowContainer from '../ContainerComp/RowContainer';
-import { Button } from '@/components/ui/button';
+import type { TableRowType } from '../tableDeclarations/typesAndFieldsDeclaration';
 
 type RowAction = {
   key: 'edit' | 'delete' | 'disable' | 'enable';

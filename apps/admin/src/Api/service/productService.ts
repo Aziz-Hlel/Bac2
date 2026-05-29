@@ -1,6 +1,6 @@
 import type { CreateProductRequest } from '@bac/contracts/schemas/product/createProductRequest';
 import type { ProductRowResponse } from '@bac/contracts/schemas/product/productRowResponse';
-import type { Page } from '@repo/contracts/types/page/Page';
+import type { Page } from '@bac/contracts/types/page/Page';
 import { apiService } from '../apiService';
 import apiRoutes from '../routes/routes';
 

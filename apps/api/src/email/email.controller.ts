@@ -1,5 +1,5 @@
 import { sendContactUsRequestSchema } from '@bac/contracts/schemas/email/sendContactUsRequest';
-import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
+import { SimpleApiResponse } from '@bac/contracts/types/api/SimpleApiResponse.dto';
 import { Request, Response } from 'express';
 import { emailService } from './email.service';
 

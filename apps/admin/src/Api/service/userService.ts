@@ -2,7 +2,7 @@ import type { CreateUserProfileRequest } from '@bac/contracts/schemas/profile/cr
 import type { UpdateUserProfileRequest } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
 import type { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
 import type { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
-import type { Page } from '@repo/contracts/types/page/Page';
+import type { Page } from '@bac/contracts/types/page/Page';
 import { apiService } from '../apiService';
 import apiRoutes from '../routes/routes';
 

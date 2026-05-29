@@ -1,7 +1,7 @@
 import { prisma } from '@/bootstrap/db.init';
 import { CapacityTypeEnum } from '@/generated/prisma/enums';
 import { TX } from '@/types/prisma/PrismaTransaction';
-import { CreateSchoolCapStatRequest } from '@repo/contracts/src/schemas/schoolCapacityStats/createSchoolCapStatRequest';
+import { CreateSchoolCapStatRequest } from '@bac/contracts/src/schemas/schoolCapacityStats/createSchoolCapStatRequest';
 
 export class SchoolCapacityStatRepo {
   createMany = async (params: { schoolId: string; input: CreateSchoolCapStatRequest[] }, tx?: TX) => {

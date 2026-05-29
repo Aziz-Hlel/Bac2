@@ -1,7 +1,7 @@
 import productService from '@/Api/service/productService';
 import { createProductRequestSchema } from '@bac/contracts/schemas/product/createProductRequest';
 import { updateProductRequestSchema } from '@bac/contracts/schemas/product/updateProductRequest';
-import { ProductStatus } from '@repo/contracts/types/enums/enums';
+import { ProductStatus } from '@bac/contracts/types/enums/enums';
 import type { z } from 'zod';
 import { TableData } from './core';
 import { defaultQuery, queryParamsSchema, type TableRowType } from './types';

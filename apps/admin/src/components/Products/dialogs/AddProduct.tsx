@@ -27,7 +27,7 @@ import {
   createProductRequestSchema,
   type CreateProductRequest,
 } from '@bac/contracts/schemas/product/createProductRequest';
-import { ProductStatus } from '@repo/contracts/types/enums/enums';
+import { ProductStatus } from '@bac/contracts/types/enums/enums';
 import { toast } from 'sonner';
 
 const AddProduct = () => {

@@ -1,4 +1,3 @@
-import { ChevronRight, LayoutDashboard, Settings2, UsersRound, Package, BellRing } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   SidebarGroup,
@@ -11,9 +10,10 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import type { Prettify } from '@bac/contracts/utils/Prettify';
+import { BellRing, ChevronRight, LayoutDashboard, Package, Settings2, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
-import type { Prettify } from '@repo/contracts/utils/Prettify';
 
 type NavRoute = {
   title: string;

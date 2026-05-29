@@ -1,7 +1,7 @@
-import { PresignedUrlGenerator } from '@repo/contracts/storage/PresignedUrl';
+import { PresignedUrlGenerator } from '@bac/contracts/storage/PresignedUrl';
+import path from 'path';
 import { IStorageProvider } from './interface/storage.interface';
 import { createStorageProvider } from './provider/storage.provider';
-import path from 'path';
 
 export class StorageService implements IStorageProvider {
   private storageProvider = createStorageProvider();
