@@ -1,5 +1,5 @@
 import { BadRequestError } from '@/err/customErrors';
-import { isElectiveExamEnum } from '@repo/contracts/schemas/ElectiveExam/utils';
+import { isElectiveExamEnum } from '@bac/contracts/schemas/ElectiveExam/utils';
 import { ElectiveExamRepo } from './electiveExam.repo';
 
 export class ElectiveExamService {

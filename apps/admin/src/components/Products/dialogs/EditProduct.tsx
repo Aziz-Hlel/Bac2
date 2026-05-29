@@ -1,8 +1,8 @@
-import { useSelectedRow } from '../context/selected-row-provider';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
+import productService from '@/Api/service/productService';
+import ImageUpload from '@/components/custom/ImageUpload/comp/ImageUpload';
+import InputNumberForm from '@/components/custom/InputNumberForm/InputNumberForm';
+import SelectForm from '@/components/custom/SelectForm/SelectForm';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -12,21 +12,21 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Spinner } from '@/components/ui/spinner';
 import { Separator } from '@/components/ui/separator';
-import productService from '@/Api/service/productService';
+import { Spinner } from '@/components/ui/spinner';
+import { Textarea } from '@/components/ui/textarea';
+import ProductTextMapping from '@/EnumTextMapping/ProductTextMapping';
 import {
   updateProductRequestSchema,
   type UpdateProductRequest,
-} from '@repo/contracts/schemas/product/updateProductRequest';
-import { Textarea } from '@/components/ui/textarea';
-import InputNumberForm from '@/components/custom/InputNumberForm/InputNumberForm';
-import SelectForm from '@/components/custom/SelectForm/SelectForm';
-import ProductTextMapping from '@/EnumTextMapping/ProductTextMapping';
-import ImageUpload from '@/components/custom/ImageUpload/comp/ImageUpload';
+} from '@bac/contracts/schemas/product/updateProductRequest';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
+import { useSelectedRow } from '../context/selected-row-provider';
 
 const EditProduct = () => {
   const { handleCancel, currentRow, openDialog } = useSelectedRow();

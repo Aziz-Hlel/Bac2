@@ -1,5 +1,5 @@
 import { mediaService } from '@/Api/service/mediaService';
-import type { IMimeType } from '@repo/contracts/schemas/media/IMimeType';
+import type { IMimeType } from '@bac/contracts/schemas/media/IMimeType';
 
 import axios from 'axios';
 import { toast } from 'sonner';

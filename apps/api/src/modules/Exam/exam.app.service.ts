@@ -1,7 +1,7 @@
-import { CreateExamRequest } from '@repo/contracts/schemas/exam/creatExamRequest';
-import { ExamService } from './exam.service';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
+import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
 import { ExamMapper } from './exam.mapper';
+import { ExamService } from './exam.service';
 
 export class ExamAppService {
   constructor(private readonly examService: ExamService) {}

@@ -1,6 +1,5 @@
-import { CreateSchoolRequest } from '@repo/contracts/schemas/school/createSchoolRequest';
-import { UpdateSchoolRequest } from '@repo/contracts/schemas/school/updateSchoolRequest';
-import { UserAppService } from '../User/Service/user.app.service';
+import { CreateSchoolRequest } from '@bac/contracts/schemas/school/createSchoolRequest';
+import { UpdateSchoolRequest } from '@bac/contracts/schemas/school/updateSchoolRequest';
 import { SchoolRepo } from './school.repo';
 
 export class SchoolService {

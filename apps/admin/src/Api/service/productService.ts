@@ -1,8 +1,8 @@
+import type { CreateProductRequest } from '@bac/contracts/schemas/product/createProductRequest';
+import type { ProductRowResponse } from '@bac/contracts/schemas/product/productRowResponse';
 import type { Page } from '@repo/contracts/types/page/Page';
 import { apiService } from '../apiService';
-import type { ProductRowResponse } from '@repo/contracts/schemas/product/productRowResponse';
 import apiRoutes from '../routes/routes';
-import type { CreateProductRequest } from '@repo/contracts/schemas/product/createProductRequest';
 
 const productService = {
   getProducts: async (searchParams: { [k: string]: string | number | Array<string> }) =>

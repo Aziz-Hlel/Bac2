@@ -1,6 +1,6 @@
 import { prisma } from '@/bootstrap/db.init';
 import { DatabaseError } from '@/err/customErrors';
-import { CreateElectiveExamRequest } from '@repo/contracts/schemas/ElectiveExam/createElectiveExamRequest';
+import { CreateElectiveExamRequest } from '@bac/contracts/schemas/ElectiveExam/createElectiveExamRequest';
 
 export class ElectiveExamRepo {
   create = async (data: CreateElectiveExamRequest) => {

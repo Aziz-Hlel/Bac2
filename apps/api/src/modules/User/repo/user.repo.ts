@@ -1,12 +1,12 @@
+import { ConflictError } from '@/err/customErrors';
 import { Role, Status } from '@/generated/prisma/enums';
 import { UserInclude } from '@/generated/prisma/models';
+import { CreateUserProfileRequest } from '@bac/contracts/schemas/profile/createUserProfileRequest';
+import { UpdateUserProfileRequest } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
 import { DefaultArgs } from '@prisma/client/runtime/client';
-import { CreateUserProfileRequest } from '@repo/contracts/schemas/profile/createUserProfileRequest';
-import { UpdateUserProfileRequest } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
 import { prisma } from '../../../bootstrap/db.init';
 import { UserCreateInputCustom } from '../mapper/user.mapper';
 import { UserWithProfile } from '../types';
-import { ConflictError } from '@/err/customErrors';
 
 export class UserRepo {
   private includeProfile() {

@@ -1,5 +1,5 @@
 import { Major } from '@/generated/prisma/client';
-import { MajorResponse } from '@repo/contracts/schemas/major/majorResponse';
+import { MajorResponse } from '@bac/contracts/schemas/major/majorResponse';
 
 export class MajorMapper {
   static toMajorResponse(major: Major): MajorResponse {

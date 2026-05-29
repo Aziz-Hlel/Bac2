@@ -1,8 +1,8 @@
-import { create } from 'zustand';
-import { jwtTokenManager } from '@/Api/token/JwtTokenManager.class';
-import type { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
 import { authService } from '@/Api/service/authService';
+import { jwtTokenManager } from '@/Api/token/JwtTokenManager.class';
 import type { FirebaseSignInRequestDto } from '@/types22/auth/SignInRequestDto';
+import type { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { create } from 'zustand';
 
 type AuthStatus = 'idle' | 'loading' | 'authenticated' | 'unauthenticated';
 

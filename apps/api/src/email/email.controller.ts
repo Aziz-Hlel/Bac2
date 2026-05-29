@@ -1,7 +1,7 @@
-import { sendContactUsRequestSchema } from '@repo/contracts/schemas/email/sendContactUsRequest';
-import { emailService } from './email.service';
-import { Request, Response } from 'express';
+import { sendContactUsRequestSchema } from '@bac/contracts/schemas/email/sendContactUsRequest';
 import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
+import { Request, Response } from 'express';
+import { emailService } from './email.service';
 
 class EmailController {
   async sendContactEmail(req: Request, res: Response<SimpleApiResponse>) {

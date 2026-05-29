@@ -1,7 +1,7 @@
-import { createExamRequestSchema } from '@repo/contracts/schemas/exam/creatExamRequest';
-import { ExamAppService } from './exam.app.service';
-import { Request, Response } from 'express';
 import getUrlParam from '@/utils/getUrlParam';
+import { createExamRequestSchema } from '@bac/contracts/schemas/exam/creatExamRequest';
+import { Request, Response } from 'express';
+import { ExamAppService } from './exam.app.service';
 
 export class ExamController {
   constructor(private readonly examAppService: ExamAppService) {}

@@ -1,10 +1,10 @@
 import { School, User } from '@/generated/prisma/client';
-import { SchoolResponse } from '@repo/contracts/schemas/school/schoolResponse';
-import { SchoolWithUserResponse } from '@repo/contracts/schemas/school/schoolWithUserResponse';
-import UserMapper from '../User/mapper/user.mapper';
 import { SchoolGetPayload } from '@/generated/prisma/models';
-import { SchoolResponseWithDetails } from '@repo/contracts/schemas/school/SchoolResponseWithDetails';
+import { SchoolResponse } from '@bac/contracts/schemas/school/schoolResponse';
+import { SchoolResponseWithDetails } from '@bac/contracts/schemas/school/SchoolResponseWithDetails';
+import { SchoolWithUserResponse } from '@bac/contracts/schemas/school/schoolWithUserResponse';
 import { ElectiveExamEnum_V2 } from '@repo/contracts/types/enums/meta/selectiveExamsEnum';
+import UserMapper from '../User/mapper/user.mapper';
 
 export class SchoolMapper {
   static toResponse(school: School): SchoolResponse {

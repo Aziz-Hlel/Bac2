@@ -1,6 +1,6 @@
-import { CreateTeacherRequest } from '@repo/contracts/schemas/teacher/createTeacherRequest';
+import { CreateTeacherRequest } from '@bac/contracts/schemas/teacher/createTeacherRequest';
+import { UpdateTeacherRequest } from '@bac/contracts/schemas/teacher/updateTeacherRequest';
 import { TeacherRepo } from './teacher.repo';
-import { UpdateTeacherRequest } from '@repo/contracts/schemas/teacher/updateTeacherRequest';
 
 export class TeacherService {
   constructor(private readonly teacherRepo: TeacherRepo) {}

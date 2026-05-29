@@ -1,10 +1,10 @@
-import { firebaseAuthService } from '../../../firebase/service/firebase.auth.service';
-import UserMapper from '../mapper/user.mapper';
-import { InternalServerError } from '../../../err/customErrors';
-import { DecodedIdTokenWithClaims } from '../../../types/auth/DecodedIdTokenWithClaims';
-import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
-import { UserService } from './user.service';
 import { Role } from '@/generated/prisma/enums';
+import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { InternalServerError } from '../../../err/customErrors';
+import { firebaseAuthService } from '../../../firebase/service/firebase.auth.service';
+import { DecodedIdTokenWithClaims } from '../../../types/auth/DecodedIdTokenWithClaims';
+import UserMapper from '../mapper/user.mapper';
+import { UserService } from './user.service';
 
 export interface IAuthService {
   registerUser(tokenId: string): Promise<UserProfileResponse>;

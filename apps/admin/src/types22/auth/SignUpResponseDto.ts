@@ -1,3 +1,3 @@
-import type { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
+import type { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
 
 export type SignUpResponseDto = UserProfileResponse;

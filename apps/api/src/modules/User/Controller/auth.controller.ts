@@ -1,6 +1,6 @@
+import { CreateUserSchema } from '@bac/contracts/schemas/user/CreateUserDto';
 import { Request, Response } from 'express';
 import { AuthenticatedRequest } from '../../../types/auth/AuthenticatedRequest';
-import { CreateUserSchema } from '@repo/contracts/schemas/user/CreateUserDto';
 import { IAuthService } from '../Service/auth.service';
 
 export class AuthController {

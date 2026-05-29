@@ -1,4 +1,4 @@
-import { productsTableData, type ProductTableTypes } from '@repo/contracts/schemas/product/ProductPageQuery';
+import { productsTableData, type ProductTableTypes } from '@bac/contracts/schemas/product/ProductPageQuery';
 
 export type TableRowType = ProductTableTypes['TableRowType'];
 

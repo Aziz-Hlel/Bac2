@@ -1,9 +1,9 @@
 import { prisma } from '@/bootstrap/db.init';
 import { DatabaseError } from '@/err/customErrors';
 import { MajorEnum } from '@/generated/prisma/enums';
-import { MajorGetPayload, MajorInclude } from '@/generated/prisma/models';
+import { MajorInclude } from '@/generated/prisma/models';
+import { CreateMajorRequest } from '@bac/contracts/schemas/major/createMajorRequest';
 import { DefaultArgs } from '@prisma/client/runtime/client';
-import { CreateMajorRequest } from '@repo/contracts/schemas/major/createMajorRequest';
 
 export class MajorRepo {
   create = async (name: MajorEnum) => {

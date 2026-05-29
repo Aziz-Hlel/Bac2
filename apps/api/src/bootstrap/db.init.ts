@@ -1,19 +1,5 @@
-import { PrismaPg } from '@prisma/adapter-pg';
-import ENV from '@/config/env';
+import prisma from '@bac/db';
 import { logger } from './logger.init';
-import { PrismaClient } from '@/generated/prisma/client';
-
-const connectionString = `postgresql://${ENV.DB_USER}:${ENV.DB_PASSWORD}@${ENV.DB_HOST}:${ENV.DB_PORT}/${ENV.DB_NAME}`;
-
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({
-  adapter,
-  log: [
-    { emit: 'event', level: 'query' },
-    { emit: 'event', level: 'error' },
-    { emit: 'event', level: 'warn' },
-  ],
-});
 
 prisma.$on('query', (e) => {
   const durationInMs = e.duration;

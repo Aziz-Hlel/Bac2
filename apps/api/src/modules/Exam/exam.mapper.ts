@@ -1,8 +1,8 @@
 import { Exam, Major } from '@/generated/prisma/client';
 import { toCalendarDate, toTime } from '@/utils/dayjs';
-import { ExamResponse } from '@repo/contracts/schemas/exam/examResponse';
+import { ExamResponse } from '@bac/contracts/schemas/exam/examResponse';
+import { ExamWithMajorResponse } from '@bac/contracts/schemas/exam/examWithMajorResponse';
 import { MajorMapper } from '../major/major.mapper';
-import { ExamWithMajorResponse } from '@repo/contracts/schemas/exam/examWithMajorResponse';
 
 export class ExamMapper {
   static toResponse(exam: Exam): ExamResponse {

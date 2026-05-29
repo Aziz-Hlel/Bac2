@@ -2,9 +2,9 @@ import MediaUpload from '@/components/custom/MediaUpload/ImageUpload2';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
-import type { MediaResponse } from '@repo/contracts/schemas/media/MediaResponse';
-import type { CreateNotificationRequest } from '@repo/contracts/schemas/notification/createNotification';
-import { notificationRecipientType } from '@repo/contracts/schemas/notification/types/notificationRecipient';
+import type { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
+import type { CreateNotificationRequest } from '@bac/contracts/schemas/notification/createNotification';
+import { notificationRecipientType } from '@bac/contracts/schemas/notification/types/notificationRecipient';
 import { Controller, type UseFormReturn } from 'react-hook-form';
 const FormUI = ({
   form,

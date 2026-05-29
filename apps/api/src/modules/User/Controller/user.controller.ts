@@ -1,15 +1,15 @@
-import { Response } from 'express';
-import { AuthenticatedRequest } from '../../../types/auth/AuthenticatedRequest';
-import { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
-import { queryParamsSchema } from '@repo/contracts/schemas/user/UserPageQuery';
-import { createUserProfileRequestSchema } from '@repo/contracts/schemas/profile/createUserProfileRequest';
-import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import { PermissionDeniedError } from '@/err/customErrors';
+import getUrlParam from '@/utils/getUrlParam';
+import { createUserProfileRequestSchema } from '@bac/contracts/schemas/profile/createUserProfileRequest';
+import { updateUserProfileRequestSchema } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
+import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { queryParamsSchema } from '@bac/contracts/schemas/user/UserPageQuery';
+import { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
 import { SimpleApiResponse } from '@repo/contracts/types/api/SimpleApiResponse.dto';
 import { Page } from '@repo/contracts/types/page/Page';
-import getUrlParam from '@/utils/getUrlParam';
-import { updateUserProfileRequestSchema } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import { Response } from 'express';
+import { AuthenticatedRequest } from '../../../types/auth/AuthenticatedRequest';
 import { IUserAppService } from '../Service/user.app.service';
 
 export class UserController {

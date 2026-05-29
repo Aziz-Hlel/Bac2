@@ -1,6 +1,6 @@
 import getUrlParam from '@/utils/getUrlParam';
-import { createClassRequestSchema } from '@repo/contracts/schemas/class/createClassRequest';
-import { updateClassRequestSchema } from '@repo/contracts/schemas/class/updateClassRequest';
+import { createClassRequestSchema } from '@bac/contracts/schemas/class/createClassRequest';
+import { updateClassRequestSchema } from '@bac/contracts/schemas/class/updateClassRequest';
 import { Request, Response } from 'express';
 import { ClassService } from './class.service';
 

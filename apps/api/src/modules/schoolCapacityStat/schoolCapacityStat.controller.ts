@@ -1,7 +1,7 @@
+import getUrlParam from '@/utils/getUrlParam';
+import { createSchoolCapStatRequestSchema } from '@bac/contracts/schemas/schoolCapacityStats/createSchoolCapStatRequest';
 import { Request, Response } from 'express';
 import { UpdateSchoolCapStatUseCase } from './use-case/updateSchoolCapStat.use-case';
-import getUrlParam from '@/utils/getUrlParam';
-import { createSchoolCapStatRequestSchema } from '@repo/contracts/schemas/schoolCapacityStats/createSchoolCapStatRequest';
 
 export class SchoolCapacityStatController {
   constructor(private readonly updateSchoolCapStatUseCase: UpdateSchoolCapStatUseCase) {}

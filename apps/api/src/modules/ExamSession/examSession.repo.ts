@@ -1,7 +1,6 @@
 import { prisma } from '@/bootstrap/db.init';
 import { TermEnum, TimeOfDayEnum } from '@/generated/prisma/enums';
 import { TX } from '@/types/prisma/PrismaTransaction';
-import { parseTime } from '@/utils/dayjs';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
 
 export class ExamSessionRepo {

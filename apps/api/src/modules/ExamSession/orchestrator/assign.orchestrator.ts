@@ -1,4 +1,4 @@
-import { ClassAssignmentsRequest } from '@repo/contracts/schemas/examSession/classAssignmentsRequest';
+import { ClassAssignmentsRequest } from '@bac/contracts/schemas/examSession/classAssignmentsRequest';
 import { AssignElectiveExamToClassUseCase } from '../use-case/assignElectiveExamToClassUseCase';
 import { AssignExamToClassesUseCase } from '../use-case/assignExamToClasses';
 import { AssignMajorExamsToClassUseCase } from '../use-case/assignMajorExamsToClassUseCase';

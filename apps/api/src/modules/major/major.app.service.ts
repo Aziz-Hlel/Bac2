@@ -1,8 +1,8 @@
 import { ConflictError } from '@/err/customErrors';
-import { CreateMajorRequest } from '@repo/contracts/schemas/major/createMajorRequest';
-import { MajorService } from './major.service';
-import { MajorMapper } from './major.mapper';
 import { MajorEnum } from '@/generated/prisma/enums';
+import { CreateMajorRequest } from '@bac/contracts/schemas/major/createMajorRequest';
+import { MajorMapper } from './major.mapper';
+import { MajorService } from './major.service';
 
 export class MajorAppService {
   constructor(private readonly majorService: MajorService) {}

@@ -1,6 +1,5 @@
-import { School, Teacher } from '@/generated/prisma/client';
-import { SchoolResponse } from '@repo/contracts/schemas/school/schoolResponse';
-import { TeacherResponse } from '@repo/contracts/schemas/teacher/teacherResponse';
+import { Teacher } from '@/generated/prisma/client';
+import { TeacherResponse } from '@bac/contracts/schemas/teacher/teacherResponse';
 
 export class TeacherMapper {
   static toResponse(teacher: Teacher): TeacherResponse {

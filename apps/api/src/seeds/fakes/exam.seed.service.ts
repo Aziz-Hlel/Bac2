@@ -1,5 +1,5 @@
 import { ExamService } from '@/modules/Exam/exam.service';
-import { CreateExamRequest } from '@repo/contracts/schemas/exam/creatExamRequest';
+import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
 
 export class ExamSeedService {
   constructor(private readonly examService: ExamService) {}

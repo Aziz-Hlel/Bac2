@@ -1,10 +1,10 @@
-import { createSchoolRequestSchema } from '@repo/contracts/schemas/school/createSchoolRequest';
-import { SchoolAppService } from './school.app.service';
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
-import { Response } from 'express';
-import { createSchoolWithUserRequestSchema } from '@repo/contracts/schemas/school/createWithUser';
-import { updateSchoolRequestSchema } from '@repo/contracts/schemas/school/updateSchoolRequest';
 import getUrlParam from '@/utils/getUrlParam';
+import { createSchoolRequestSchema } from '@bac/contracts/schemas/school/createSchoolRequest';
+import { createSchoolWithUserRequestSchema } from '@bac/contracts/schemas/school/createWithUser';
+import { updateSchoolRequestSchema } from '@bac/contracts/schemas/school/updateSchoolRequest';
+import { Response } from 'express';
+import { SchoolAppService } from './school.app.service';
 export class SchoolController {
   constructor(private readonly schoolAppService: SchoolAppService) {}
 

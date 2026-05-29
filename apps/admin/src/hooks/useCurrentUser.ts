@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { authService } from '@/Api/service/authService';
 import { useAuthStore } from '@/store/useAuthStore';
-import type { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
+import type { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { useQuery } from '@tanstack/react-query';
 
 export const CURRENT_USER_QUERY_KEY = ['auth', 'user'] as const;
 

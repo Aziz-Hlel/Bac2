@@ -1,4 +1,4 @@
-import type { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
+import type { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
 import type { Prettify } from '@repo/contracts/utils/Prettify';
 
 export type TableRowType = UserProfileRowResponse;

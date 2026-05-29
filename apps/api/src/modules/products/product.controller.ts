@@ -1,9 +1,9 @@
-import { createProductRequestSchema } from '@repo/contracts/schemas/product/createProductRequest';
-import { Request, Response } from 'express';
-import { ProductResponse } from '@repo/contracts/schemas/product/productResponse';
-import { updateProductRequestSchema } from '@repo/contracts/schemas/product/updateProductRequest';
-import { productsQueryParamsSchema } from '@repo/contracts/schemas/product/ProductPageQuery';
 import getUrlParam from '@/utils/getUrlParam';
+import { createProductRequestSchema } from '@bac/contracts/schemas/product/createProductRequest';
+import { productsQueryParamsSchema } from '@bac/contracts/schemas/product/ProductPageQuery';
+import { ProductResponse } from '@bac/contracts/schemas/product/productResponse';
+import { updateProductRequestSchema } from '@bac/contracts/schemas/product/updateProductRequest';
+import { Request, Response } from 'express';
 import { IProductService } from './product.service';
 
 export class ProductController {

@@ -1,9 +1,9 @@
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
-import { TeacherAppService } from './teacher.app.service';
-import { createTeacherRequestSchema } from '@repo/contracts/schemas/teacher/createTeacherRequest';
-import { updateTeacherRequestSchema } from '@repo/contracts/schemas/teacher/updateTeacherRequest';
 import getUrlParam from '@/utils/getUrlParam';
+import { createTeacherRequestSchema } from '@bac/contracts/schemas/teacher/createTeacherRequest';
+import { updateTeacherRequestSchema } from '@bac/contracts/schemas/teacher/updateTeacherRequest';
 import { Response } from 'express';
+import { TeacherAppService } from './teacher.app.service';
 
 export class TeacherController {
   constructor(private readonly teacherAppService: TeacherAppService) {}

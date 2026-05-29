@@ -1,6 +1,6 @@
-import { AssignExamToClassesRequest } from '@repo/contracts/schemas/examSession/assignExamToClassesRequest';
-import { ExamSessionRepo } from '../examSession.repo';
 import { ClassRepo } from '@/modules/class/class.repo';
+import { AssignExamToClassesRequest } from '@bac/contracts/schemas/examSession/assignExamToClassesRequest';
+import { ExamSessionRepo } from '../examSession.repo';
 
 export class AssignExamToClassesUseCase {
   constructor(

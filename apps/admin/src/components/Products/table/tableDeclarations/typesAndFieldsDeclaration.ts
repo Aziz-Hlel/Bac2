@@ -1,4 +1,4 @@
-import type { ProductRowResponse } from '@repo/contracts/schemas/product/productRowResponse';
+import type { ProductRowResponse } from '@bac/contracts/schemas/product/productRowResponse';
 
 export type TableRowType = ProductRowResponse;
 // export type NestedObject = Prettify<NonNullable<TableRowType['profile']>>;

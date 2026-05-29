@@ -1,9 +1,9 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
-import { CreateClassRequest } from '@repo/contracts/schemas/class/createClassRequest';
-import { UpdateClassRequest } from '@repo/contracts/schemas/class/updateClassRequest';
-import { ClassRepo } from './class.repo';
+import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
+import { UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
 import { ClassMapper } from './class.mapper';
+import { ClassRepo } from './class.repo';
 
 export class ClassService {
   constructor(private readonly classRepo: ClassRepo) {}

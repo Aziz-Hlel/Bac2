@@ -1,4 +1,4 @@
-import { SendContactUsRequest } from '@repo/contracts/schemas/email/sendContactUsRequest';
+import { SendContactUsRequest } from '@bac/contracts/schemas/email/sendContactUsRequest';
 
 class EmailUtils {
   createContactUsHtml(payload: SendContactUsRequest) {

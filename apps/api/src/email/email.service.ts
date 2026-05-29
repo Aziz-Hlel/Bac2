@@ -1,7 +1,7 @@
-import { SendContactUsRequest } from '@repo/contracts/schemas/email/sendContactUsRequest';
-import { emailUtils } from './email.utils';
 import ENV from '@/config/env';
 import { emailQueue } from '@/mq/email.queue';
+import { SendContactUsRequest } from '@bac/contracts/schemas/email/sendContactUsRequest';
+import { emailUtils } from './email.utils';
 
 class EmailService {
   private readonly EMAIL_ADDRESSES = {

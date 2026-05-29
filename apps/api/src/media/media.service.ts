@@ -1,13 +1,13 @@
-import { storageService } from '@/storage/storage.service';
-import { PresignedUrlRequest } from '@repo/contracts/schemas/media/PresignedUrlRequest';
-import { MediaRepo } from './media.repo';
 import { NotFoundError } from '@/err/customErrors';
-import { MediaStatus } from '@/generated/prisma/enums';
-import { PresignedUrlResponse } from '@repo/contracts/schemas/media/PresignedUrlResponse';
 import { Media } from '@/generated/prisma/client';
-import { MediaResponse } from '@repo/contracts/schemas/media/MediaResponse';
+import { MediaStatus } from '@/generated/prisma/enums';
 import { MediaDelegate } from '@/generated/prisma/models';
+import { storageService } from '@/storage/storage.service';
+import { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
+import { PresignedUrlRequest } from '@bac/contracts/schemas/media/PresignedUrlRequest';
+import { PresignedUrlResponse } from '@bac/contracts/schemas/media/PresignedUrlResponse';
 import { DefaultArgs } from '@prisma/client/runtime/client';
+import { MediaRepo } from './media.repo';
 
 export interface IMediaService {
   getPresignedUrl(schema: PresignedUrlRequest): Promise<PresignedUrlResponse>;

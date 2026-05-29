@@ -1,10 +1,10 @@
-import { ExamSessionService } from '@/modules/ExamSession/examSession.service';
-import { SchoolCapacityStatRepo } from '../schoolCapacityStat.repo';
-import { ExamService } from '@/modules/Exam/exam.service';
 import { prisma } from '@/bootstrap/db.init';
-import { CreateSchoolCapStatRequest } from '@repo/contracts/schemas/schoolCapacityStats/createSchoolCapStatRequest';
-import { CapacityTypeEnum } from '@/generated/prisma/enums';
 import { DatabaseError } from '@/err/customErrors';
+import { CapacityTypeEnum } from '@/generated/prisma/enums';
+import { ExamService } from '@/modules/Exam/exam.service';
+import { ExamSessionService } from '@/modules/ExamSession/examSession.service';
+import { CreateSchoolCapStatRequest } from '@bac/contracts/schemas/schoolCapacityStats/createSchoolCapStatRequest';
+import { SchoolCapacityStatRepo } from '../schoolCapacityStat.repo';
 
 export class UpdateSchoolCapStatUseCase {
   constructor(

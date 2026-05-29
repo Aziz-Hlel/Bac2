@@ -4,8 +4,8 @@ import { SubjectEnum, TermEnum } from '@/generated/prisma/enums';
 import { ExamInclude } from '@/generated/prisma/models';
 import { parseCalendarDate, parseTime } from '@/utils/dayjs';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
+import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
 import { DefaultArgs } from '@prisma/client/runtime/client';
-import { CreateExamRequest } from '@repo/contracts/schemas/exam/creatExamRequest';
 
 export class ExamRepo {
   create = async (data: CreateExamRequest) => {

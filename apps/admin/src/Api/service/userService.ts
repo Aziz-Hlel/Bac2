@@ -1,10 +1,10 @@
+import type { CreateUserProfileRequest } from '@bac/contracts/schemas/profile/createUserProfileRequest';
+import type { UpdateUserProfileRequest } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
+import type { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import type { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
 import type { Page } from '@repo/contracts/types/page/Page';
 import { apiService } from '../apiService';
 import apiRoutes from '../routes/routes';
-import type { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
-import type { CreateUserProfileRequest } from '@repo/contracts/schemas/profile/createUserProfileRequest';
-import type { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
-import type { UpdateUserProfileRequest } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
 
 const userService = {
   getUsers: async (searchParams: { [k: string]: string | number | Array<string> }) =>

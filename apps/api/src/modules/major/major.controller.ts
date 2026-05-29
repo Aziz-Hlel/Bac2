@@ -1,9 +1,9 @@
-import { MajorAppService } from './major.app.service';
-import { Request, Response } from 'express';
-import { createMajorRequestSchema } from '@repo/contracts/schemas/major/createMajorRequest';
-import getUrlParam from '@/utils/getUrlParam';
-import { isMajorEnum } from '@repo/contracts/schemas/major/utils';
 import { BadRequestError } from '@/err/customErrors';
+import getUrlParam from '@/utils/getUrlParam';
+import { createMajorRequestSchema } from '@bac/contracts/schemas/major/createMajorRequest';
+import { isMajorEnum } from '@bac/contracts/schemas/major/utils';
+import { Request, Response } from 'express';
+import { MajorAppService } from './major.app.service';
 
 export class MajorController {
   constructor(private readonly majorAppService: MajorAppService) {}

@@ -1,7 +1,7 @@
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Textarea } from '@/components/ui/textarea';
 // import ImageUpload2 from '@/components/ui2/ImageUpload/comp/ImageUpload2';
-import type { MediaResponse } from '@repo/contracts/schemas/media/MediaResponse';
+import type { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
 import { Controller, type UseFormReturn } from 'react-hook-form';
 import type { schemasType } from '../../core/services';
 

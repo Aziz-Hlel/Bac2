@@ -1,8 +1,8 @@
-import type { MediaResponse } from '@repo/contracts/schemas/media/MediaResponse';
+import type { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { uploadImage } from '../helper/getSignedUrlUpload';
-import { toast } from 'sonner';
 import type { FieldValues, Path, UseFormReturn } from 'react-hook-form';
+import { toast } from 'sonner';
+import { uploadImage } from '../helper/getSignedUrlUpload';
 
 type FileContextType = {
   file: File | null;
@@ -78,7 +78,7 @@ export function FileProvider<T extends FieldValues>({ children, initMedia, form,
         description: 'Unable to upload image, if the issue persists please contact support',
         action: {
           label: 'Ok',
-          onClick: () => {},
+          onClick: () => { },
         },
       });
       handleRollBack();

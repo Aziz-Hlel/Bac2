@@ -1,8 +1,8 @@
 import { prisma } from '@/bootstrap/db.init';
 import { Prisma } from '@/generated/prisma/client';
+import { CreateSchoolRequest } from '@bac/contracts/schemas/school/createSchoolRequest';
+import { UpdateSchoolRequest } from '@bac/contracts/schemas/school/updateSchoolRequest';
 import { DefaultArgs } from '@prisma/client/runtime/client';
-import { CreateSchoolRequest } from '@repo/contracts/schemas/school/createSchoolRequest';
-import { UpdateSchoolRequest } from '@repo/contracts/schemas/school/updateSchoolRequest';
 
 export class SchoolRepo {
   create = async <T extends Prisma.SchoolInclude<DefaultArgs>>(

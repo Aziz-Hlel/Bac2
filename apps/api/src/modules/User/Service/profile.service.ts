@@ -1,10 +1,10 @@
-import { DecodedIdTokenWithClaims } from '@/types/auth/DecodedIdTokenWithClaims';
-import { CreateProfileRequest } from '@repo/contracts/schemas/profile/createProfileRequest';
-import { UserRepo } from '../repo/user.repo';
 import { BadRequestError, ConflictError } from '@/err/customErrors';
-import { ProfileRepo } from '../repo/profile.repo';
-import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
+import { DecodedIdTokenWithClaims } from '@/types/auth/DecodedIdTokenWithClaims';
+import { CreateProfileRequest } from '@bac/contracts/schemas/profile/createProfileRequest';
+import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
 import { ProfileMapper } from '../mapper/profile.mapper';
+import { ProfileRepo } from '../repo/profile.repo';
+import { UserRepo } from '../repo/user.repo';
 
 export interface IProfileService {
   create(token: DecodedIdTokenWithClaims, schema: CreateProfileRequest): Promise<UserProfileResponse>;

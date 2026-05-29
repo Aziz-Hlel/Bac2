@@ -1,9 +1,9 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ProductInclude, ProductOrderByWithRelationInput, ProductWhereInput } from '@/generated/prisma/models';
-import { CreateProductRequest } from '@repo/contracts/schemas/product/createProductRequest';
-import { UpdateProductRequest } from '@repo/contracts/schemas/product/updateProductRequest';
-import { DefaultArgs } from '@prisma/client/runtime/client';
 import { ProductTransaction } from '@/types/transactions';
+import { CreateProductRequest } from '@bac/contracts/schemas/product/createProductRequest';
+import { UpdateProductRequest } from '@bac/contracts/schemas/product/updateProductRequest';
+import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export class ProductRepo {
   private includeThumbnail() {

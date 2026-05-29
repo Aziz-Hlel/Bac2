@@ -3,15 +3,15 @@ import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { FieldGroup } from '@/components/ui/field';
 import { Spinner } from '@/components/ui/spinner';
+import { updateEventSchema, type UpdateEventSchema } from '@bac/contracts/schemas/events/updateEventSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { updateEventSchema, type UpdateEventSchema } from '@repo/contracts/schemas/events/updateEventSchema';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useSelectedRow } from '../../context/selected-row-provider';
 import { MODULE_NAME } from '../../core/core';
-import FormUI from '../shared/FormUI';
 import type { TableRowType } from '../../core/types';
+import FormUI from '../shared/FormUI';
 
 const UpdateDialogInner = ({ selectedRow }: { selectedRow: TableRowType }) => {
   const { handleCancel } = useSelectedRow();

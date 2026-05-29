@@ -1,14 +1,5 @@
-import { useSelectedRow } from '../context/selected-row-provider';
-import { useUser } from '@/context/UserContext';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import userService from '@/Api/service/userService';
-import {
-  updateUserProfileRequestSchema,
-  type UpdateUserProfileRequest,
-} from '@repo/contracts/schemas/profile/updateUserProfileRequest';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -18,13 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
-import { Spinner } from '@/components/ui/spinner';
-import RolesTextMapping from '@/EnumTextMapping/RolesTextMapping';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
 import {
   Select,
   SelectContent,
@@ -34,8 +21,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Separator } from '@/components/ui/separator';
+import { Spinner } from '@/components/ui/spinner';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useUser } from '@/context/UserContext';
+import RolesTextMapping from '@/EnumTextMapping/RolesTextMapping';
+import {
+  updateUserProfileRequestSchema,
+  type UpdateUserProfileRequest,
+} from '@bac/contracts/schemas/profile/updateUserProfileRequest';
+import { zodResolver } from '@hookform/resolvers/zod';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
+import { useSelectedRow } from '../context/selected-row-provider';
 
 const EditUser = () => {
   const { handleCancel, currentRow, openDialog } = useSelectedRow();

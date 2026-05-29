@@ -1,6 +1,6 @@
 import { prisma } from '@/bootstrap/db.init';
-import { CreateTeacherRequest } from '@repo/contracts/schemas/teacher/createTeacherRequest';
-import { UpdateTeacherRequest } from '@repo/contracts/schemas/teacher/updateTeacherRequest';
+import { CreateTeacherRequest } from '@bac/contracts/schemas/teacher/createTeacherRequest';
+import { UpdateTeacherRequest } from '@bac/contracts/schemas/teacher/updateTeacherRequest';
 
 export class TeacherRepo {
   create = async (data: CreateTeacherRequest, schoolId: string) => {

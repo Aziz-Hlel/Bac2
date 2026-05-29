@@ -1,14 +1,14 @@
-import { CreateProductRequest } from '@repo/contracts/schemas/product/createProductRequest';
-import { ProductResponse } from '@repo/contracts/schemas/product/productResponse';
-import { ProductMapper } from './product.mapper';
-import { NotFoundError } from '@/err/customErrors';
-import { UpdateProductRequest } from '@repo/contracts/schemas/product/updateProductRequest';
-import { ProductPageQuery } from '@repo/contracts/schemas/product/ProductPageQuery';
-import { ProductOrderByWithRelationInput, ProductWhereInput } from '@/generated/prisma/models';
-import { Page } from '@repo/contracts/types/page/Page';
 import { prisma } from '@/bootstrap/db.init';
-import { ProductRepo } from './product.repo';
+import { NotFoundError } from '@/err/customErrors';
+import { ProductOrderByWithRelationInput, ProductWhereInput } from '@/generated/prisma/models';
 import { MediaService } from '@/media/media.service';
+import { CreateProductRequest } from '@bac/contracts/schemas/product/createProductRequest';
+import { ProductPageQuery } from '@bac/contracts/schemas/product/ProductPageQuery';
+import { ProductResponse } from '@bac/contracts/schemas/product/productResponse';
+import { UpdateProductRequest } from '@bac/contracts/schemas/product/updateProductRequest';
+import { Page } from '@repo/contracts/types/page/Page';
+import { ProductMapper } from './product.mapper';
+import { ProductRepo } from './product.repo';
 
 export interface IProductService {
   create(schema: CreateProductRequest): Promise<ProductResponse>;

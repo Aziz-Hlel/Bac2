@@ -1,25 +1,25 @@
-import { UserProfileRowResponse } from '@repo/contracts/schemas/user/UserRowResponse';
-import { UserOrderByWithRelationInput, UserWhereInput } from '../../../generated/prisma/models';
-import { prisma } from '../../../bootstrap/db.init';
-import UserMapper from '../mapper/user.mapper';
+import { logger } from '@/bootstrap/logger.init';
+import { RedisKeys } from '@/cache/keys/cache.keys';
+import { cacheService } from '@/cache/service/cache.service';
+import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
+import { firebaseUserService } from '@/firebase/service/firebase.user.service';
+import { Role } from '@/generated/prisma/enums';
+import { CreateUserProfileRequest } from '@bac/contracts/schemas/profile/createUserProfileRequest';
+import { UpdateUserProfileRequest } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
+import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
 import {
   ProfileKeys,
   profileLevelSortableFields,
   RootKeys,
   rootLevelSortableFields,
   UserPageQuery,
-} from '@repo/contracts/schemas/user/UserPageQuery';
-import { cacheService } from '@/cache/service/cache.service';
-import { CreateUserProfileRequest } from '@repo/contracts/schemas/profile/createUserProfileRequest';
-import { UserProfileResponse } from '@repo/contracts/schemas/profile/UserProfileResponse';
-import { firebaseUserService } from '@/firebase/service/firebase.user.service';
-import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
-import { Role } from '@/generated/prisma/enums';
-import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
-import { UpdateUserProfileRequest } from '@repo/contracts/schemas/profile/updateUserProfileRequest';
-import { logger } from '@/bootstrap/logger.init';
-import { RedisKeys } from '@/cache/keys/cache.keys';
+} from '@bac/contracts/schemas/user/UserPageQuery';
+import { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
 import { Page } from '@repo/contracts/types/page/Page';
+import PERMISSION_SCORE from '@repo/contracts/utils/PermissionScore';
+import { prisma } from '../../../bootstrap/db.init';
+import { UserOrderByWithRelationInput, UserWhereInput } from '../../../generated/prisma/models';
+import UserMapper from '../mapper/user.mapper';
 import { UserRepo } from '../repo/user.repo';
 
 export interface IUserAppService {

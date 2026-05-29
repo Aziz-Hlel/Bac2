@@ -1,11 +1,11 @@
 import {
   notificationColumnFiltersKeys,
   notificationDefaultQuery,
-  notificationSortableColumnKeys,
   notificationQueryParamsSchema,
+  notificationSortableColumnKeys,
   type NotificationTableRowType,
   type RequiredNotificationTableQueryParams,
-} from '@repo/contracts/schemas/notification/notificationPageQuery';
+} from '@bac/contracts/schemas/notification/notificationPageQuery';
 
 export type TableRowType = NotificationTableRowType;
 

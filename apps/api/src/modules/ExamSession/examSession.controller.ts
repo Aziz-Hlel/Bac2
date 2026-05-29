@@ -1,5 +1,5 @@
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
-import { classAssignmentsRequestSchema } from '@repo/contracts/schemas/examSession/classAssignmentsRequest';
+import { classAssignmentsRequestSchema } from '@bac/contracts/schemas/examSession/classAssignmentsRequest';
 import { Response } from 'express';
 import { AssignOrchestrator } from './orchestrator/assign.orchestrator';
 

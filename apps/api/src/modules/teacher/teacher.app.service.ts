@@ -1,11 +1,11 @@
-import { CreateTeacherRequest } from '@repo/contracts/schemas/teacher/createTeacherRequest';
-import { UpdateTeacherRequest } from '@repo/contracts/schemas/teacher/updateTeacherRequest';
-import { TeacherService } from './teacher.service';
-import { SchoolService } from '../school/school.service';
 import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
-import { CustomClaims as Claims } from '@/types/auth/Claims';
 import { Role } from '@/generated/prisma/enums';
+import { CustomClaims as Claims } from '@/types/auth/Claims';
+import { CreateTeacherRequest } from '@bac/contracts/schemas/teacher/createTeacherRequest';
+import { UpdateTeacherRequest } from '@bac/contracts/schemas/teacher/updateTeacherRequest';
+import { SchoolService } from '../school/school.service';
 import { TeacherMapper } from './teacher.mapper';
+import { TeacherService } from './teacher.service';
 
 export class TeacherAppService {
   constructor(

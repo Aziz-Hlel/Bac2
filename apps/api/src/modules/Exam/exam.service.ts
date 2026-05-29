@@ -1,6 +1,6 @@
-import { CreateExamRequest } from '@repo/contracts/schemas/exam/creatExamRequest';
+import { SubjectEnum, TermEnum } from '@/generated/prisma/enums';
+import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
 import { ExamRepo } from './exam.repo';
-import { MajorEnum, SubjectEnum, TermEnum } from '@/generated/prisma/enums';
 
 export class ExamService {
   constructor(private readonly examRepo: ExamRepo) {}

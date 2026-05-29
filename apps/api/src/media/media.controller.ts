@@ -1,6 +1,6 @@
-import { presignedUrlRequestSchema } from '@repo/contracts/schemas/media/PresignedUrlRequest';
+import { presignedUrlRequestSchema } from '@bac/contracts/schemas/media/PresignedUrlRequest';
+import { PresignedUrlResponse } from '@bac/contracts/schemas/media/PresignedUrlResponse';
 import { Request, Response } from 'express';
-import { PresignedUrlResponse } from '@repo/contracts/schemas/media/PresignedUrlResponse';
 import { IMediaService } from './media.service';
 
 export class MediaController {

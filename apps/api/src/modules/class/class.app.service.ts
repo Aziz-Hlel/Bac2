@@ -1,5 +1,4 @@
-import { CreateClassRequest } from '@repo/contracts/schemas/class/createClassRequest';
-import { ClassRepo } from './class.repo';
+import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
 import { ClassService } from './class.service';
 
 export class ClassAppService {

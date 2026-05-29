@@ -1,13 +1,13 @@
 import { ConflictError, InternalServerError, NotFoundError } from '@/err/customErrors';
+import { Role } from '@/generated/prisma/enums';
 import { CustomClaims as Claims } from '@/types/auth/Claims';
-import { CreateSchoolRequest } from '@repo/contracts/schemas/school/createSchoolRequest';
-import { CreateSchoolWithUserRequest } from '@repo/contracts/schemas/school/createWithUser';
-import { UpdateSchoolRequest } from '@repo/contracts/schemas/school/updateSchoolRequest';
+import { CreateSchoolRequest } from '@bac/contracts/schemas/school/createSchoolRequest';
+import { CreateSchoolWithUserRequest } from '@bac/contracts/schemas/school/createWithUser';
+import { UpdateSchoolRequest } from '@bac/contracts/schemas/school/updateSchoolRequest';
 import { UserService } from '../User/Service/user.service';
 import { SchoolMapper } from './school.mapper';
-import { SchoolService } from './school.service';
-import { Role } from '@/generated/prisma/enums';
 import { SchoolRepo } from './school.repo';
+import { SchoolService } from './school.service';
 
 export class SchoolAppService {
   constructor(

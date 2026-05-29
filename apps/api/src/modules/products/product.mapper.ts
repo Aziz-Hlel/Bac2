@@ -1,8 +1,7 @@
-import { Product } from '@/generated/prisma/client';
 import { ProductWithThumbnail } from '@/types/getPayload';
-import { MediaResponse } from '@repo/contracts/schemas/media/MediaResponse';
-import { ProductResponse } from '@repo/contracts/schemas/product/productResponse';
-import { ProductRowResponse } from '@repo/contracts/schemas/product/productRowResponse';
+import { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
+import { ProductResponse } from '@bac/contracts/schemas/product/productResponse';
+import { ProductRowResponse } from '@bac/contracts/schemas/product/productRowResponse';
 import { DefaultSearchParams } from '@repo/contracts/types/api/DefaultSeachParams';
 import { Page } from '@repo/contracts/types/page/Page';
 

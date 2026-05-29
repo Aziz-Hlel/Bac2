@@ -1,3 +1,4 @@
+import { usersDefaultQuery, type UsersRequiredTableQueryParams } from '@bac/contracts/schemas/user/UserPageQuery';
 import type {
   ColumnFiltersState,
   PaginationState,
@@ -9,7 +10,6 @@ import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { columnFiltersKeys } from './tableDeclarations/typesAndFieldsDeclaration';
 import useQueryParams from './use-query-params';
-import { usersDefaultQuery, type UsersRequiredTableQueryParams } from '@repo/contracts/schemas/user/UserPageQuery';
 
 const setParamIfNotDefault = (params: URLSearchParams, key: keyof UsersRequiredTableQueryParams, value: string) => {
   const defaultValue = usersDefaultQuery[key];

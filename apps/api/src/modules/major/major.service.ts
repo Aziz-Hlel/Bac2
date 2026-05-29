@@ -1,8 +1,6 @@
 import { MajorEnum } from '@/generated/prisma/enums';
+import { CreateMajorRequest } from '@bac/contracts/schemas/major/createMajorRequest';
 import { MajorRepo } from './major.repo';
-import { MajorInclude } from '@/generated/prisma/models';
-import { DefaultArgs } from '@prisma/client/runtime/client';
-import { CreateMajorRequest } from '@repo/contracts/schemas/major/createMajorRequest';
 
 export class MajorService {
   constructor(private readonly majorRepo: MajorRepo) {}

@@ -1,5 +1,5 @@
 import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
-import type { MediaResponse } from '@repo/contracts/schemas/media/MediaResponse';
+import type { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
 import type { DropzoneOptions } from 'react-dropzone';
 import { Controller, type FieldValues, type Path, type UseFormReturn } from 'react-hook-form';
 import { FileProvider } from './context/fileProvider';
