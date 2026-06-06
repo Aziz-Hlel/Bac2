@@ -1,5 +1,5 @@
-import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
+import { useSearchParams } from 'react-router';
 import { queryParamsSchema } from '../core/types';
 
 const useQueryParams = () => {

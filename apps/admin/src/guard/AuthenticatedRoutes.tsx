@@ -1,6 +1,6 @@
 import { useAuthStore } from '@/store/useAuthStore';
 import LoadingSpinner from '@/utils/LoadingSpinner';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router';
 
 const AuthenticatedRoutes = () => {
   const status = useAuthStore((s) => s.status);

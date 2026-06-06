@@ -1,12 +1,12 @@
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Controller, type UseFormReturn } from 'react-hook-form';
-import type { SignInRequestDto } from '@/types22/auth/SignInRequestDto';
-import { Link } from 'react-router-dom';
 import useLoginWithGoogle from '@/hooks/use-login-with-google';
+import { cn } from '@/lib/utils';
+import type { SignInRequestDto } from '@/types/auth/SignInRequestDto';
+import { Controller, type UseFormReturn } from 'react-hook-form';
+import { Link } from 'react-router';
 import { Spinner } from '../ui/spinner';
 
 interface LoginFormProps {

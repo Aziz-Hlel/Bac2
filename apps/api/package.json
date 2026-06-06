@@ -18,13 +18,13 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.962.0",
     "@aws-sdk/s3-request-presigner": "^3.962.0",
+    "@bac/config": "workspace:*",
+    "@bac/contracts": "workspace:*",
+    "@bac/db": "workspace:*",
+    "@bac/queue": "workspace:*",
     "@faker-js/faker": "^10.1.0",
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "catalog:",
-    "@bac/contracts": "workspace:*",
-    "@bac/queue": "workspace:*",
-    "@bac/db": "workspace:*",
-    "@bac/config": "workspace:*",
     "@swc/core": "^1.15.18",
     "axios": "catalog:",
     "bullmq": "catalog:",
@@ -43,18 +43,18 @@
     "pg": "^8.16.3",
     "pino": "^10.1.0",
     "pino-http": "^11.0.0",
-    "pino-pretty": "^13.1.3"
+    "pino-pretty": "^13.1.3",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@types/compression": "^1.8.1",
     "@types/cors": "^2.8.19",
-    "typescript": "catalog:",
     "@types/express": "^5.0.5",
     "@types/node": "catalog:",
-    "tsx":"catalog:",
     "@types/nodemailer": "^7.0.11",
     "@types/pg": "^8.15.6",
     "eslint": "8.57.1",
-    "prisma": "^7.2.0"
+    "prisma": "^7.2.0",
+    "tsx": "catalog:"
   }
 }

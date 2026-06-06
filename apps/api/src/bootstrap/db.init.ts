@@ -1,7 +1,7 @@
-import prisma from '@bac/db';
+import prismaInstance from '@bac/db';
 import { logger } from './logger.init';
 
-prisma.$on('query', (e) => {
+prismaInstance.$on('query', (e) => {
   const durationInMs = e.duration;
 
   if (durationInMs < 1000) {
@@ -21,12 +21,12 @@ prisma.$on('query', (e) => {
   return logger.error({ query: e.query, duration: durationMsg }, 'Prisma query very slow');
 });
 
-prisma.$on('error', (e) => {
+prismaInstance.$on('error', (e) => {
   logger.error({ target: e.target, message: e.message }, 'Prisma error');
 });
 
-prisma.$on('warn', (e) => {
+prismaInstance.$on('warn', (e) => {
   logger.warn({ target: e.target, message: e.message }, 'Prisma warning');
 });
 
-export { prisma };
+export { prismaInstance as prisma };

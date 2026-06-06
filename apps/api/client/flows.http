@@ -3,10 +3,10 @@
 
 @baseUrl = http://localhost:10000/api
 
-@superAdminEmail = tigana137@gmail.com
+@superAdminEmail = m.aziz.hlel@gmail.com
 @superAdminPassword = 12345678
 
-@schoolOwnerEmail = test6@gmail.com
+@schoolOwnerEmail = tigana137@gmail.com
 @schoolOwnerPassword = 12345678
 
 
@@ -24,6 +24,15 @@ Content-Type: application/json
   "email": "{{superAdminEmail}}",
   "password": "{{superAdminPassword}}",
   "returnSecureToken": true
+}
+
+###
+# @name serverLogin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "token": "{{firebaseLoginSuperAdmin.response.body.idToken}}"
 }
 
 

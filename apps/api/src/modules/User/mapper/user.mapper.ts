@@ -1,4 +1,5 @@
-import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { SchoolMapper } from '@/modules/school/school.mapper';
+import { AuthResponse } from '@bac/contracts/schemas/auth/authResponse';
 import { UserResponse } from '@bac/contracts/schemas/user/UserResponse';
 import {
   ProfileRowResponse,
@@ -7,6 +8,7 @@ import {
 } from '@bac/contracts/schemas/user/UserRowResponse';
 import { DefaultSearchParams } from '@bac/contracts/types/api/DefaultSeachParams';
 import { Page } from '@bac/contracts/types/page/Page';
+import { UserGetPayload } from '@bac/db/prisma/models';
 import { Role } from '../../../generated/prisma/browser';
 import { User } from '../../../generated/prisma/client';
 import { UserCreateInput } from '../../../generated/prisma/models';
@@ -46,14 +48,23 @@ class UserMapper {
     };
   }
 
-  static toUserProfileResponse(user: UserWithProfile, userAvatar: string | null): UserProfileResponse {
+  static toLoginResponse(
+    user: UserGetPayload<{
+      include: {
+        profile: true;
+        school: true;
+      };
+    }>,
+    userAvatar: string | null,
+  ): AuthResponse {
     const userResponse: UserResponse = this.toUserResponse(user, userAvatar);
     const profileResponse = ProfileMapper.toProfile(user.profile);
-    const userProfileResponse: UserProfileResponse = {
+    const schoolResponse = user.school ? SchoolMapper.toResponse(user.school) : null;
+    return {
       ...userResponse,
       profile: profileResponse,
+      school: schoolResponse,
     };
-    return userProfileResponse;
   }
 
   static toUserProfileRowResponse(user: UserWithProfile): UserProfileRowResponse {

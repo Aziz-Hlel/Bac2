@@ -1,8 +1,9 @@
+import { prisma } from '@/bootstrap/db.init';
+import { firebaseAuthService } from '@/firebase/service/firebase.auth.service';
+import { firebaseUserService } from '@/firebase/service/firebase.user.service';
+import { User } from '@/generated/prisma/client';
 import { UserCreateInput } from '@/generated/prisma/models';
 import { UserRepo } from '../repo/user.repo';
-import { firebaseUserService } from '@/firebase/service/firebase.user.service';
-import { firebaseAuthService } from '@/firebase/service/firebase.auth.service';
-import { User } from '@/generated/prisma/client';
 
 export class UserService {
   constructor(private readonly userRepo: UserRepo) {}
@@ -66,5 +67,29 @@ export class UserService {
 
   async getUserByAuthId(authId: string) {
     return await this.userRepo.getUserByAuthId(authId);
+  }
+
+  async getWithProfileAndSchool(userId: string) {
+    return await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      include: {
+        profile: true,
+        school: true,
+      },
+    });
+  }
+
+  async findByAuthIdWithProfileAndSchool(authId: string) {
+    return await prisma.user.findUnique({
+      where: {
+        authId,
+      },
+      include: {
+        profile: true,
+        school: true,
+      },
+    });
   }
 }

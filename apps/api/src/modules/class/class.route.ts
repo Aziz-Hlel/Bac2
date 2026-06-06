@@ -7,7 +7,7 @@ export const createRouter = (classController: ClassController) => {
   const router = Router({ mergeParams: true });
   router.post('/', requireAuth, asyncHandler(classController.create));
 
-  router.get('/', requireAuth, asyncHandler(classController.getAllBySchoolId));
+  router.get('/', requireAuth, asyncHandler(classController.findAll));
   router.get('/:id', requireAuth, asyncHandler(classController.getById));
 
   router.put('/:id', requireAuth, asyncHandler(classController.update));

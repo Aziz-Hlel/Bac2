@@ -1,7 +1,7 @@
 import firebaseService from '@/Api/service/firebaseService';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { UseFormReturn } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const useLoginWithGoogle = (form: UseFormReturn<{ email: string; password: string; [key: string]: any }>) => {
   const oAuthSignIn = useAuthStore((state) => state.oAuthLogin);
@@ -18,7 +18,7 @@ const useLoginWithGoogle = (form: UseFormReturn<{ email: string; password: strin
     }
     const idToken = googleLoginResponse.data;
 
-    await oAuthSignIn({ idToken });
+    await oAuthSignIn({ token: idToken });
 
     navigate('/profile');
   };

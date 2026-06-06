@@ -1,7 +1,7 @@
 import { CreateUserSchema } from '@bac/contracts/schemas/user/CreateUserDto';
 import { Request, Response } from 'express';
-import { AuthenticatedRequest } from '../../../types/auth/AuthenticatedRequest';
 import { IAuthService } from '../Service/auth.service';
+import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
 
 export class AuthController {
   constructor(private readonly authService: IAuthService) {}

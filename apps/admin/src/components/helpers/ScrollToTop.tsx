@@ -1,6 +1,6 @@
 import { useWindowScroll } from '@uidotdev/usehooks';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 export function ScrollToTop() {
   const [_, scrollTo] = useWindowScroll();

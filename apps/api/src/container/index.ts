@@ -66,6 +66,6 @@ export const container: { router: Router; resource: string }[] = [
   { router: schoolRouter, resource: 'schools' },
   { router: schoolCapacityStatRoute, resource: 'schools/:schoolId/capacity-stats' },
   { router: teacherRouter, resource: 'schools/:schoolId/teachers' },
-  { router: classRouter, resource: 'schools/:schoolId/classes' },
+  { router: classRouter, resource: 'schools/:schoolId/classrooms' },
   { router: examSessionRouter, resource: 'schools/:schoolId/exam-sessions' },
 ];

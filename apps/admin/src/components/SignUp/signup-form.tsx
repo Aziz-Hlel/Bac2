@@ -1,12 +1,12 @@
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import useSignUpForm from './use-signUp-form';
-import { Controller } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { Spinner } from '../ui/spinner';
 import useLoginWithGoogle from '@/hooks/use-login-with-google';
+import { cn } from '@/lib/utils';
+import { Controller } from 'react-hook-form';
+import { Link } from 'react-router';
+import { Spinner } from '../ui/spinner';
+import useSignUpForm from './use-signUp-form';
 
 export function SignupForm() {
   const { form, onSubmit } = useSignUpForm();

@@ -1,14 +1,15 @@
 import { authService } from '@/Api/service/authService';
 import { jwtTokenManager } from '@/Api/token/JwtTokenManager.class';
-import type { FirebaseSignInRequestDto } from '@/types22/auth/SignInRequestDto';
-import type { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import type { FirebaseSignInRequestDto } from '@/types/auth/SignInRequestDto';
+import type { AuthResponse } from '@bac/contracts/schemas/auth/authResponse';
 import { create } from 'zustand';
 
 type AuthStatus = 'idle' | 'loading' | 'authenticated' | 'unauthenticated';
 
 type AuthStore = {
   status: AuthStatus;
-  currentUser: null | UserProfileResponse;
+  currentUser: null | AuthResponse;
+  currentSchool: string | null;
   bootstrap: () => Promise<void>;
   login: (payload: FirebaseSignInRequestDto) => Promise<void>;
   register: (payload: FirebaseSignInRequestDto) => Promise<void>;
@@ -16,7 +17,7 @@ type AuthStore = {
   logout: () => void;
 };
 
-const fetchCurrentUser = async (): Promise<UserProfileResponse | null> => {
+const fetchCurrentUser = async (): Promise<AuthResponse | null> => {
   try {
     const response = await authService.me();
     return response.success ? response.data : null;
@@ -49,6 +50,7 @@ const oAuthLoginFunc = async (payload: FirebaseSignInRequestDto) => {
 export const useAuthStore = create<AuthStore>((set) => ({
   status: 'idle',
   currentUser: null,
+  currentSchool: '2f9fccce-542c-4174-b138-ebe84a89a60f',
 
   bootstrap: async () => {
     set({ status: 'loading' });

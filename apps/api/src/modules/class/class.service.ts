@@ -1,6 +1,9 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
+import { Prisma } from '@/generated/prisma/client';
+import { PageMapper } from '@/helper/page.mapper';
 import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
+import { ClassQueryParamsTypes } from '@bac/contracts/schemas/class/queryParams';
 import { UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
 import { ClassMapper } from './class.mapper';
 import { ClassRepo } from './class.repo';
@@ -24,6 +27,40 @@ export class ClassService {
     const classes = await this.classRepo.getBySchoolId(schoolId);
     const classResponses = classes.map((cls) => ClassMapper.toResponse(cls));
     return classResponses;
+  };
+
+  findAll = async (params: { query: ClassQueryParamsTypes['Query']; schoolId: string }) => {
+    const { query, schoolId } = params;
+
+    const skip = (query.page - 1) * query.size;
+    const take = query.size;
+
+    const where: Prisma.ClassWhereInput = { schoolId };
+
+    if (query.search && query.search.trim().length > 0) {
+      const searchValue = query.search.trim().toLowerCase();
+      where.name = { contains: searchValue, mode: 'insensitive' };
+    }
+
+    const orderBy: Prisma.ClassOrderByWithRelationInput = {};
+
+    if (query.sortBy) {
+      orderBy[query.sortBy] = query.order;
+    }
+
+    const classes = prisma.class.findMany({
+      skip,
+      take,
+      where,
+      orderBy,
+    });
+    const classesCount = prisma.class.count({ where });
+
+    const [data, totalElements] = await Promise.all([classes, classesCount]);
+
+    const response = PageMapper.toPage({ data, totalElements, pagination: query });
+
+    return response;
   };
 
   getById = async (id: string) => {

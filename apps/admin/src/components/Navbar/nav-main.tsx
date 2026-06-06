@@ -11,8 +11,8 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import type { Prettify } from '@bac/contracts/utils/Prettify';
-import { BellRing, ChevronRight, LayoutDashboard, Package, Settings2, UsersRound } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { BellRing, ChevronRight, DoorOpen, LayoutDashboard, Package, Settings2, UsersRound } from 'lucide-react';
+import { Link } from 'react-router';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
 type NavRoute = {
@@ -46,6 +46,12 @@ const navRoutes: NavRoute[] = [
     title: 'Users',
     url: '/users',
     icon: UsersRound,
+    isActive: true,
+  },
+  {
+    title: 'Classroom',
+    url: '/classrooms',
+    icon: DoorOpen,
     isActive: true,
   },
   {

@@ -111,7 +111,7 @@ export class UserAppService implements IUserAppService {
 
     const user = await this.userRepo.createUserProfile(schema, userRecord.uid);
 
-    const userProfileResponse = UserMapper.toUserProfileResponse(user, null);
+    const userProfileResponse = UserMapper.toLoginResponse(user, null);
     return userProfileResponse;
   }
 
@@ -131,7 +131,7 @@ export class UserAppService implements IUserAppService {
     }
 
     const updatedUser = await this.userRepo.updateUserProfile(id, data);
-    const userProfileResponse = UserMapper.toUserProfileResponse(updatedUser, null);
+    const userProfileResponse = UserMapper.toLoginResponse(updatedUser, null);
     return userProfileResponse;
   }
 

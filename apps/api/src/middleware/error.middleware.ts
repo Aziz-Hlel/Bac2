@@ -1,13 +1,13 @@
 // src/middleware/error.middleware.ts
-import { Request, Response, NextFunction } from 'express';
-import { prettifyError, ZodError } from 'zod';
-import ENV from '../config/env';
-import { AppError } from '../err/customErrors';
-import { ApiError } from '../err/apiError.type';
-import { logger } from '../bootstrap/logger.init';
 import { serializeUnknownError } from '@/utils/serializeUnknownError';
+import { NextFunction, Request, Response } from 'express';
+import { prettifyError, ZodError } from 'zod';
+import { logger } from '../bootstrap/logger.init';
+import ENV from '../config/env';
+import { ApiError } from '../err/apiError.type';
+import { AppError } from '../err/customErrors';
 
-const handleZodError = (error: ZodError<unknown>, req: Request): ApiError => {
+export const handleZodError = (error: ZodError<unknown>, req: Request) => {
   const formatted: Record<string, string> = {};
 
   for (const issue of error.issues) {

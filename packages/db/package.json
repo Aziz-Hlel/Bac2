@@ -31,10 +31,9 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@types/node":"catalog:",
+    "@types/node": "catalog:",
     "@bac/config": "workspace:*",
     "@types/pg": "^8.16.0",
-    "prisma": "catalog:",
-    "typescript": "catalog:"
+    "prisma": "catalog:"
   }
 }

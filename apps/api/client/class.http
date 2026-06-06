@@ -3,7 +3,7 @@
 
 @baseUrl = http://localhost:10000/api
 
-@AdminEmail = test5@gmail.com
+@AdminEmail = tigana137@gmail.com
 @AdminPassword = 12345678
 
 

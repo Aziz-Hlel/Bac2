@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router';
 import { Toaster } from 'sonner';
 import SignIn from './components/SignIn/SignIn';
 import { AuthProvider } from './context/AuthContext';
@@ -14,6 +14,8 @@ import SignUp from './pages/SignUp';
 import UserPage from './pages/User';
 // import ProductPage from './pages/Products';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
+import { CurrentSchoolProvider } from './context/CurrentSchoolContext';
+import ClassroomPage from './pages/Classroom';
 import { ThemeProvider } from './utils/theme-provider';
 // import Product2Page from './pages/Products2';
 
@@ -45,14 +47,19 @@ function App() {
                   <Route path="/signup" element={<SignUp />} />
 
                   <Route element={<AuthenticatedRoutes />}>
+
                     <Route element={<UserSessionProvider />}>
                       <Route element={<Sidebar dir={dir} />}>
                         <Route path="/" element={<Home />} />
                         <Route index path="/profile" element={<Profile />} />
                         <Route path="users/" element={<UserPage />} />
+
                         {/* <Route path="products/" element={<ProductPage />} /> */}
                         {/* <Route path="products2/" element={<Product2Page />} /> */}
                         {/* <Route path="notification/" element={<NotificationPage />} /> */}
+                        <Route element={<CurrentSchoolProvider />}>
+                          <Route path="classrooms/" element={<ClassroomPage />} />
+                        </Route>
                       </Route>
                     </Route>
                   </Route>

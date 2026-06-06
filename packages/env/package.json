@@ -17,7 +17,5 @@
   },
   "devDependencies": {
     "@bac/config": "workspace:*",
-    "@types/node": "^22.13.14",
-    "typescript": "catalog:"
-  }
+    "@types/node": "^22.13.14"  }
 }

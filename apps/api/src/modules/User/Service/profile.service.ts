@@ -35,4 +35,6 @@ export class ProfileService implements IProfileService {
 
     return userProfileResponse;
   }
+
+  
 }

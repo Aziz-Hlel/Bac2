@@ -6,10 +6,10 @@ import type {
   VisibilityState,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 
-import useQueryParams from './use-query-params';
 import { columnFiltersKeys, defaultQuery, type RequiredTableQueryParams } from '../core/types';
+import useQueryParams from './use-query-params';
 
 const setParamIfNotDefault = (params: URLSearchParams, key: keyof RequiredTableQueryParams, value: string) => {
   const defaultValue = defaultQuery[key];

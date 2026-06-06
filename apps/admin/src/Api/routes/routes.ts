@@ -43,6 +43,14 @@ const apiRoutes = {
     presignedUrl: () => '/media/presigned-url' as const,
   },
 
+  classroom: {
+    create: (schoolId: string) => `/schools/${schoolId}/classrooms` as const,
+    update: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}` as const,
+    getPage: (schoolId: string) => `/schools/${schoolId}/classrooms` as const,
+    getById: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}` as const,
+    delete: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}` as const,
+  },
+
   images: () => ENV.BASE_URL + '/images/',
 };
 

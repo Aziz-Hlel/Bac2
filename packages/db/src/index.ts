@@ -18,6 +18,6 @@ export function createPrismaClient() {
   });
 }
 
-const prisma = createPrismaClient();
+const prismaInstance = createPrismaClient();
 
-export default prisma;
+export default prismaInstance;

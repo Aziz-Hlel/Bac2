@@ -1,5 +1,6 @@
 import getUrlParam from '@/utils/getUrlParam';
 import { createClassRequestSchema } from '@bac/contracts/schemas/class/createClassRequest';
+import { classQueryParams } from '@bac/contracts/schemas/class/queryParams';
 import { updateClassRequestSchema } from '@bac/contracts/schemas/class/updateClassRequest';
 import { Request, Response } from 'express';
 import { ClassService } from './class.service';
@@ -18,11 +19,22 @@ export class ClassController {
   };
 
   getAllBySchoolId = async (req: Request, res: Response) => {
+    // * Removed this and replaced it with findAll(paginated and all that), it has not route
     const schoolId = getUrlParam(req, 'schoolId', { isUuid: true });
     const result = await this.classService.getBySchoolId(schoolId);
     res.status(200).json({
       message: 'Classes fetched successfully',
       data: result,
+    });
+  };
+
+  findAll = async (req: Request, res: Response) => {
+    const query = classQueryParams.schema.parse(req.query);
+    const schoolId = getUrlParam(req, 'schoolId', { isUuid: true });
+    const result = await this.classService.findAll({ query, schoolId });
+    res.status(200).json({
+      message: 'Classes fetched successfully',
+      ...result,
     });
   };
 

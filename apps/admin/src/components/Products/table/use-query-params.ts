@@ -1,6 +1,6 @@
 import { ProductStatus } from '@bac/contracts/types/enums/enums';
 import { useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import z from 'zod';
 import { sortableColumnKeys } from './tableDeclarations/typesAndFieldsDeclaration';
 

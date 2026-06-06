@@ -2,7 +2,7 @@ import { AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import ENV from '../config/env.variables';
 import { jwtTokenManager } from './token/JwtTokenManager.class';
-import { apiErrorResponseSchema, type ApiErrorResponse, type ApiResponse } from '../types22/api/ApiResponse';
+import { apiErrorResponseSchema, type ApiErrorResponse, type ApiResponse } from '../types/api/ApiResponse';
 import toastWrapper from '@/utils/toastWrapper';
 import { ApiError } from './ApiError';
 

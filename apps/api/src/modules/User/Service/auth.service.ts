@@ -1,5 +1,5 @@
 import { Role } from '@/generated/prisma/enums';
-import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { AuthResponse } from '@bac/contracts/schemas/auth/authResponse';
 import { InternalServerError } from '../../../err/customErrors';
 import { firebaseAuthService } from '../../../firebase/service/firebase.auth.service';
 import { DecodedIdTokenWithClaims } from '../../../types/auth/DecodedIdTokenWithClaims';
@@ -7,17 +7,17 @@ import UserMapper from '../mapper/user.mapper';
 import { UserService } from './user.service';
 
 export interface IAuthService {
-  registerUser(tokenId: string): Promise<UserProfileResponse>;
-  authenticateWithPassword(tokenId: string): Promise<UserProfileResponse>;
-  authenticateWithProvider(tokenId: string): Promise<UserProfileResponse>;
-  me(decodedToken: DecodedIdTokenWithClaims): Promise<UserProfileResponse>;
+  registerUser(tokenId: string): Promise<AuthResponse>;
+  authenticateWithPassword(tokenId: string): Promise<AuthResponse>;
+  authenticateWithProvider(tokenId: string): Promise<AuthResponse>;
+  me(decodedToken: DecodedIdTokenWithClaims): Promise<AuthResponse>;
 }
 
 export class AuthService implements IAuthService {
   constructor(private readonly userInternalService: UserService) {}
   private firebaseService = firebaseAuthService;
 
-  async registerUser(tokenId: string): Promise<UserProfileResponse> {
+  async registerUser(tokenId: string): Promise<AuthResponse> {
     const decodedToken = await this.firebaseService.verifyToken(tokenId);
 
     let email = decodedToken.email as string;
@@ -39,49 +39,57 @@ export class AuthService implements IAuthService {
       userRole: newUser.role,
     });
 
-    const userWithNoProfile = { ...newUser, profile: null };
+    const userWithNoProfileAndSchool = { ...newUser, profile: null, school: null };
 
-    return UserMapper.toUserProfileResponse(userWithNoProfile, decodedToken.picture || null);
+    return UserMapper.toLoginResponse(userWithNoProfileAndSchool, decodedToken.picture || null);
   }
 
-  async authenticateWithPassword(tokenId: string): Promise<UserProfileResponse> {
+  async authenticateWithPassword(tokenId: string): Promise<AuthResponse> {
     const decodedToken = await this.firebaseService.verifyToken(tokenId);
 
     const userAuthId = decodedToken.uid;
 
-    const user = await this.userInternalService.getUserByAuthId(userAuthId);
+    const user = await this.userInternalService.findByAuthIdWithProfileAndSchool(userAuthId);
 
     if (!user) {
       throw new InternalServerError(`User with authId ${userAuthId} does not exist in the system.`);
     }
 
-    return UserMapper.toUserProfileResponse(user, decodedToken.picture || null);
+    // * added it temperarly, just a quick fix 
+    await this.firebaseService.setCustomUserClaims({
+      userId: user.id,
+      userAuthId: user.authId,
+      userRole: user.role,
+    });
+
+    return UserMapper.toLoginResponse(user, decodedToken.picture || null);
   }
 
-  async authenticateWithProvider(tokenId: string): Promise<UserProfileResponse> {
+  async authenticateWithProvider(tokenId: string): Promise<AuthResponse> {
     const decodedToken = await this.firebaseService.verifyToken(tokenId);
 
     const userAuthId = decodedToken.uid;
     console.log('user auth id', userAuthId);
-    let user = await this.userInternalService.getUserByAuthId(userAuthId);
+    let user = await this.userInternalService.findByAuthIdWithProfileAndSchool(userAuthId);
 
     if (!user) {
       const userToCreate = UserMapper.toUserCreateInput(decodedToken);
-      user = await this.userInternalService.createUser({ ...userToCreate, role: Role.ADMIN });
+      const createdUser = await this.userInternalService.createUser({ ...userToCreate, role: Role.ADMIN });
+      user = { ...createdUser, profile: null, school: null };
       await this.firebaseService.setCustomUserClaims({
-        userId: user.id,
-        userAuthId: user.authId,
-        userRole: user.role,
+        userId: createdUser.id,
+        userAuthId: createdUser.authId,
+        userRole: createdUser.role,
       });
     }
 
-    return UserMapper.toUserProfileResponse(user, decodedToken.picture || null);
+    return UserMapper.toLoginResponse(user, decodedToken.picture || null);
   }
 
-  async me(decodedToken: DecodedIdTokenWithClaims): Promise<UserProfileResponse> {
+  async me(decodedToken: DecodedIdTokenWithClaims): Promise<AuthResponse> {
     const userAuthId = decodedToken.uid;
 
-    const user = await this.userInternalService.getUserByAuthId(userAuthId);
+    const user = await this.userInternalService.findByAuthIdWithProfileAndSchool(userAuthId);
 
     if (!user) {
       throw new InternalServerError(
@@ -96,6 +104,6 @@ export class AuthService implements IAuthService {
         userRole: user.role,
       });
     }
-    return UserMapper.toUserProfileResponse(user, decodedToken.picture || null);
+    return UserMapper.toLoginResponse(user, decodedToken.picture || null);
   }
 }

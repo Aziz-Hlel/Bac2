@@ -6,7 +6,7 @@ import type {
   VisibilityState,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import { columnFiltersKeys } from './tableDeclarations/typesAndFieldsDeclaration';
 import useQueryParams, { type RequiredTableQueryParams, defaultQuery } from './use-query-params';
 
