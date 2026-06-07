@@ -229,6 +229,19 @@ model Class {
     updatedAt DateTime @updatedAt
 }
 
+// * you forgot to add this model in your schema, it s to make sure afterwards when doing 
+// * the algorithm to make sure the two teachers are not from the same school
+// model TeacherSchool {
+//     id String @id @default(uuid())
+    
+//     teachers Teacher[]
+
+//     name String @db.VarChar(255)
+//     publicId String @db.VarChar(255)
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+// }
 
 
 model Teacher{
@@ -242,6 +255,9 @@ model Teacher{
 
   schoolId String @db.Uuid
   school School @relation(fields: [schoolId], references: [id])
+
+  // teacherSchoolId String @db.Uuid
+  // teacherSchool TeacherSchool @relation(fields: [teacherSchoolId], references: [id],onDelete: Cascade)
 
   primaryMaleTeacherExamSession TeacherExamSession[] @relation("PrimaryMaleTeacher")
   primaryFemaleTeacherExamSession TeacherExamSession[] @relation("PrimaryFemaleTeacher")

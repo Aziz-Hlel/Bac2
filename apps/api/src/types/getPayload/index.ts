@@ -1,4 +1,4 @@
-import { NotificationGetPayload, ProductGetPayload } from '@/generated/prisma/models';
+import { NotificationGetPayload, ProductGetPayload } from '@bac/db/prisma/models';
 
 export type ProductWithThumbnail = ProductGetPayload<{ include: { thumbnail: true } }>;
 

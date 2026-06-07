@@ -1,10 +1,10 @@
 import { prisma } from '@/bootstrap/db.init';
 import { DatabaseError } from '@/err/customErrors';
-import { SubjectEnum, TermEnum } from '@/generated/prisma/enums';
-import { ExamInclude } from '@/generated/prisma/models';
 import { parseCalendarDate, parseTime } from '@/utils/dayjs';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
 import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
+import { SubjectEnum, TermEnum } from '@bac/db/prisma/enums';
+import { ExamInclude } from '@bac/db/prisma/models';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export class ExamRepo {

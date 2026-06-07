@@ -12,7 +12,6 @@
     "@bac/contracts": "workspace:*"
   },
   "devDependencies": {
-    "@bac/config": "workspace:*",
-    "typescript": "catalog:"
+    "@bac/config": "workspace:*"
   }
 }

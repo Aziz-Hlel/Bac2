@@ -3,7 +3,6 @@ import { RedisKeys } from '@/cache/keys/cache.keys';
 import { cacheService } from '@/cache/service/cache.service';
 import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
-import { Role } from '@/generated/prisma/enums';
 import { CreateUserProfileRequest } from '@bac/contracts/schemas/profile/createUserProfileRequest';
 import { UpdateUserProfileRequest } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
 import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
@@ -17,6 +16,7 @@ import {
 import { UserProfileRowResponse } from '@bac/contracts/schemas/user/UserRowResponse';
 import { Page } from '@bac/contracts/types/page/Page';
 import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
+import { Role } from '@bac/db/prisma/enums';
 import { prisma } from '../../../bootstrap/db.init';
 import { UserOrderByWithRelationInput, UserWhereInput } from '../../../generated/prisma/models';
 import UserMapper from '../mapper/user.mapper';

@@ -1,9 +1,9 @@
-import { School, User } from '@/generated/prisma/client';
-import { SchoolGetPayload } from '@/generated/prisma/models';
 import { SchoolResponse } from '@bac/contracts/schemas/school/schoolResponse';
 import { SchoolResponseWithDetails } from '@bac/contracts/schemas/school/SchoolResponseWithDetails';
 import { SchoolWithUserResponse } from '@bac/contracts/schemas/school/schoolWithUserResponse';
 import { ElectiveExamEnum_V2 } from '@bac/contracts/types/enums/meta/selectiveExamsEnum';
+import { School, User } from '@bac/db/prisma/client';
+import { SchoolGetPayload } from '@bac/db/prisma/models';
 import UserMapper from '../User/mapper/user.mapper';
 
 export class SchoolMapper {

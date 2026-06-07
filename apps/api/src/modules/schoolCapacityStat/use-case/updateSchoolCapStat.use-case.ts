@@ -1,9 +1,9 @@
 import { prisma } from '@/bootstrap/db.init';
 import { DatabaseError } from '@/err/customErrors';
-import { CapacityTypeEnum } from '@/generated/prisma/enums';
 import { ExamService } from '@/modules/Exam/exam.service';
 import { ExamSessionService } from '@/modules/ExamSession/examSession.service';
 import { CreateSchoolCapStatRequest } from '@bac/contracts/schemas/schoolCapacityStats/createSchoolCapStatRequest';
+import { CapacityTypeEnum } from '@bac/db/prisma/enums';
 import { SchoolCapacityStatRepo } from '../schoolCapacityStat.repo';
 
 export class UpdateSchoolCapStatUseCase {

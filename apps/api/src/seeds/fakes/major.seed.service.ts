@@ -1,5 +1,5 @@
-import { MajorEnum } from '@/generated/prisma/enums';
 import { MajorService } from '@/modules/major/major.service';
+import { MajorEnum } from '@bac/db/prisma/enums';
 
 export class MajorSeedService {
   constructor(private readonly majorService: MajorService) {}

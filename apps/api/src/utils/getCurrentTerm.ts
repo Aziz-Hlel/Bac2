@@ -1,3 +1,3 @@
-import { TermEnum } from '@/generated/prisma/enums';
+import { TermEnum } from '@bac/db/prisma/enums';
 
 export const getCurrentTerm = () => TermEnum.PRINCIPAL;

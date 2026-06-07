@@ -1,4 +1,4 @@
-import { Role } from '@/generated/prisma/browser';
+import { Role } from '@bac/db/prisma/browser';
 import { genUuid } from '../helper/generateUuid';
 
 export const userSeedData = {

@@ -1,7 +1,7 @@
-import { Profile } from '@/generated/prisma/client';
 import { DecodedIdTokenWithClaims } from '@/types/auth/DecodedIdTokenWithClaims';
 import { ProfileResponse } from '@bac/contracts/schemas/profile/ProfileResponse';
 import { UserProfileResponse } from '@bac/contracts/schemas/profile/UserProfileResponse';
+import { Profile } from '@bac/db/prisma/client';
 import { ProfileWithUser } from '../types';
 import UserMapper from './user.mapper';
 

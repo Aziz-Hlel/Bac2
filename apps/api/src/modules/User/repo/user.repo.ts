@@ -1,8 +1,8 @@
 import { ConflictError } from '@/err/customErrors';
-import { Role, Status } from '@/generated/prisma/enums';
-import { UserInclude } from '@/generated/prisma/models';
 import { CreateUserProfileRequest } from '@bac/contracts/schemas/profile/createUserProfileRequest';
 import { UpdateUserProfileRequest } from '@bac/contracts/schemas/profile/updateUserProfileRequest';
+import { Role, Status } from '@bac/db/prisma/enums';
+import { UserInclude } from '@bac/db/prisma/models';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 import { prisma } from '../../../bootstrap/db.init';
 import { UserCreateInputCustom } from '../mapper/user.mapper';

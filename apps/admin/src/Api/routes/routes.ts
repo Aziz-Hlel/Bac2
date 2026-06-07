@@ -51,6 +51,14 @@ const apiRoutes = {
     delete: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}` as const,
   },
 
+  teachers: {
+    create: (schoolId: string) => `/schools/${schoolId}/teachers` as const,
+    update: (schoolId: string, id: string) => `/schools/${schoolId}/teachers/${id}` as const,
+    getPage: (schoolId: string) => `/schools/${schoolId}/teachers` as const,
+    getById: (schoolId: string, id: string) => `/schools/${schoolId}/teachers/${id}` as const,
+    delete: (schoolId: string, id: string) => `/schools/${schoolId}/teachers/${id}` as const,
+  },
+
   images: () => ENV.BASE_URL + '/images/',
 };
 

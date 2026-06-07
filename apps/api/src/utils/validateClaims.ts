@@ -1,4 +1,4 @@
-import { Role } from '@/generated/prisma/enums';
+import { Role } from '@bac/db/prisma/enums';
 import z from 'zod';
 
 export const claimsSchema = z.object({

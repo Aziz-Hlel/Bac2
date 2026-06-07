@@ -1,6 +1,6 @@
 import { ConflictError } from '@/err/customErrors';
-import { MajorEnum } from '@/generated/prisma/enums';
 import { CreateMajorRequest } from '@bac/contracts/schemas/major/createMajorRequest';
+import { MajorEnum } from '@bac/db/prisma/enums';
 import { MajorMapper } from './major.mapper';
 import { MajorService } from './major.service';
 

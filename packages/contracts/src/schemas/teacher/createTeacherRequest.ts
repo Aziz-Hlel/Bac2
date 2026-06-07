@@ -14,6 +14,7 @@ const unionSchema = z.union([
   }),
   z.object({
     isTeacher: z.literal(false),
+    subject: z.null().catch(null),
   }),
 ]);
 

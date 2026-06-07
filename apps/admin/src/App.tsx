@@ -16,6 +16,7 @@ import UserPage from './pages/User';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
 import { CurrentSchoolProvider } from './context/CurrentSchoolContext';
 import ClassroomPage from './pages/Classroom';
+import TeacherTable from './pages/TeacherTable';
 import { ThemeProvider } from './utils/theme-provider';
 // import Product2Page from './pages/Products2';
 
@@ -58,6 +59,7 @@ function App() {
                         {/* <Route path="products2/" element={<Product2Page />} /> */}
                         {/* <Route path="notification/" element={<NotificationPage />} /> */}
                         <Route element={<CurrentSchoolProvider />}>
+                          <Route path="teachers/" element={<TeacherTable />} />
                           <Route path="classrooms/" element={<ClassroomPage />} />
                         </Route>
                       </Route>

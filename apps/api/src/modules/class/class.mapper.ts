@@ -1,5 +1,5 @@
-import { Class } from '@/generated/prisma/client';
 import { ClassResponse } from '@bac/contracts/schemas/class/classResponse';
+import { Class } from '@bac/db/prisma/client';
 
 export class ClassMapper {
   static toResponse(cls: Class): ClassResponse {

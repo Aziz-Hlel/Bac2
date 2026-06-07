@@ -1,8 +1,8 @@
 import { prisma } from '@/bootstrap/db.init';
 import { DatabaseError } from '@/err/customErrors';
-import { MajorEnum } from '@/generated/prisma/enums';
-import { MajorInclude } from '@/generated/prisma/models';
 import { CreateMajorRequest } from '@bac/contracts/schemas/major/createMajorRequest';
+import { MajorEnum } from '@bac/db/prisma/enums';
+import { MajorInclude } from '@bac/db/prisma/models';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export class MajorRepo {

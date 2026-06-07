@@ -1,5 +1,5 @@
-import { MajorEnum } from '@/generated/prisma/enums';
 import { CreateMajorRequest } from '@bac/contracts/schemas/major/createMajorRequest';
+import { MajorEnum } from '@bac/db/prisma/enums';
 import { MajorRepo } from './major.repo';
 
 export class MajorService {

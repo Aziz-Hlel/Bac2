@@ -10,5 +10,6 @@
   },
   "git.autofetch": true,
   "js/ts.experimental.useTsgo": true,
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

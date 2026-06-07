@@ -1,4 +1,4 @@
-import { MajorEnum, SubjectEnum, TermEnum, TimeOfDayEnum } from '@/generated/prisma/enums';
+import { MajorEnum, SubjectEnum, TermEnum, TimeOfDayEnum } from '@bac/db/prisma/enums';
 
 type ISeedData = {
   majors: {

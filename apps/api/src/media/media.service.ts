@@ -1,11 +1,11 @@
 import { NotFoundError } from '@/err/customErrors';
-import { Media } from '@/generated/prisma/client';
-import { MediaStatus } from '@/generated/prisma/enums';
-import { MediaDelegate } from '@/generated/prisma/models';
 import { storageService } from '@/storage/storage.service';
 import { MediaResponse } from '@bac/contracts/schemas/media/MediaResponse';
 import { PresignedUrlRequest } from '@bac/contracts/schemas/media/PresignedUrlRequest';
 import { PresignedUrlResponse } from '@bac/contracts/schemas/media/PresignedUrlResponse';
+import { Media } from '@bac/db/prisma/client';
+import { MediaStatus } from '@bac/db/prisma/enums';
+import { MediaDelegate } from '@bac/db/prisma/models';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 import { MediaRepo } from './media.repo';
 

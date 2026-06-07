@@ -1,9 +1,9 @@
 import { ConflictError, InternalServerError, NotFoundError } from '@/err/customErrors';
-import { Role } from '@/generated/prisma/enums';
 import { CustomClaims as Claims } from '@/types/auth/Claims';
 import { CreateSchoolRequest } from '@bac/contracts/schemas/school/createSchoolRequest';
 import { CreateSchoolWithUserRequest } from '@bac/contracts/schemas/school/createWithUser';
 import { UpdateSchoolRequest } from '@bac/contracts/schemas/school/updateSchoolRequest';
+import { Role } from '@bac/db/prisma/enums';
 import { UserService } from '../User/Service/user.service';
 import { SchoolMapper } from './school.mapper';
 import { SchoolRepo } from './school.repo';

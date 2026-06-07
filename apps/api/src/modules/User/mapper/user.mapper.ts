@@ -8,10 +8,9 @@ import {
 } from '@bac/contracts/schemas/user/UserRowResponse';
 import { DefaultSearchParams } from '@bac/contracts/types/api/DefaultSeachParams';
 import { Page } from '@bac/contracts/types/page/Page';
-import { UserGetPayload } from '@bac/db/prisma/models';
-import { Role } from '../../../generated/prisma/browser';
-import { User } from '../../../generated/prisma/client';
-import { UserCreateInput } from '../../../generated/prisma/models';
+import { User } from '@bac/db/prisma/client';
+import { Role } from '@bac/db/prisma/enums';
+import { UserCreateInput, UserGetPayload } from '@bac/db/prisma/models';
 import { StrictDecodedIdToken } from '../../../types/auth/StrictDecodedIdToken';
 import { GenericEntityCreateInput } from '../../../types/prisma/GenericEntityUtilityTypes';
 import { UserWithProfile } from '../types';

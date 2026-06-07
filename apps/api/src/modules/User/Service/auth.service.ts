@@ -1,5 +1,5 @@
-import { Role } from '@/generated/prisma/enums';
 import { AuthResponse } from '@bac/contracts/schemas/auth/authResponse';
+import { Role } from '@bac/db/prisma/enums';
 import { InternalServerError } from '../../../err/customErrors';
 import { firebaseAuthService } from '../../../firebase/service/firebase.auth.service';
 import { DecodedIdTokenWithClaims } from '../../../types/auth/DecodedIdTokenWithClaims';
@@ -55,7 +55,7 @@ export class AuthService implements IAuthService {
       throw new InternalServerError(`User with authId ${userAuthId} does not exist in the system.`);
     }
 
-    // * added it temperarly, just a quick fix 
+    // * added it temperarly, just a quick fix
     await this.firebaseService.setCustomUserClaims({
       userId: user.id,
       userAuthId: user.authId,

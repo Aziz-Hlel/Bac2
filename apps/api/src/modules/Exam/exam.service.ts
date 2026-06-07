@@ -1,5 +1,5 @@
-import { SubjectEnum, TermEnum } from '@/generated/prisma/enums';
 import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
+import { SubjectEnum, TermEnum } from '@bac/db/prisma/enums';
 import { ExamRepo } from './exam.repo';
 
 export class ExamService {

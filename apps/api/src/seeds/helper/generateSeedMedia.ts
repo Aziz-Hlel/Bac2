@@ -1,4 +1,4 @@
-import { MediaStatus } from '@/generated/prisma/enums';
+import { MediaStatus } from '@bac/db/prisma/enums';
 
 export type SeedMedia = {
   baseName: string;

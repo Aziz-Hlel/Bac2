@@ -1,11 +1,9 @@
-import { Router } from 'express';
-import { UserController } from '../Controller/user.controller';
-import { asyncHandler } from '../../../core/async-handler';
 import { requireAuth } from '@/middleware/requireAuth.middleware';
-import { Role } from '@/generated/prisma/enums';
 import requireRole from '@/middleware/requireRole.middleware';
-import { UserRepo } from '../repo/user.repo';
-import { UserAppService } from '../Service/user.app.service';
+import { Role } from '@bac/db/prisma/enums';
+import { Router } from 'express';
+import { asyncHandler } from '../../../core/async-handler';
+import { UserController } from '../Controller/user.controller';
 
 const createUserRouter = (controller: UserController) => {
   const router = Router();

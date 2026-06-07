@@ -1,7 +1,7 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
-import { Prisma } from '@/generated/prisma/client';
 import { ExamRepo } from '@/modules/Exam/exam.repo';
+import { Prisma } from '@bac/db/prisma/client';
 import { ExamSessionRepo } from '../examSession.repo';
 
 export class AssignElectiveExamToClassUseCase {

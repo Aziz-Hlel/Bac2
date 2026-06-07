@@ -1,8 +1,8 @@
 import { prisma } from '@/bootstrap/db.init';
 import { firebaseAuthService } from '@/firebase/service/firebase.auth.service';
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
-import { User } from '@/generated/prisma/client';
-import { UserCreateInput } from '@/generated/prisma/models';
+import { User } from '@bac/db/prisma/client';
+import { UserCreateInput } from '@bac/db/prisma/models';
 import { UserRepo } from '../repo/user.repo';
 
 export class UserService {

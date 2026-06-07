@@ -1,8 +1,12 @@
+import { prisma } from '@/bootstrap/db.init';
 import { NotFoundError, PermissionDeniedError } from '@/err/customErrors';
-import { Role } from '@/generated/prisma/enums';
+import { PageMapper } from '@/helper/page.mapper';
 import { CustomClaims as Claims } from '@/types/auth/Claims';
 import { CreateTeacherRequest } from '@bac/contracts/schemas/teacher/createTeacherRequest';
+import { TeacherQueryParamsTypes } from '@bac/contracts/schemas/teacher/queryParams';
 import { UpdateTeacherRequest } from '@bac/contracts/schemas/teacher/updateTeacherRequest';
+import { Prisma } from '@bac/db/prisma/client';
+import { Role } from '@bac/db/prisma/enums';
 import { SchoolService } from '../school/school.service';
 import { TeacherMapper } from './teacher.mapper';
 import { TeacherService } from './teacher.service';
@@ -109,5 +113,42 @@ export class TeacherAppService {
     const teachers = await this.teacherService.getBySchoolId(schoolId);
     const teacherResponses = teachers.map(TeacherMapper.toResponse);
     return teacherResponses;
+  };
+
+  findAll = async (params: { query: TeacherQueryParamsTypes['Query']; schoolId: string }) => {
+    const { query, schoolId } = params;
+
+    const skip = (query.page - 1) * query.size;
+    const take = query.size;
+
+    const where: Prisma.TeacherWhereInput = { schoolId };
+
+    if (query.search && query.search.trim().length > 0) {
+      const searchValue = query.search.trim().toLowerCase();
+      where.OR = [
+        { firstName: { contains: searchValue, mode: 'insensitive' } },
+        { lastName: { contains: searchValue, mode: 'insensitive' } },
+      ];
+    }
+
+    const orderBy: Prisma.TeacherOrderByWithRelationInput = {};
+
+    if (query.sortBy) {
+      orderBy[query.sortBy] = query.order;
+    }
+
+    const teachers = prisma.teacher.findMany({
+      skip,
+      take,
+      where,
+      orderBy,
+    });
+    const teachersCount = prisma.teacher.count({ where });
+
+    const [data, totalElements] = await Promise.all([teachers, teachersCount]);
+
+    const response = PageMapper.toPage({ data, totalElements, pagination: query });
+
+    return response;
   };
 }

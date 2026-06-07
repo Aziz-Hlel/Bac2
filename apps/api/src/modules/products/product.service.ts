@@ -1,12 +1,12 @@
 import { prisma } from '@/bootstrap/db.init';
 import { NotFoundError } from '@/err/customErrors';
-import { ProductOrderByWithRelationInput, ProductWhereInput } from '@/generated/prisma/models';
 import { MediaService } from '@/media/media.service';
 import { CreateProductRequest } from '@bac/contracts/schemas/product/createProductRequest';
 import { ProductPageQuery } from '@bac/contracts/schemas/product/ProductPageQuery';
 import { ProductResponse } from '@bac/contracts/schemas/product/productResponse';
 import { UpdateProductRequest } from '@bac/contracts/schemas/product/updateProductRequest';
 import { Page } from '@bac/contracts/types/page/Page';
+import { ProductOrderByWithRelationInput, ProductWhereInput } from '@bac/db/prisma/models';
 import { ProductMapper } from './product.mapper';
 import { ProductRepo } from './product.repo';
 

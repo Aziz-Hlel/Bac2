@@ -1,6 +1,6 @@
-import { Role } from '@/generated/prisma/enums';
 import { requireAuth } from '@/middleware/requireAuth.middleware';
 import requireRole from '@/middleware/requireRole.middleware';
+import { Role } from '@bac/db/prisma/enums';
 import { Router } from 'express';
 import { ExamController } from './exam.controller';
 

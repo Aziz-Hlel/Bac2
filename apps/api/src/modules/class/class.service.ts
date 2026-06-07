@@ -1,10 +1,10 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
-import { Prisma } from '@/generated/prisma/client';
 import { PageMapper } from '@/helper/page.mapper';
 import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
 import { ClassQueryParamsTypes } from '@bac/contracts/schemas/class/queryParams';
 import { UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
+import { Prisma } from '@bac/db/prisma/client';
 import { ClassMapper } from './class.mapper';
 import { ClassRepo } from './class.repo';
 

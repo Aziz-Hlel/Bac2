@@ -1,7 +1,7 @@
 import { prisma } from '@/bootstrap/db.init';
-import { Prisma } from '@/generated/prisma/client';
 import { CreateSchoolRequest } from '@bac/contracts/schemas/school/createSchoolRequest';
 import { UpdateSchoolRequest } from '@bac/contracts/schemas/school/updateSchoolRequest';
+import { Prisma } from '@bac/db/prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export class SchoolRepo {

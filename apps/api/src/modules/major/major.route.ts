@@ -1,7 +1,7 @@
-import { Router } from 'express';
 import { requireAuth } from '@/middleware/requireAuth.middleware';
-import { Role } from '@/generated/prisma/enums';
 import requireRole from '@/middleware/requireRole.middleware';
+import { Role } from '@bac/db/prisma/enums';
+import { Router } from 'express';
 import { MajorController } from './major.controller';
 
 export const createMajorRouter = (majorController: MajorController) => {

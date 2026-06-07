@@ -1,4 +1,4 @@
-import { MediaDelegate, ProductDelegate } from '@/generated/prisma/models';
+import { MediaDelegate, ProductDelegate } from '@bac/db/prisma/models';
 import { DefaultArgs } from '@prisma/client/runtime/client';
 
 export type MediaTransaction = MediaDelegate<DefaultArgs, { omit: undefined }>;

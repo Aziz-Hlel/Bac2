@@ -1,7 +1,7 @@
 import { prisma } from '@/bootstrap/db.init';
-import { TermEnum, TimeOfDayEnum } from '@/generated/prisma/enums';
 import { TX } from '@/types/prisma/PrismaTransaction';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
+import { TermEnum, TimeOfDayEnum } from '@bac/db/prisma/enums';
 
 export class ExamSessionRepo {
   create = async (params: { classId: string; examId: string }, tx?: TX) => {

@@ -1,7 +1,7 @@
 import { PermissionDeniedError, UnauthorizedError } from '@/err/customErrors';
-import { Role } from '@/generated/prisma/enums';
 import { AuthenticatedRequest } from '@/types/auth/AuthenticatedRequest';
 import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
+import { Role } from '@bac/db/prisma/enums';
 import { NextFunction, Request, Response } from 'express';
 
 const requireRole = (role: Role) => {
