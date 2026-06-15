@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { useUser } from '@/context/UserContext';
+import { useUser } from '@/contexts/UserContext';
 import PERMISSION_SCORE from '@bac/contracts/utils/PermissionScore';
 import type { Row } from '@tanstack/react-table';
 import React, { Fragment } from 'react';

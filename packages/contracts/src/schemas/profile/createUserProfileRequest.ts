@@ -1,5 +1,5 @@
+import { Role, Status } from '@bac/db/prisma/enums';
 import z from 'zod';
-import { Role, Status } from '../../types/enums/enums';
 
 export const createUserProfileRequestSchema = z.object({
   username: z.string().min(3).max(30),

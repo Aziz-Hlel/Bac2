@@ -1,13 +1,12 @@
-import { MajorService } from '@/modules/major/major.service';
+import { prisma } from '@/bootstrap/db.init';
 import { MajorEnum } from '@bac/db/prisma/enums';
 
 export class MajorSeedService {
-  constructor(private readonly majorService: MajorService) {}
-
-  run = async ({ majorName }: { majorName: MajorEnum }) => {
-    const major = await this.majorService.findOrCreate({
-      name: majorName,
+  run = async (params: { majorName: MajorEnum; id: string }) => {
+    await prisma.major.upsert({
+      where: { id: params.id },
+      create: { id: params.id, name: params.majorName },
+      update: { name: params.majorName },
     });
-    return major;
   };
 }

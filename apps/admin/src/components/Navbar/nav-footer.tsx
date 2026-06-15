@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
-import { useUser } from '@/context/UserContext';
+import { useUser } from '@/contexts/UserContext';
 import { useAuthStore } from '@/store/useAuthStore';
 
 export function NavUser() {

@@ -9,5 +9,8 @@
     "./*": {
       "default": "./src/*.ts"
     }
+  },
+  "dependencies": {
+    "@bac/db": "workspace:*"
   }
 }

@@ -2,8 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Route, BrowserRouter as Router, Routes } from 'react-router';
 import { Toaster } from 'sonner';
 import SignIn from './components/SignIn/SignIn';
-import { AuthProvider } from './context/AuthContext';
-import { UserSessionProvider } from './context/UserContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { UserSessionProvider } from './contexts/UserContext';
 import AuthenticatedRoutes from './guard/AuthenticatedRoutes';
 import NetworkStatusGuard from './guard/NetworkStatusGuard';
 import Home from './pages/Home';
@@ -13,8 +13,9 @@ import Sidebar from './pages/Sidebar';
 import SignUp from './pages/SignUp';
 import UserPage from './pages/User';
 // import ProductPage from './pages/Products';
+import CalendarMain from './calendar/components/calendar-main';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
-import { CurrentSchoolProvider } from './context/CurrentSchoolContext';
+import { CurrentSchoolProvider } from './contexts/CurrentSchoolContext';
 import ClassroomPage from './pages/Classroom';
 import TeacherTable from './pages/TeacherTable';
 import { ThemeProvider } from './utils/theme-provider';
@@ -61,6 +62,15 @@ function App() {
                         <Route element={<CurrentSchoolProvider />}>
                           <Route path="teachers/" element={<TeacherTable />} />
                           <Route path="classrooms/" element={<ClassroomPage />} />
+                          <Route path="calendar/"  >
+                            <Route index element={<CalendarMain view='agenda' />} />
+                            <Route path="day/" element={<CalendarMain view='day' />} />
+                            <Route path="month/" element={<CalendarMain view='month' />} />
+                            <Route path="week/" element={<CalendarMain view='week' />} />
+                            <Route path="year/" element={<CalendarMain view='year' />} />
+
+                          </Route>
+
                         </Route>
                       </Route>
                     </Route>

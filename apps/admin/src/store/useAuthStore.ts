@@ -50,7 +50,7 @@ const oAuthLoginFunc = async (payload: FirebaseSignInRequestDto) => {
 export const useAuthStore = create<AuthStore>((set) => ({
   status: 'idle',
   currentUser: null,
-  currentSchool: '2f9fccce-542c-4174-b138-ebe84a89a60f',
+  currentSchool: '04a16076-5025-581b-bc55-c805fb8402f1',
 
   bootstrap: async () => {
     set({ status: 'loading' });

@@ -1,15 +1,17 @@
 import { ApiError } from '@/Api/ApiError';
+import { useCurrentSchool } from '@/contexts/CurrentSchoolContext';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
 import { useSelectedRow } from '../../context/selected-row-provider';
 import { TableData } from '../../core/core';
-import type { TableRowType } from '../../core/types';
 import { operations } from '../../core/services';
+import type { TableRowType } from '../../core/types';
 
 const useDelete = ({ selectedRow }: { selectedRow: TableRowType }) => {
   const queryClient = useQueryClient();
   const { handleCancel } = useSelectedRow();
+  const schoolId = useCurrentSchool();
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: operations.delete.mutationKey(),
@@ -21,7 +23,7 @@ const useDelete = ({ selectedRow }: { selectedRow: TableRowType }) => {
 
   const handleDelete = async () => {
     try {
-      await mutateAsync(selectedRow.id);
+      await mutateAsync({ id: selectedRow.id, schoolId });
       toast.success(`${TableData.ModuleName} deleted successfully`);
       handleCancel();
     } catch (error) {

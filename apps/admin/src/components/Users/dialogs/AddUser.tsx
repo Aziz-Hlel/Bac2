@@ -29,7 +29,7 @@ import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
 import { Spinner } from '@/components/ui/spinner';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { useUser } from '@/context/UserContext';
+import { useUser } from '@/contexts/UserContext';
 import RolesTextMapping from '@/EnumTextMapping/RolesTextMapping';
 import {
   createUserProfileRequestSchema,

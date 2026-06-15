@@ -1,5 +1,5 @@
+import { SubjectEnum, TermEnum, TimeOfDayEnum } from '@bac/db/prisma/enums';
 import z from 'zod';
-import { SubjectEnum, TermEnum, TimeOfDayEnum } from '../../types/enums/enums';
 import { isDateOnly } from '../../utils/isDateOnly';
 import { isTime } from '../../utils/isTime';
 

@@ -7,11 +7,3 @@ export const superAdminData = [
     role: Role.SUPER_ADMIN,
   },
 ];
-
-export const userData = [
-  {
-    email: 'user@gmail.com',
-    password: '12345678',
-    role: Role.ADMIN,
-  },
-];
