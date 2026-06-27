@@ -111,7 +111,7 @@ model Exam {
     
     @@index([term,subject,isOptional])
     
-    @@unique([majorId, subject, term])
+    @@unique([majorId,term,subject])
 
 
     createdAt DateTime @default(now())
@@ -274,6 +274,8 @@ model Teacher{
   primaryFemaleTeacherExamSession TeacherExamSession[] @relation("PrimaryFemaleTeacher")
   secondaryTeacherExamSession TeacherExamSession[] @relation("SecondaryTeacher")
 
+  teacherExamSession2 TeacherExamSession2[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
@@ -290,12 +292,37 @@ model ExamSession {
   exam Exam @relation(fields: [examId], references: [id],onDelete: Cascade)
 
   teacherExamSession TeacherExamSession?
+  teacherExamSession2 TeacherExamSession2[]
 
   @@unique([classId, examId])
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum SupervisorRole {
+  PRIMARY_MALE
+  PRIMARY_FEMALE
+  SECONDARY
+}
+
+model TeacherExamSession2 {
+  id String @id @default(uuid()) @db.Uuid
+
+  supervisorId String @db.Uuid 
+  supervisor Teacher @relation(fields: [supervisorId], references: [id])
+
+  examSessionId String @db.Uuid
+  examSession ExamSession @relation(fields: [examSessionId], references: [id],onDelete: Cascade)
+
+  role SupervisorRole
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([examSessionId, supervisorId, role])
+}
+
 
 model TeacherExamSession {
   id String @id @default(uuid()) @db.Uuid

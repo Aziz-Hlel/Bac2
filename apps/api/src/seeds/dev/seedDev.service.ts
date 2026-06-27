@@ -1,14 +1,16 @@
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
 import { TermEnum } from '@bac/db/prisma/enums';
+import classroomPrincipalAssignmentData from '../data/classroomAssignment/classroomPrincipalAssignment';
 import classroomSeedData from '../data/classrooms/classroomData';
 import { majorSeedData } from '../data/exams/majors';
 import { schoolSeedData } from '../data/schools/schoolData';
 import teacherSeedData from '../data/teachers/teachersData';
-import { classroomSeedService } from '../fakes/classroom.seed.service';
+import { ClassroomSeedService } from '../fakes/classroom.seed.service';
+import { ClassroomPrincipalAssignmentSeedService } from '../fakes/classroomPrincipalAssignment.seed.service';
 import { ExamCreaInputSeed, ExamSeedService } from '../fakes/exam.seed.service';
 import { MajorSeedService } from '../fakes/major.seed.service';
 import { SchoolSeedService } from '../fakes/school.seed.service';
-import { teacherSeedService } from '../fakes/teacher.seed.service';
+import { TeacherSeedService } from '../fakes/teacher.seed.service';
 import { UserSeedService } from '../fakes/user.seed.service';
 import { superAdminData } from './userData';
 import { userSeedData } from './users.seed';
@@ -19,8 +21,9 @@ export class SeedDevService {
     private readonly examSeedService: ExamSeedService,
     private readonly userSeedService: UserSeedService,
     private readonly schoolSeedService: SchoolSeedService,
-    private readonly classroomSeedService: classroomSeedService,
-    private readonly teacherSeedService: teacherSeedService,
+    private readonly classroomSeedService: ClassroomSeedService,
+    private readonly teacherSeedService: TeacherSeedService,
+    private readonly classroomPrincipalAssignmentSeedService: ClassroomPrincipalAssignmentSeedService,
   ) {}
 
   // V1: old implementation
@@ -93,10 +96,14 @@ export class SeedDevService {
   };
 
   private seedTeachers = async () => {
-    const teacherseeder = Object.values(teacherSeedData).map((teacher) =>
-      this.teacherSeedService.run(teacher),
-    );
+    const teacherseeder = Object.values(teacherSeedData).map((teacher) => this.teacherSeedService.run(teacher));
     await Promise.all(teacherseeder);
+  };
+
+  private seedClassroomPrincipalAssignment = async () => {
+    Object.values(classroomPrincipalAssignmentData).map(async (assignment) => {
+      await this.classroomPrincipalAssignmentSeedService.run(assignment);
+    });
   };
 
   run = async () => {
@@ -107,6 +114,7 @@ export class SeedDevService {
     await this.seedSchools();
     await this.seedClassrooms();
     await this.seedTeachers();
+    await this.seedClassroomPrincipalAssignment();
 
     console.log('✅ SUCCESS : Seeding completed.');
   };

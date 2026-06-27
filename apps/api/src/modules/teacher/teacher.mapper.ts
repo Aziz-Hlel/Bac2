@@ -1,5 +1,5 @@
-import { TeacherResponse } from '@bac/contracts/schemas/teacher/teacherResponse';
-import { Teacher } from '@bac/db/prisma/client';
+import type { TeacherResponse } from '@bac/contracts/schemas/teacher/teacherResponse';
+import type { Teacher } from '@bac/db/prisma/client';
 
 export class TeacherMapper {
   static toResponse(teacher: Teacher): TeacherResponse {

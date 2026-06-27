@@ -1,5 +1,4 @@
 import z from 'zod';
-import { baseQueryParamsSchema } from '../helper/queryParams';
 import type { ClassResponse } from './classResponse';
 
 type TableRowType = ClassResponse;
@@ -9,8 +8,11 @@ const sortableFields = ['name', 'createdAt'] as const satisfies TableRowKeys[];
 const filterableFields = [] as const satisfies TableRowKeys[];
 
 const schema = z.object({
-  ...baseQueryParamsSchema.shape,
-  sortBy: z.enum(sortableFields).catch('createdAt'),
+  page: z.coerce.number().int().positive().catch(1),
+  size: z.coerce.number().int().min(5).max(50).catch(10),
+  order: z.enum(['asc', 'desc']).catch('asc'),
+  search: z.string().trim().nonempty().optional().catch(undefined),
+  sortBy: z.enum(sortableFields).catch('name'),
 });
 
 type QueryType = z.infer<typeof schema>;
@@ -18,8 +20,8 @@ type QueryType = z.infer<typeof schema>;
 const defaultQuery = {
   page: 1,
   size: 10,
-  sortBy: 'createdAt',
-  order: 'desc',
+  sortBy: 'name',
+  order: 'asc',
   search: undefined,
 } as const satisfies QueryType;
 

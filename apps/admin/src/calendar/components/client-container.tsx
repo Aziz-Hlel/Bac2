@@ -22,6 +22,7 @@ interface IProps {
 
 export function ClientContainer({ view }: IProps) {
   const { selectedDate, selectedUserId, events } = useCalendar();
+  
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
       const eventStartDate = parseISO(event.startDate);

@@ -88,7 +88,7 @@ export class SchoolAppService {
   };
 
   getMySchool_V2 = async (claims: Claims) => {
-    const school = await this.schoolRepo.getById(claims.id, {
+    const school = await this.schoolRepo.getByUserIdWithInclude(claims.id, {
       electiveExams: { include: { exam: true } },
       majors: { include: { major: true } },
     });

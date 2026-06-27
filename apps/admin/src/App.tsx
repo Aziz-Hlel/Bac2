@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Route, BrowserRouter as Router, Routes } from 'react-router';
+import { Outlet, Route, BrowserRouter as Router, Routes } from 'react-router';
 import { Toaster } from 'sonner';
 import SignIn from './components/SignIn/SignIn';
 import { AuthProvider } from './contexts/AuthContext';
@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import UserPage from './pages/User';
 // import ProductPage from './pages/Products';
 import CalendarMain from './calendar/components/calendar-main';
+import CalendarMainMain from './components/Classroom/calendar/components/calendar-main';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
 import { CurrentSchoolProvider } from './contexts/CurrentSchoolContext';
 import ClassroomPage from './pages/Classroom';
@@ -61,7 +62,17 @@ function App() {
                         {/* <Route path="notification/" element={<NotificationPage />} /> */}
                         <Route element={<CurrentSchoolProvider />}>
                           <Route path="teachers/" element={<TeacherTable />} />
-                          <Route path="classrooms/" element={<ClassroomPage />} />
+                          <Route path="classrooms/" element={<Outlet />} >
+                            <Route index element={<ClassroomPage />} />
+                            <Route path=":classroomId/calendar" element={<Outlet />} >
+                              <Route index element={<CalendarMainMain view='agenda' />} />
+                              <Route path="day/" element={<CalendarMainMain view='day' />} />
+                              <Route path="month/" element={<CalendarMainMain view='month' />} />
+                              <Route path="week/" element={<CalendarMainMain view='week' />} />
+                              <Route path="year/" element={<CalendarMainMain view='year' />} />
+                            </Route>
+
+                          </Route>
                           <Route path="calendar/"  >
                             <Route index element={<CalendarMain view='agenda' />} />
                             <Route path="day/" element={<CalendarMain view='day' />} />

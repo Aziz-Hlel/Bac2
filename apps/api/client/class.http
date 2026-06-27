@@ -28,10 +28,13 @@ GET {{baseUrl}}/schools/me
 Content-Type: application/json
 Authorization: Bearer {{firebaseLogin.response.body.idToken}}
 
+###
+@schoolId = {{getMySchool.response.body.id}}
+
 
 ###
 # @name createClass
-POST {{baseUrl}}/schools/{{getMySchool.response.body.id}}/classes
+POST {{baseUrl}}/schools/{{schoolId}}/classes
 Content-Type: application/json
 Authorization: Bearer {{firebaseLogin.response.body.idToken}}
 
@@ -41,14 +44,14 @@ Authorization: Bearer {{firebaseLogin.response.body.idToken}}
 
 ###
 # @name getClassById
-GET {{baseUrl}}/schools/{{getMySchool.response.body.id}}/classes/{{createClass.response.body.data.id}}
+GET {{baseUrl}}/schools/{{schoolId}}/classes/{{createClass.response.body.data.id}}
 Content-Type: application/json
 Authorization: Bearer {{firebaseLogin.response.body.idToken}}
 
 
 ###
 # @name updateClass
-PUT {{baseUrl}}/schools/{{getMySchool.response.body.id}}/classes/{{createClass.response.body.data.id}}
+PUT {{baseUrl}}/schools/{{schoolId}}/classes/{{createClass.response.body.data.id}}
 Content-Type: application/json
 Authorization: Bearer {{firebaseLogin.response.body.idToken}}
 
@@ -59,6 +62,16 @@ Authorization: Bearer {{firebaseLogin.response.body.idToken}}
 
 ###
 # @name getSchoolClasses
-GET {{baseUrl}}/schools/{{getMySchool.response.body.id}}/classes/
+GET {{baseUrl}}/schools/{{schoolId}}/classrooms/
 Content-Type: application/json
 Authorization: Bearer {{firebaseLogin.response.body.idToken}}
+
+###
+@classId = {{getSchoolClasses.response.body.data[0].id}}
+
+###
+# @name getExamSessions
+GET {{baseUrl}}/schools/{{schoolId}}/classrooms/{{classId}}/exam-sessions
+Content-Type: application/json
+Authorization: Bearer {{firebaseLogin.response.body.idToken}}
+

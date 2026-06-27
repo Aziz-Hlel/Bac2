@@ -10,11 +10,12 @@ import { createSchoolModule } from '@/modules/school/school.module';
 import { SchoolCapacityStatModule } from '@/modules/schoolCapacityStat/schoolCapacityStat.module';
 import { createTeacherModule } from '@/modules/teacher/teacher.module';
 import { SeedDevService } from '@/seeds/dev/seedDev.service';
-import { classroomSeedService } from '@/seeds/fakes/classroom.seed.service';
+import { ClassroomSeedService } from '@/seeds/fakes/classroom.seed.service';
+import { ClassroomPrincipalAssignmentSeedService } from '@/seeds/fakes/classroomPrincipalAssignment.seed.service';
 import { ExamSeedService } from '@/seeds/fakes/exam.seed.service';
 import { MajorSeedService } from '@/seeds/fakes/major.seed.service';
 import { SchoolSeedService } from '@/seeds/fakes/school.seed.service';
-import { teacherSeedService } from '@/seeds/fakes/teacher.seed.service';
+import { TeacherSeedService } from '@/seeds/fakes/teacher.seed.service';
 import { UserSeedService } from '@/seeds/fakes/user.seed.service';
 import { Router } from 'express';
 
@@ -56,10 +57,20 @@ const majorSeed = new MajorSeedService();
 const examSeed = new ExamSeedService();
 const userSeed = new UserSeedService(userInternalService);
 const schoolSeed = new SchoolSeedService();
-const classroomSeed = new classroomSeedService();
-const teacherSeed = new teacherSeedService();
+const classroomSeed = new ClassroomSeedService();
+const teacherSeed = new TeacherSeedService();
+const classroomPrincipalAssignmentSeedService = new ClassroomPrincipalAssignmentSeedService();
 
-const devSeed = new SeedDevService(majorSeed, examSeed, userSeed, schoolSeed, classroomSeed, teacherSeed);
+
+const devSeed = new SeedDevService(
+  majorSeed,
+  examSeed,
+  userSeed,
+  schoolSeed,
+  classroomSeed,
+  teacherSeed,
+  classroomPrincipalAssignmentSeedService,
+);
 devSeed.run();
 
 export const container: { router: Router; resource: string }[] = [

@@ -99,4 +99,6 @@ const classroomSeedData = {
   },
 };
 
+
+export type ClassroomSeedNames = keyof typeof classroomSeedData
 export default classroomSeedData;

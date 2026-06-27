@@ -1,6 +1,6 @@
 import { prisma } from '@/bootstrap/db.init';
 
-export class classroomSeedService {
+export class ClassroomSeedService {
   run = async (params: { id: string; name: string; schoolId: string }) => {
     await prisma.class.upsert({
       where: {

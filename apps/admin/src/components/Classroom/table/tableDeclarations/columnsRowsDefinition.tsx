@@ -1,6 +1,7 @@
 import dayjs from '@/utils/dayjsConfig';
 import type { ColumnDef } from '@tanstack/react-table';
 import { ArrowUp, ChevronsUpDown } from 'lucide-react';
+import { Link } from 'react-router';
 import type { TableRowType } from '../../core/types';
 import ActionsColumn from '../columns/ActionsColumn';
 import HeaderContainer from '../ContainerComp/HeaderContainer';
@@ -23,9 +24,13 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
         </HeaderContainer>
       );
     },
-    cell: ({ getValue }) => {
+    cell: ({ getValue, row }) => {
       const name = getValue<string>();
-      return <RowContainer className='w-96 truncate whitespace-nowrap'>{name}</RowContainer>;
+      return (
+        <RowContainer className='w-96 truncate whitespace-nowrap'>
+          <Link to={`${row.original.id}/calendar`}>{name}</Link>
+        </RowContainer>
+      );
     },
 
     enableSorting: true,

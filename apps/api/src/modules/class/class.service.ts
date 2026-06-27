@@ -1,10 +1,13 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
 import { PageMapper } from '@/helper/page.mapper';
+import { getCurrentTerm } from '@/utils/getCurrentTerm';
 import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
 import { ClassQueryParamsTypes } from '@bac/contracts/schemas/class/queryParams';
 import { UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
 import { Prisma } from '@bac/db/prisma/client';
+import { ExamSessionMapper } from '../ExamSession/examSession.mapper';
+import { includeExamAndTeacher } from '../ExamSession/includes/includeExamAndTeacher';
 import { ClassMapper } from './class.mapper';
 import { ClassRepo } from './class.repo';
 
@@ -43,7 +46,6 @@ export class ClassService {
     }
 
     const orderBy: Prisma.ClassOrderByWithRelationInput = {};
-
     if (query.sortBy) {
       orderBy[query.sortBy] = query.order;
     }
@@ -85,5 +87,26 @@ export class ClassService {
 
   delete = async (id: string) => {
     return await this.classRepo.delete(id);
+  };
+
+  findExams = async (classroomId: string) => {
+    const currentTerm = getCurrentTerm();
+    const queryResponse = await prisma.examSession.findMany({
+      where: {
+        classId: classroomId,
+        exam: { term: currentTerm },
+      },
+      include: includeExamAndTeacher,
+      orderBy: [
+        {
+          exam: { date: 'asc' },
+        },
+        {
+          exam: { startTime: 'asc' },
+        },
+      ],
+    });
+    const result = queryResponse.map(ExamSessionMapper.toResponse);
+    return result;
   };
 }

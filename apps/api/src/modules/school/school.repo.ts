@@ -35,4 +35,11 @@ export class SchoolRepo {
       include,
     });
   };
+
+  getByUserIdWithInclude = async <T extends Prisma.SchoolInclude<DefaultArgs>>(userId: string, include: T) => {
+    return await prisma.school.findUnique({
+      where: { userId },
+      include,
+    });
+  };
 }

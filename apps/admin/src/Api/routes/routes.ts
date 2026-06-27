@@ -49,6 +49,7 @@ const apiRoutes = {
     getPage: (schoolId: string) => `/schools/${schoolId}/classrooms` as const,
     getById: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}` as const,
     delete: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}` as const,
+    exams: (schoolId: string, id: string) => `/schools/${schoolId}/classrooms/${id}/exams` as const,
   },
 
   teachers: {

@@ -10,7 +10,7 @@ export class ClassController {
 
   create = async (req: Request, res: Response) => {
     const data = createClassRequestSchema.parse(req.body);
-    const schoolId = getUrlParam(req, 'schoolId', { isUuid: true });
+    const schoolId = getUrlParam(req, 'schoolId');
     const result = await this.classService.create(data, schoolId);
     res.status(201).json({
       message: 'Class created successfully',
@@ -20,7 +20,7 @@ export class ClassController {
 
   getAllBySchoolId = async (req: Request, res: Response) => {
     // * Removed this and replaced it with findAll(paginated and all that), it has not route
-    const schoolId = getUrlParam(req, 'schoolId', { isUuid: true });
+    const schoolId = getUrlParam(req, 'schoolId');
     const result = await this.classService.getBySchoolId(schoolId);
     res.status(200).json({
       message: 'Classes fetched successfully',
@@ -30,7 +30,7 @@ export class ClassController {
 
   findAll = async (req: Request, res: Response) => {
     const query = classQueryParams.schema.parse(req.query);
-    const schoolId = getUrlParam(req, 'schoolId', { isUuid: true });
+    const schoolId = getUrlParam(req, 'schoolId');
     const result = await this.classService.findAll({ query, schoolId });
     res.status(200).json({
       message: 'Classes fetched successfully',
@@ -39,7 +39,7 @@ export class ClassController {
   };
 
   getById = async (req: Request, res: Response) => {
-    const id = getUrlParam(req, 'id', { isUuid: true });
+    const id = getUrlParam(req, 'id');
     const result = await this.classService.getById(id);
     res.status(200).json({
       message: 'Class fetched successfully',
@@ -49,8 +49,8 @@ export class ClassController {
 
   update = async (req: Request, res: Response) => {
     const data = updateClassRequestSchema.parse(req.body);
-    const id = getUrlParam(req, 'id', { isUuid: true });
-    const schoolId = getUrlParam(req, 'schoolId', { isUuid: true });
+    const id = getUrlParam(req, 'id');
+    const schoolId = getUrlParam(req, 'schoolId');
     const result = await this.classService.update(data, schoolId, id);
     res.status(200).json({
       message: 'Class updated successfully',
@@ -59,8 +59,14 @@ export class ClassController {
   };
 
   delete = async (req: Request, res: Response) => {
-    const id = getUrlParam(req, 'id', { isUuid: true });
+    const id = getUrlParam(req, 'id');
     const result = await this.classService.delete(id);
     res.status(200).json(result);
+  };
+
+  findExams = async (req: Request, res: Response) => {
+    const classroomId = getUrlParam(req, 'classroomId');
+    const result = await this.classService.findExams(classroomId);
+    res.status(200).json({ data: result });
   };
 }

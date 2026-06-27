@@ -16,7 +16,7 @@ export type TeacherCreateSeedInputOptional = {
 
 export type TeacherCreateSeedInput = TeacherCreateSeedInputStrict & Partial<TeacherCreateSeedInputOptional>;
 
-export class teacherSeedService {
+export class TeacherSeedService {
   private generateFakeSeed = (params: TeacherCreateSeedInput) => ({
     ...params,
     publicId: faker.string.alphanumeric(8),
