@@ -60,6 +60,10 @@ const apiRoutes = {
     delete: (schoolId: string, id: string) => `/schools/${schoolId}/teachers/${id}` as const,
   },
 
+  exams: {
+    getCurrentTermExams: () => '/exams/term/current' as const,
+  },
+
   images: () => ENV.BASE_URL + '/images/',
 };
 

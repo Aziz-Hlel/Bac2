@@ -3,18 +3,18 @@
 import { isSameDay, parseISO } from "date-fns";
 import { useMemo } from "react";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
-import { DndProviderWrapper } from "@/calendar/components/dnd/dnd-provider";
+import { DndProviderWrapper } from "@/components/Classroom/calendar/components/dnd/dnd-provider";
 
-import { CalendarAgendaView } from "@/calendar/components/agenda-view/calendar-agenda-view";
-import { CalendarHeader } from "@/calendar/components/header/calendar-header";
-import { CalendarMonthView } from "@/calendar/components/month-view/calendar-month-view";
-import { CalendarDayView } from "@/calendar/components/week-and-day-view/calendar-day-view";
-import { CalendarWeekView } from "@/calendar/components/week-and-day-view/calendar-week-view";
-import { CalendarYearView } from "@/calendar/components/year-view/calendar-year-view";
+import { CalendarAgendaView } from "@/components/Classroom/calendar/components/agenda-view/calendar-agenda-view";
+import { CalendarHeader } from "@/components/Classroom/calendar/components/header/calendar-header";
+import { CalendarMonthView } from "@/components/Classroom/calendar/components/month-view/calendar-month-view";
+import { CalendarDayView } from "@/components/Classroom/calendar/components/week-and-day-view/calendar-day-view";
+import { CalendarWeekView } from "@/components/Classroom/calendar/components/week-and-day-view/calendar-week-view";
+import { CalendarYearView } from "@/components/Classroom/calendar/components/year-view/calendar-year-view";
 
-import type { TCalendarView } from "@/calendar/types";
+import type { TCalendarView } from "@/components/Classroom/calendar/types";
 
 interface IProps {
   view: TCalendarView;
@@ -22,8 +22,6 @@ interface IProps {
 
 export function ClientContainer({ view }: IProps) {
   const { selectedDate, selectedUserId, events } = useCalendar();
-  console.log('ousil houni rabk ???????????????')
-  console.log('events = ', events)
 
   const filteredEvents = useMemo(() => {
     return events.filter(event => {

@@ -2,9 +2,9 @@
 
 import { createContext, useContext, useState } from "react";
 
+import type { IEvent, IUser } from "@/components/Classroom/calendar/interfaces";
+import type { TBadgeVariant, TVisibleHours, TWorkingHours } from "@/components/Classroom/calendar/types";
 import type { Dispatch, SetStateAction } from "react";
-import type { IEvent, IUser } from "@/calendar/interfaces";
-import type { TBadgeVariant, TVisibleHours, TWorkingHours } from "@/calendar/types";
 
 interface ICalendarContext {
   selectedDate: Date;
@@ -48,7 +48,9 @@ export function CalendarProvider({ children, users, events }: { children: React.
   // It's used here just to simulate the update of the events.
   // In a real scenario, the events would be updated in the backend
   // and the request that fetches the events should be refetched
-  const [localEvents, setLocalEvents] = useState<IEvent[]>(events);
+  const [, setLocalEvents] = useState<IEvent[]>(events);
+  const localEvents = events
+  console.log('localevents = ', events)
 
   const handleSelectDate = (date: Date | undefined) => {
     if (!date) return;

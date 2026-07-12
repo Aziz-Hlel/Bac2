@@ -1,5 +1,8 @@
+import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
+import { getCurrentTerm } from '@/utils/getCurrentTerm';
 import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
+import { CurrentTermExams } from '@bac/contracts/schemas/exam/CurrentTermExamsRes';
 import { ExamMapper } from './exam.mapper';
 import { ExamService } from './exam.service';
 
@@ -61,5 +64,42 @@ export class ExamAppService {
     const exams = await this.examService.findAllElectiveExams();
     const examResponses = exams.map(ExamMapper.toResponse);
     return examResponses;
+  };
+
+  findAllCurrentTermExams = async () => {
+    const majorQuery = prisma.major.findMany({
+      select: {
+        id: true,
+        name: true,
+        exams: {
+          where: {
+            term: getCurrentTerm(),
+          },
+          orderBy: [{ date: 'asc' }, { startTime: 'asc' }],
+        },
+      },
+    });
+
+    const electiveExamsQuery = prisma.exam.findMany({
+      where: { isOptional: true },
+    });
+
+    const [majors, electiveExams] = await Promise.all([majorQuery, electiveExamsQuery]);
+
+    const data: CurrentTermExams[] = majors.map((major) => {
+      return {
+        id: major.id,
+        name: major.name,
+        exams: major.exams.map(ExamMapper.toResponse),
+      };
+    });
+
+    data.push({
+      id: '',
+      name: 'Electives',
+      exams: electiveExams.map(ExamMapper.toResponse),
+    });
+
+    return data;
   };
 }

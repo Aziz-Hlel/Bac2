@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 // import { useRouter } from "next/navigation";
-import { format, isSameDay, parseISO, getDaysInMonth, startOfMonth } from "date-fns";
+import { format, getDaysInMonth, isSameDay, parseISO, startOfMonth } from "date-fns";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
-import { YearViewDayCell } from "@/calendar/components/year-view/year-view-day-cell";
+import { YearViewDayCell } from "@/components/Classroom/calendar/components/year-view/year-view-day-cell";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface IProps {
   month: Date;

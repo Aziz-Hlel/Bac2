@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 import { Info, Moon } from "lucide-react";
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { TimeInput } from "@/components/ui/time-input";
 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { TimeValue } from "react-aria-components";
-import { TooltipContent } from "@/components/ui/tooltip";
-import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 const DAYS_OF_WEEK = [
   { index: 0, name: "Sunday" },

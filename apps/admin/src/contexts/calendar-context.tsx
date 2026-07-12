@@ -1,10 +1,10 @@
 "use client";
 
+import type { IEvent, IUser } from "@/components/Classroom/calendar/interfaces";
+import type { TBadgeVariant, TVisibleHours, TWorkingHours } from "@/components/Classroom/calendar/types";
 import { createContext, useContext, useState } from "react";
 
 import type { Dispatch, SetStateAction } from "react";
-import type { IEvent, IUser } from "@/calendar/interfaces";
-import type { TBadgeVariant, TVisibleHours, TWorkingHours } from "@/calendar/types";
 
 interface ICalendarContext {
   selectedDate: Date;

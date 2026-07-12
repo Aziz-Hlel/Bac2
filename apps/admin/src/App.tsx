@@ -13,7 +13,6 @@ import Sidebar from './pages/Sidebar';
 import SignUp from './pages/SignUp';
 import UserPage from './pages/User';
 // import ProductPage from './pages/Products';
-import CalendarMain from './calendar/components/calendar-main';
 import CalendarMainMain from './components/Classroom/calendar/components/calendar-main';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
 import { CurrentSchoolProvider } from './contexts/CurrentSchoolContext';
@@ -65,20 +64,12 @@ function App() {
                           <Route path="classrooms/" element={<Outlet />} >
                             <Route index element={<ClassroomPage />} />
                             <Route path=":classroomId/calendar" element={<Outlet />} >
-                              <Route index element={<CalendarMainMain view='agenda' />} />
+                              <Route index path='agenda/' element={<CalendarMainMain view='agenda' />} />
                               <Route path="day/" element={<CalendarMainMain view='day' />} />
                               <Route path="month/" element={<CalendarMainMain view='month' />} />
                               <Route path="week/" element={<CalendarMainMain view='week' />} />
                               <Route path="year/" element={<CalendarMainMain view='year' />} />
                             </Route>
-
-                          </Route>
-                          <Route path="calendar/"  >
-                            <Route index element={<CalendarMain view='agenda' />} />
-                            <Route path="day/" element={<CalendarMain view='day' />} />
-                            <Route path="month/" element={<CalendarMain view='month' />} />
-                            <Route path="week/" element={<CalendarMain view='week' />} />
-                            <Route path="year/" element={<CalendarMain view='year' />} />
 
                           </Route>
 

@@ -1,15 +1,16 @@
-import { Columns, Grid3x3, List, Plus, Grid2x2, CalendarRange } from "lucide-react";
+import { CalendarRange, Columns, Grid2x2, Grid3x3, List, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import { UserSelect } from "@/calendar/components/header/user-select";
-import { TodayButton } from "@/calendar/components/header/today-button";
-import { DateNavigator } from "@/calendar/components/header/date-navigator";
-import { AddEventDialog } from "@/calendar/components/dialogs/add-event-dialog";
+import { AddEventDialog } from "@/components/Classroom/calendar/components/dialogs/add-event-dialog";
+import { DateNavigator } from "@/components/Classroom/calendar/components/header/date-navigator";
+import { TodayButton } from "@/components/Classroom/calendar/components/header/today-button";
+import { UserSelect } from "@/components/Classroom/calendar/components/header/user-select";
 
-import type { IEvent } from "@/calendar/interfaces";
-import type { TCalendarView } from "@/calendar/types";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
+import type { TCalendarView } from "@/components/Classroom/calendar/types";
 import { Link } from "react-router";
+import { useClassroomStore } from "@/store/useClassroomStore";
 
 interface IProps {
   view: TCalendarView;
@@ -17,6 +18,8 @@ interface IProps {
 }
 
 export function CalendarHeader({ view, events }: IProps) {
+  const currentClassroom = useClassroomStore((state) => state.currentClassroom);
+  
   return (
     <div className="flex flex-col gap-4 border-b p-4 lg:flex-row lg:items-center lg:justify-between">
       <div className="flex items-center gap-3">
@@ -28,7 +31,7 @@ export function CalendarHeader({ view, events }: IProps) {
         <div className="flex w-full items-center gap-1.5">
           <div className="inline-flex first:rounded-r-none last:rounded-l-none [&:not(:first-child):not(:last-child)]:rounded-none">
             <Button asChild aria-label="View by day" size="icon" variant={view === "day" ? "default" : "outline"} className="rounded-r-none [&_svg]:size-5">
-              <Link to="/calendar/day">
+              <Link to="../day">
                 <List strokeWidth={1.8} />
               </Link>
             </Button>
@@ -40,7 +43,7 @@ export function CalendarHeader({ view, events }: IProps) {
               variant={view === "week" ? "default" : "outline"}
               className="-ml-px rounded-none [&_svg]:size-5"
             >
-              <Link to="/calendar/week">
+              <Link to="../week">
                 <Columns strokeWidth={1.8} />
               </Link>
             </Button>
@@ -52,7 +55,7 @@ export function CalendarHeader({ view, events }: IProps) {
               variant={view === "month" ? "default" : "outline"}
               className="-ml-px rounded-none [&_svg]:size-5"
             >
-              <Link to="/calendar/month">
+              <Link to="../month">
                 <Grid2x2 strokeWidth={1.8} />
               </Link>
             </Button>
@@ -64,7 +67,7 @@ export function CalendarHeader({ view, events }: IProps) {
               variant={view === "year" ? "default" : "outline"}
               className="-ml-px rounded-none [&_svg]:size-5"
             >
-              <Link to="/calendar/year">
+              <Link to="../year">
                 <Grid3x3 strokeWidth={1.8} />
               </Link>
             </Button>
@@ -76,7 +79,7 @@ export function CalendarHeader({ view, events }: IProps) {
               variant={view === "agenda" ? "default" : "outline"}
               className="-ml-px rounded-l-none [&_svg]:size-5"
             >
-              <Link to="/calendar/">
+              <Link to="../agenda">
                 <CalendarRange strokeWidth={1.8} />
               </Link>
             </Button>

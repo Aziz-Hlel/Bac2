@@ -1,4 +1,4 @@
-import type { TEventColor } from "@/calendar/types";
+import type { TEventColor } from '@/components/Classroom/calendar/types';
 
 export interface IUser {
   id: string;
@@ -7,7 +7,7 @@ export interface IUser {
 }
 
 export interface IEvent {
-  id: number;
+  id: string;
   startDate: string;
   endDate: string;
   title: string;

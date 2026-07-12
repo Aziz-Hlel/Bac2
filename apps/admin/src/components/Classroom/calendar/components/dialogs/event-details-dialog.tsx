@@ -3,11 +3,11 @@
 import { format, parseISO } from "date-fns";
 import { Calendar, Clock, Text, User } from "lucide-react";
 
+import { EditEventDialog } from "@/components/Classroom/calendar/components/dialogs/edit-event-dialog";
 import { Button } from "@/components/ui/button";
-import { EditEventDialog } from "@/calendar/components/dialogs/edit-event-dialog";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface IProps {
   event: IEvent;

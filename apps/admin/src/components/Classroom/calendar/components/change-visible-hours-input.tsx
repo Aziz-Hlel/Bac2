@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { Info } from "lucide-react";
+import { useState } from "react";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
 import { Button } from "@/components/ui/button";
 import { TimeInput } from "@/components/ui/time-input";
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import type { TimeValue } from "react-aria-components";
 

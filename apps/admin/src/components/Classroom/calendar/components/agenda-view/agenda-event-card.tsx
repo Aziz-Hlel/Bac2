@@ -1,14 +1,14 @@
 "use client";
 
-import { format, parseISO } from "date-fns";
 import { cva } from "class-variance-authority";
+import { format, parseISO } from "date-fns";
 import { Clock, Text, User } from "lucide-react";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
-import { EventDetailsDialog } from "@/calendar/components/dialogs/event-details-dialog";
+import { EventDetailsDialog } from "@/components/Classroom/calendar/components/dialogs/event-details-dialog";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 import type { VariantProps } from "class-variance-authority";
 
 const agendaEventCardVariants = cva(

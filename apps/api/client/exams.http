@@ -110,3 +110,9 @@ GET {{baseUrl}}/exams/major/bbd80e75-774f-4e9b-9ecb-90c3bb20c56a
 ###
 # @name getAllElectiveExams
 GET {{baseUrl}}/exams/elective
+
+
+
+###
+# @name getCurrentTermExams
+GET {{baseUrl}}/exams/term/current

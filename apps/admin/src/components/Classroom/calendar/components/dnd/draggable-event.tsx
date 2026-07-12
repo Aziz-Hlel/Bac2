@@ -1,12 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useDrag } from "react-dnd";
-import { useRef, useEffect } from "react";
 import { getEmptyImage } from "react-dnd-html5-backend";
 
 import { cn } from "@/lib/utils";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 export const ItemTypes = {
   EVENT: "event",

@@ -1,9 +1,9 @@
+import { addDays, differenceInDays, endOfWeek, isAfter, isBefore, parseISO, startOfDay, startOfWeek } from "date-fns";
 import { useMemo } from "react";
-import { parseISO, startOfDay, startOfWeek, endOfWeek, addDays, differenceInDays, isBefore, isAfter } from "date-fns";
 
-import { MonthEventBadge } from "@/calendar/components/month-view/month-event-badge";
+import { MonthEventBadge } from "@/components/Classroom/calendar/components/month-view/month-event-badge";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface IProps {
   selectedDate: Date;

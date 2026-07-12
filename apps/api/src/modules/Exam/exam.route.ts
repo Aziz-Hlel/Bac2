@@ -9,6 +9,7 @@ export const createExamRouter = (examController: ExamController) => {
   examRouter.post('/', requireAuth, requireRole(Role.SUPER_ADMIN), examController.create);
   examRouter.get('/major/:majorId', examController.findByMajorId);
   examRouter.get('/elective', examController.findAllElectiveExams);
+  examRouter.get('/term/current', examController.findAllCurrentTermExams);
   examRouter.get('/:id', examController.findById);
   return examRouter;
 };

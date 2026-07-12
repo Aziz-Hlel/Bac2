@@ -23,8 +23,13 @@ export class ExamController {
     res.json(exams);
   };
 
-  findAllElectiveExams = async (req: Request, res: Response) => {
+  findAllElectiveExams = async (_: Request, res: Response) => {
     const exams = await this.examAppService.findAllElectiveExams();
+    res.json(exams);
+  };
+
+  findAllCurrentTermExams = async (_: Request, res: Response) => {
+    const exams = await this.examAppService.findAllCurrentTermExams();
     res.json(exams);
   };
 }

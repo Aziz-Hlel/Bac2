@@ -1,14 +1,14 @@
 import { cva } from "class-variance-authority";
 import { endOfDay, format, isSameDay, parseISO, startOfDay } from "date-fns";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
-import { DraggableEvent } from "@/calendar/components/dnd/draggable-event";
-import { EventDetailsDialog } from "@/calendar/components/dialogs/event-details-dialog";
+import { EventDetailsDialog } from "@/components/Classroom/calendar/components/dialogs/event-details-dialog";
+import { DraggableEvent } from "@/components/Classroom/calendar/components/dnd/draggable-event";
 
 import { cn } from "@/lib/utils";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 import type { VariantProps } from "class-variance-authority";
 
 const eventBadgeVariants = cva(

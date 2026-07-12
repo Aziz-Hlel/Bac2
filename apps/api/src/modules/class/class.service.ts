@@ -109,4 +109,8 @@ export class ClassService {
     const result = queryResponse.map(ExamSessionMapper.toResponse);
     return result;
   };
+
+  syncExams = async (classroomId:string,schoolId:string)=>{
+
+  }
 }

@@ -1,8 +1,8 @@
 import { differenceInDays, format, parseISO, startOfDay } from "date-fns";
 
-import { AgendaEventCard } from "@/calendar/components/agenda-view/agenda-event-card";
+import { AgendaEventCard } from "@/components/Classroom/calendar/components/agenda-view/agenda-event-card";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface IProps {
   date: Date;

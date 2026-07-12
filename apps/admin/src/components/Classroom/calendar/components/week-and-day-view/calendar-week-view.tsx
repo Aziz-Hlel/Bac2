@@ -1,19 +1,19 @@
-import { startOfWeek, addDays, format, parseISO, isSameDay, areIntervalsOverlapping } from "date-fns";
+import { addDays, areIntervalsOverlapping, format, isSameDay, parseISO, startOfWeek } from "date-fns";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-import { AddEventDialog } from "@/calendar/components/dialogs/add-event-dialog";
-import { EventBlock } from "@/calendar/components/week-and-day-view/event-block";
-import { DroppableTimeBlock } from "@/calendar/components/dnd/droppable-time-block";
-import { CalendarTimeline } from "@/calendar/components/week-and-day-view/calendar-time-line";
-import { WeekViewMultiDayEventsRow } from "@/calendar/components/week-and-day-view/week-view-multi-day-events-row";
+import { AddEventDialog } from "@/components/Classroom/calendar/components/dialogs/add-event-dialog";
+import { DroppableTimeBlock } from "@/components/Classroom/calendar/components/dnd/droppable-time-block";
+import { CalendarTimeline } from "@/components/Classroom/calendar/components/week-and-day-view/calendar-time-line";
+import { EventBlock } from "@/components/Classroom/calendar/components/week-and-day-view/event-block";
+import { WeekViewMultiDayEventsRow } from "@/components/Classroom/calendar/components/week-and-day-view/week-view-multi-day-events-row";
 
+import { getEventBlockStyle, getVisibleHours, groupEvents, isWorkingHour } from "@/components/Classroom/calendar/helpers";
 import { cn } from "@/lib/utils";
-import { groupEvents, getEventBlockStyle, isWorkingHour, getVisibleHours } from "@/calendar/helpers";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface IProps {
   singleDayEvents: IEvent[];

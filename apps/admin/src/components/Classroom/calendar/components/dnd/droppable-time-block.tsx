@@ -1,14 +1,14 @@
 "use client";
 
+import { differenceInMilliseconds, parseISO } from "date-fns";
 import { useDrop } from "react-dnd";
-import { parseISO, differenceInMilliseconds } from "date-fns";
 
-import { useUpdateEvent } from "@/calendar/hooks/use-update-event";
+import { useUpdateEvent } from "@/components/Classroom/calendar/hooks/use-update-event";
 
+import { ItemTypes } from "@/components/Classroom/calendar/components/dnd/draggable-event";
 import { cn } from "@/lib/utils";
-import { ItemTypes } from "@/calendar/components/dnd/draggable-event";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface DroppableTimeBlockProps {
   date: Date;

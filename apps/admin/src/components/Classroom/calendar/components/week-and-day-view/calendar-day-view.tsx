@@ -1,21 +1,21 @@
+import { areIntervalsOverlapping, format, parseISO } from "date-fns";
 import { Calendar, Clock, User } from "lucide-react";
-import { parseISO, areIntervalsOverlapping, format } from "date-fns";
 
-import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { useCalendar } from "@/components/Classroom/calendar/contexts/calendar-context";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SingleCalendar } from "@/components/ui/single-calendar";
 
-import { AddEventDialog } from "@/calendar/components/dialogs/add-event-dialog";
-import { EventBlock } from "@/calendar/components/week-and-day-view/event-block";
-import { DroppableTimeBlock } from "@/calendar/components/dnd/droppable-time-block";
-import { CalendarTimeline } from "@/calendar/components/week-and-day-view/calendar-time-line";
-import { DayViewMultiDayEventsRow } from "@/calendar/components/week-and-day-view/day-view-multi-day-events-row";
+import { AddEventDialog } from "@/components/Classroom/calendar/components/dialogs/add-event-dialog";
+import { DroppableTimeBlock } from "@/components/Classroom/calendar/components/dnd/droppable-time-block";
+import { CalendarTimeline } from "@/components/Classroom/calendar/components/week-and-day-view/calendar-time-line";
+import { DayViewMultiDayEventsRow } from "@/components/Classroom/calendar/components/week-and-day-view/day-view-multi-day-events-row";
+import { EventBlock } from "@/components/Classroom/calendar/components/week-and-day-view/event-block";
 
+import { getCurrentEvents, getEventBlockStyle, getVisibleHours, groupEvents, isWorkingHour } from "@/components/Classroom/calendar/helpers";
 import { cn } from "@/lib/utils";
-import { groupEvents, getEventBlockStyle, isWorkingHour, getCurrentEvents, getVisibleHours } from "@/calendar/helpers";
 
-import type { IEvent } from "@/calendar/interfaces";
+import type { IEvent } from "@/components/Classroom/calendar/interfaces";
 
 interface IProps {
   singleDayEvents: IEvent[];

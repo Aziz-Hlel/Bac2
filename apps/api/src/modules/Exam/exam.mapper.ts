@@ -1,4 +1,5 @@
 import { toCalendarDate, toTime } from '@/utils/dayjs';
+import { CurrentTermExams } from '@bac/contracts/schemas/exam/CurrentTermExamsRes';
 import { ExamResponse } from '@bac/contracts/schemas/exam/examResponse';
 import { ExamWithMajorResponse } from '@bac/contracts/schemas/exam/examWithMajorResponse';
 import { Exam, Major } from '@bac/db/prisma/client';
@@ -25,6 +26,14 @@ export class ExamMapper {
     return {
       ...examResponse,
       major,
+    };
+  }
+
+  static toResponseCurrentTermExams(major: Major & { exams: Exam[] }): CurrentTermExams {
+    return {
+      id: major.id,
+      name: major.name,
+      exams: major.exams.map((exam) => ExamMapper.toResponse(exam)),
     };
   }
 }

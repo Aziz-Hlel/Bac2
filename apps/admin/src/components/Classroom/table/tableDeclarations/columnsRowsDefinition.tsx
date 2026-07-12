@@ -1,3 +1,4 @@
+import { useClassroomStore } from '@/store/useClassroomStore';
 import dayjs from '@/utils/dayjsConfig';
 import type { ColumnDef } from '@tanstack/react-table';
 import { ArrowUp, ChevronsUpDown } from 'lucide-react';
@@ -26,9 +27,11 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
     },
     cell: ({ getValue, row }) => {
       const name = getValue<string>();
+      const setCurrentClassroom = useClassroomStore((state) => state.setCurrentClassroom);
       return (
         <RowContainer className='w-96 truncate whitespace-nowrap'>
-          <Link to={`${row.original.id}/calendar`}>{name}</Link>
+
+          <Link onClick={() => setCurrentClassroom(row.original)} to={`${row.original.id}/calendar/agenda`}>{name}</Link>
         </RowContainer>
       );
     },
