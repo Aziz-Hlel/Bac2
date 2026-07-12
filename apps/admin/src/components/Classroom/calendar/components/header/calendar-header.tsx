@@ -1,16 +1,16 @@
-import { CalendarRange, Columns, Grid2x2, Grid3x3, List, Plus } from "lucide-react";
+import { CalendarRange, Columns, Grid2x2, Grid3x3, List, Plus } from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { AddEventDialog } from "@/components/Classroom/calendar/components/dialogs/add-event-dialog";
-import { DateNavigator } from "@/components/Classroom/calendar/components/header/date-navigator";
-import { TodayButton } from "@/components/Classroom/calendar/components/header/today-button";
-import { UserSelect } from "@/components/Classroom/calendar/components/header/user-select";
+import { AddEventDialog } from '@/components/Classroom/calendar/components/dialogs/add-event-dialog';
+import { DateNavigator } from '@/components/Classroom/calendar/components/header/date-navigator';
+import { TodayButton } from '@/components/Classroom/calendar/components/header/today-button';
+import { UserSelect } from '@/components/Classroom/calendar/components/header/user-select';
 
-import type { IEvent } from "@/components/Classroom/calendar/interfaces";
-import type { TCalendarView } from "@/components/Classroom/calendar/types";
-import { Link } from "react-router";
-import { useClassroomStore } from "@/store/useClassroomStore";
+import type { IEvent } from '@/components/Classroom/calendar/interfaces';
+import type { TCalendarView } from '@/components/Classroom/calendar/types';
+import { Link } from 'react-router';
+import { useClassroomStore } from '@/store/useClassroomStore';
 
 interface IProps {
   view: TCalendarView;
@@ -19,67 +19,73 @@ interface IProps {
 
 export function CalendarHeader({ view, events }: IProps) {
   const currentClassroom = useClassroomStore((state) => state.currentClassroom);
-  
+
   return (
-    <div className="flex flex-col gap-4 border-b p-4 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex items-center gap-3">
+    <div className='flex flex-col gap-4 border-b p-4 lg:flex-row lg:items-center lg:justify-between'>
+      <div className='flex items-center gap-3'>
         <TodayButton />
         <DateNavigator view={view} events={events} />
       </div>
 
-      <div className="flex flex-col items-center gap-1.5 sm:flex-row sm:justify-between">
-        <div className="flex w-full items-center gap-1.5">
-          <div className="inline-flex first:rounded-r-none last:rounded-l-none [&:not(:first-child):not(:last-child)]:rounded-none">
-            <Button asChild aria-label="View by day" size="icon" variant={view === "day" ? "default" : "outline"} className="rounded-r-none [&_svg]:size-5">
-              <Link to="../day">
+      <div className='flex flex-col items-center gap-1.5 sm:flex-row sm:justify-between'>
+        <div className='flex w-full items-center gap-1.5'>
+          <div className='inline-flex first:rounded-r-none last:rounded-l-none [&:not(:first-child):not(:last-child)]:rounded-none'>
+            <Button
+              asChild
+              aria-label='View by day'
+              size='icon'
+              variant={view === 'day' ? 'default' : 'outline'}
+              className='rounded-r-none [&_svg]:size-5'
+            >
+              <Link to='../day'>
                 <List strokeWidth={1.8} />
               </Link>
             </Button>
 
             <Button
               asChild
-              aria-label="View by week"
-              size="icon"
-              variant={view === "week" ? "default" : "outline"}
-              className="-ml-px rounded-none [&_svg]:size-5"
+              aria-label='View by week'
+              size='icon'
+              variant={view === 'week' ? 'default' : 'outline'}
+              className='-ml-px rounded-none [&_svg]:size-5'
             >
-              <Link to="../week">
+              <Link to='../week'>
                 <Columns strokeWidth={1.8} />
               </Link>
             </Button>
 
             <Button
               asChild
-              aria-label="View by month"
-              size="icon"
-              variant={view === "month" ? "default" : "outline"}
-              className="-ml-px rounded-none [&_svg]:size-5"
+              aria-label='View by month'
+              size='icon'
+              variant={view === 'month' ? 'default' : 'outline'}
+              className='-ml-px rounded-none [&_svg]:size-5'
             >
-              <Link to="../month">
+              <Link to='../month'>
                 <Grid2x2 strokeWidth={1.8} />
               </Link>
             </Button>
 
             <Button
               asChild
-              aria-label="View by year"
-              size="icon"
-              variant={view === "year" ? "default" : "outline"}
-              className="-ml-px rounded-none [&_svg]:size-5"
+              aria-label='View by year'
+              size='icon'
+              variant={view === 'year' ? 'default' : 'outline'}
+              className='-ml-px rounded-none [&_svg]:size-5'
             >
-              <Link to="../year">
+              <Link to='../year'>
                 <Grid3x3 strokeWidth={1.8} />
               </Link>
             </Button>
 
             <Button
               asChild
-              aria-label="View by agenda"
-              size="icon"
-              variant={view === "agenda" ? "default" : "outline"}
-              className="-ml-px rounded-l-none [&_svg]:size-5"
+              aria-label='View by agenda'
+              size='icon'
+              variant={view === 'agenda' ? 'default' : 'outline'}
+              className='-ml-px rounded-l-none [&_svg]:size-5'
             >
-              <Link to="../agenda">
+              <Link to='../agenda'>
                 <CalendarRange strokeWidth={1.8} />
               </Link>
             </Button>
@@ -89,7 +95,7 @@ export function CalendarHeader({ view, events }: IProps) {
         </div>
 
         <AddEventDialog>
-          <Button className="w-full sm:w-auto">
+          <Button className='w-full sm:w-auto'>
             <Plus />
             Add Event
           </Button>

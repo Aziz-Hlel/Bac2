@@ -23,7 +23,7 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
         </HeaderContainer>
       );
     },
-    cell: ({ getValue, }) => {
+    cell: ({ getValue }) => {
       const name = getValue<string>();
       return <RowContainer className='w-96 truncate whitespace-nowrap'>{name}</RowContainer>;
     },
@@ -47,7 +47,6 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
     cell: ({ getValue }) => {
       const isTeacher = getValue<boolean>();
       return <RowContainer className='w-96 truncate whitespace-nowrap'>{isTeacher ? 'Yes' : 'No'}</RowContainer>;
-
     },
 
     enableSorting: true,

@@ -72,11 +72,9 @@ const CreateDialog = () => {
             <DialogTitle className='bg-__tw_debug'>{TableData.AddDialog.title}</DialogTitle>
             <DialogDescription>{TableData.AddDialog.description}</DialogDescription>
           </DialogHeader>
-          <div className='min-h-0 flex-1 scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-track-transparent overflow-y-auto overscroll-contain pr-2 hover:scrollbar-thumb-neutral-400'>
+          <div className='scrollbar-thin scrollbar-thumb-neutral-300 scrollbar-track-transparent hover:scrollbar-thumb-neutral-400 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-2'>
             <FieldGroup>
-              <FormUI
-                form={form}
-              />
+              <FormUI form={form} />
             </FieldGroup>
           </div>
           <DialogFooter>

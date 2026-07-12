@@ -8,7 +8,6 @@ import { Controller, type UseFormReturn } from 'react-hook-form';
 import type { schemasType } from '../../core/services';
 
 const FormUI = ({ form }: { form: UseFormReturn<schemasType['create']> }) => {
-
   const isTeacher = form.watch('isTeacher');
 
   useEffect(() => {
@@ -17,7 +16,7 @@ const FormUI = ({ form }: { form: UseFormReturn<schemasType['create']> }) => {
     }
   }, [isTeacher]);
 
-  console.log('subject value = ', form.getValues('subject'))
+  console.log('subject value = ', form.getValues('subject'));
   return (
     <>
       <Controller
@@ -60,42 +59,42 @@ const FormUI = ({ form }: { form: UseFormReturn<schemasType['create']> }) => {
         control={form.control}
         render={({ field, fieldState }) => (
           <FieldLabel>
-            <Field orientation="horizontal">
+            <Field orientation='horizontal'>
               <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               <FieldContent>
                 <FieldTitle>Is Teacher</FieldTitle>
-                <FieldDescription>
-                  Check this box if the user is a teacher.
-                </FieldDescription>
+                <FieldDescription>Check this box if the user is a teacher.</FieldDescription>
               </FieldContent>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           </FieldLabel>
-
         )}
       />
 
       <Controller
-        name="subject"
+        name='subject'
         control={form.control}
         disabled={!isTeacher}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
             <FieldLabel htmlFor={`subject-input`}>Subject</FieldLabel>
 
-            <Select {...field} value={field.value ?? ''} aria-invalid={fieldState.invalid} onValueChange={field.onChange}  >
-              <SelectTrigger  >
-                <SelectValue placeholder="Select Subject" />
+            <Select
+              {...field}
+              value={field.value ?? ''}
+              aria-invalid={fieldState.invalid}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder='Select Subject' />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {
-                    Object.values(SubjectEnum).map((subject) => (
-                      <SelectItem key={subject} value={subject}>
-                        {subject}
-                      </SelectItem>
-                    ))
-                  }
+                  {Object.values(SubjectEnum).map((subject) => (
+                    <SelectItem key={subject} value={subject}>
+                      {subject}
+                    </SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -104,7 +103,6 @@ const FormUI = ({ form }: { form: UseFormReturn<schemasType['create']> }) => {
           </Field>
         )}
       />
-
     </>
   );
 };

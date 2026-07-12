@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useDragLayer } from "react-dnd";
+import { useDragLayer } from 'react-dnd';
 
-import type { IEvent } from "@/components/Classroom/calendar/interfaces";
+import type { IEvent } from '@/components/Classroom/calendar/interfaces';
 
 interface IDragItem {
   event: IEvent;
@@ -12,7 +12,7 @@ interface IDragItem {
 }
 
 export function CustomDragLayer() {
-  const { isDragging, item, currentOffset, initialOffset, initialClientOffset } = useDragLayer(monitor => ({
+  const { isDragging, item, currentOffset, initialOffset, initialClientOffset } = useDragLayer((monitor) => ({
     item: monitor.getItem() as IDragItem | null,
     itemType: monitor.getItemType(),
     isDragging: monitor.isDragging(),
@@ -29,8 +29,8 @@ export function CustomDragLayer() {
   const offsetY = initialClientOffset.y - initialOffset.y;
 
   const layerStyles: React.CSSProperties = {
-    position: "fixed",
-    pointerEvents: "none",
+    position: 'fixed',
+    pointerEvents: 'none',
     zIndex: 100,
     left: currentOffset.x - offsetX,
     top: currentOffset.y - offsetY,
@@ -39,7 +39,7 @@ export function CustomDragLayer() {
   return (
     <div style={layerStyles}>
       <div
-        className=""
+        className=''
         style={{
           width: item.width,
           height: item.height,

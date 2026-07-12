@@ -1,9 +1,9 @@
-import { addDays, differenceInDays, endOfWeek, isAfter, isBefore, parseISO, startOfDay, startOfWeek } from "date-fns";
-import { useMemo } from "react";
+import { addDays, differenceInDays, endOfWeek, isAfter, isBefore, parseISO, startOfDay, startOfWeek } from 'date-fns';
+import { useMemo } from 'react';
 
-import { MonthEventBadge } from "@/components/Classroom/calendar/components/month-view/month-event-badge";
+import { MonthEventBadge } from '@/components/Classroom/calendar/components/month-view/month-event-badge';
 
-import type { IEvent } from "@/components/Classroom/calendar/interfaces";
+import type { IEvent } from '@/components/Classroom/calendar/interfaces';
 
 interface IProps {
   selectedDate: Date;
@@ -17,7 +17,7 @@ export function WeekViewMultiDayEventsRow({ selectedDate, multiDayEvents }: IPro
 
   const processedEvents = useMemo(() => {
     return multiDayEvents
-      .map(event => {
+      .map((event) => {
         const start = parseISO(event.startDate);
         const end = parseISO(event.endDate);
         const adjustedStart = isBefore(start, weekStart) ? weekStart : start;
@@ -43,8 +43,10 @@ export function WeekViewMultiDayEventsRow({ selectedDate, multiDayEvents }: IPro
   const eventRows = useMemo(() => {
     const rows: (typeof processedEvents)[] = [];
 
-    processedEvents.forEach(event => {
-      let rowIndex = rows.findIndex(row => row.every(e => e.endIndex < event.startIndex || e.startIndex > event.endIndex));
+    processedEvents.forEach((event) => {
+      let rowIndex = rows.findIndex((row) =>
+        row.every((e) => e.endIndex < event.startIndex || e.startIndex > event.endIndex),
+      );
 
       if (rowIndex === -1) {
         rowIndex = rows.length;
@@ -58,7 +60,7 @@ export function WeekViewMultiDayEventsRow({ selectedDate, multiDayEvents }: IPro
   }, [processedEvents]);
 
   const hasEventsInWeek = useMemo(() => {
-    return multiDayEvents.some(event => {
+    return multiDayEvents.some((event) => {
       const start = parseISO(event.startDate);
       const end = parseISO(event.endDate);
 
@@ -78,31 +80,38 @@ export function WeekViewMultiDayEventsRow({ selectedDate, multiDayEvents }: IPro
   }
 
   return (
-    <div className="hidden overflow-hidden sm:flex">
-      <div className="w-18 border-b"></div>
-      <div className="grid flex-1 grid-cols-7 divide-x border-b border-l">
+    <div className='hidden overflow-hidden sm:flex'>
+      <div className='w-18 border-b'></div>
+      <div className='grid flex-1 grid-cols-7 divide-x border-b border-l'>
         {weekDays.map((day, dayIndex) => (
-          <div key={day.toISOString()} className="flex h-full flex-col gap-1 py-1">
+          <div key={day.toISOString()} className='flex h-full flex-col gap-1 py-1'>
             {eventRows.map((row, rowIndex) => {
-              const event = row.find(e => e.startIndex <= dayIndex && e.endIndex >= dayIndex);
+              const event = row.find((e) => e.startIndex <= dayIndex && e.endIndex >= dayIndex);
 
               if (!event) {
-                return <div key={`${rowIndex}-${dayIndex}`} className="h-6.5" />;
+                return <div key={`${rowIndex}-${dayIndex}`} className='h-6.5' />;
               }
 
-              let position: "first" | "middle" | "last" | "none" = "none";
+              let position: 'first' | 'middle' | 'last' | 'none' = 'none';
 
               if (dayIndex === event.startIndex && dayIndex === event.endIndex) {
-                position = "none";
+                position = 'none';
               } else if (dayIndex === event.startIndex) {
-                position = "first";
+                position = 'first';
               } else if (dayIndex === event.endIndex) {
-                position = "last";
+                position = 'last';
               } else {
-                position = "middle";
+                position = 'middle';
               }
 
-              return <MonthEventBadge key={`${event.id}-${dayIndex}`} event={event} cellDate={startOfDay(day)} position={position} />;
+              return (
+                <MonthEventBadge
+                  key={`${event.id}-${dayIndex}`}
+                  event={event}
+                  cellDate={startOfDay(day)}
+                  position={position}
+                />
+              );
             })}
           </div>
         ))}

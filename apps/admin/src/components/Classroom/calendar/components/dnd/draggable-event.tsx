@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import { useDrag } from "react-dnd";
-import { getEmptyImage } from "react-dnd-html5-backend";
+import { useEffect, useRef } from 'react';
+import { useDrag } from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-import type { IEvent } from "@/components/Classroom/calendar/interfaces";
+import type { IEvent } from '@/components/Classroom/calendar/interfaces';
 
 export const ItemTypes = {
-  EVENT: "event",
+  EVENT: 'event',
 };
 
 interface DraggableEventProps {
@@ -27,7 +27,7 @@ export function DraggableEvent({ event, children }: DraggableEventProps) {
       const height = ref.current?.offsetHeight || 0;
       return { event, children, width, height };
     },
-    collect: monitor => ({ isDragging: monitor.isDragging() }),
+    collect: (monitor) => ({ isDragging: monitor.isDragging() }),
   }));
 
   // Hide the default drag preview
@@ -38,7 +38,7 @@ export function DraggableEvent({ event, children }: DraggableEventProps) {
   drag(ref);
 
   return (
-    <div ref={ref} className={cn(isDragging && "opacity-40")}>
+    <div ref={ref} className={cn(isDragging && 'opacity-40')}>
       {children}
     </div>
   );

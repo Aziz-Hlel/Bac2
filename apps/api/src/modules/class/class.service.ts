@@ -110,7 +110,5 @@ export class ClassService {
     return result;
   };
 
-  syncExams = async (classroomId:string,schoolId:string)=>{
-
-  }
+  syncExams = async (classroomId: string, schoolId: string) => {};
 }

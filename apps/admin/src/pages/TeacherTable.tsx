@@ -1,5 +1,5 @@
-import TeacherTableIndex from "@/components/TeacherTable";
+import TeacherTableIndex from '@/components/TeacherTable';
 
-const TeacherTable = () => <TeacherTableIndex />
+const TeacherTable = () => <TeacherTableIndex />;
 
-export default TeacherTable
+export default TeacherTable;

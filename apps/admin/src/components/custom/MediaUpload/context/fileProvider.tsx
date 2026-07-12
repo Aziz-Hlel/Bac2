@@ -78,7 +78,7 @@ export function FileProvider<T extends FieldValues>({ children, initMedia, form,
         description: 'Unable to upload image, if the issue persists please contact support',
         action: {
           label: 'Ok',
-          onClick: () => { },
+          onClick: () => {},
         },
       });
       handleRollBack();

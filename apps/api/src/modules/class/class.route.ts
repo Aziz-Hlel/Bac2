@@ -15,6 +15,6 @@ export const createRouter = (classController: ClassController) => {
   router.delete('/:id', requireAuth, asyncHandler(classController.delete));
 
   router.get('/:classroomId/exams', requireAuth, asyncHandler(classController.findExams));
-  
+
   return router;
 };

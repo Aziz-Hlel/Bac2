@@ -11,7 +11,6 @@ import RowContainer from '../ContainerComp/RowContainer';
 type ColumnDefCustom<T> = ColumnDef<T> & { accessorKey?: keyof T };
 
 const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
-
   {
     id: 'name',
     accessorKey: 'name',
@@ -30,8 +29,9 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
       const setCurrentClassroom = useClassroomStore((state) => state.setCurrentClassroom);
       return (
         <RowContainer className='w-96 truncate whitespace-nowrap'>
-
-          <Link onClick={() => setCurrentClassroom(row.original)} to={`${row.original.id}/calendar/agenda`}>{name}</Link>
+          <Link onClick={() => setCurrentClassroom(row.original)} to={`${row.original.id}/calendar/agenda`}>
+            {name}
+          </Link>
         </RowContainer>
       );
     },
@@ -39,7 +39,6 @@ const columnsRowsDefinition: ColumnDefCustom<TableRowType>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-
 
   {
     accessorKey: 'createdAt',

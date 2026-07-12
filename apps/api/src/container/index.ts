@@ -61,7 +61,6 @@ const classroomSeed = new ClassroomSeedService();
 const teacherSeed = new TeacherSeedService();
 const classroomPrincipalAssignmentSeedService = new ClassroomPrincipalAssignmentSeedService();
 
-
 const devSeed = new SeedDevService(
   majorSeed,
   examSeed,

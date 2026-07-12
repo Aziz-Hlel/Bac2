@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { differenceInMilliseconds, parseISO } from "date-fns";
-import { useDrop } from "react-dnd";
+import { differenceInMilliseconds, parseISO } from 'date-fns';
+import { useDrop } from 'react-dnd';
 
-import { useUpdateEvent } from "@/components/Classroom/calendar/hooks/use-update-event";
+import { useUpdateEvent } from '@/components/Classroom/calendar/hooks/use-update-event';
 
-import { ItemTypes } from "@/components/Classroom/calendar/components/dnd/draggable-event";
-import { cn } from "@/lib/utils";
+import { ItemTypes } from '@/components/Classroom/calendar/components/dnd/draggable-event';
+import { cn } from '@/lib/utils';
 
-import type { ICalendarCell, IEvent } from "@/components/Classroom/calendar/interfaces";
+import type { ICalendarCell, IEvent } from '@/components/Classroom/calendar/interfaces';
 
 interface DroppableDayCellProps {
   cell: ICalendarCell;
@@ -30,7 +30,12 @@ export function DroppableDayCell({ cell, children }: DroppableDayCellProps) {
         const eventDurationMs = differenceInMilliseconds(eventEndDate, eventStartDate);
 
         const newStartDate = new Date(cell.date);
-        newStartDate.setHours(eventStartDate.getHours(), eventStartDate.getMinutes(), eventStartDate.getSeconds(), eventStartDate.getMilliseconds());
+        newStartDate.setHours(
+          eventStartDate.getHours(),
+          eventStartDate.getMinutes(),
+          eventStartDate.getSeconds(),
+          eventStartDate.getMilliseconds(),
+        );
         const newEndDate = new Date(newStartDate.getTime() + eventDurationMs);
 
         updateEvent({
@@ -41,16 +46,16 @@ export function DroppableDayCell({ cell, children }: DroppableDayCellProps) {
 
         return { moved: true };
       },
-      collect: monitor => ({
+      collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop(),
       }),
     }),
-    [cell.date, updateEvent]
+    [cell.date, updateEvent],
   );
 
   return (
-    <div ref={drop as unknown as React.RefObject<HTMLDivElement>} className={cn(isOver && canDrop && "bg-accent/50")}>
+    <div ref={drop as unknown as React.RefObject<HTMLDivElement>} className={cn(isOver && canDrop && 'bg-accent/50')}>
       {children}
     </div>
   );
