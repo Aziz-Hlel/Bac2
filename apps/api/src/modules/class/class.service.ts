@@ -1,5 +1,6 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
+import { UpdateClassroomExamReq } from '@bac/contracts/schemas/class/updateClassroomExamReq';
 import { PageMapper } from '@/helper/page.mapper';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
 import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
@@ -110,5 +111,45 @@ export class ClassService {
     return result;
   };
 
-  syncExams = async (classroomId: string, schoolId: string) => {};
+  updateManyByExamIds = async (classroomId: string, data: UpdateClassroomExamReq) => {
+    const currentTerm = getCurrentTerm();
+    const requestedExamIds = Array.from(new Set(data.examIds));
+
+    await prisma.$transaction(async (tx) => {
+      const existingSessions = await tx.examSession.findMany({
+        where: {
+          classId: classroomId,
+          exam: { term: currentTerm },
+        },
+        select: { id: true, examId: true },
+      });
+
+      const existingExamIds = new Set(existingSessions.map((s) => s.examId));
+
+      const sessionsToDelete = existingSessions.filter((s) => !requestedExamIds.includes(s.examId)).map((s) => s.id);
+
+      if (sessionsToDelete.length > 0) {
+        await tx.examSession.deleteMany({
+          where: { id: { in: sessionsToDelete } },
+        });
+      }
+
+      const examIdsToCreate = requestedExamIds.filter((id) => !existingExamIds.has(id));
+
+      if (examIdsToCreate.length > 0) {
+        await tx.examSession.createMany({
+          data: examIdsToCreate.map((examId) => ({
+            classId: classroomId,
+            examId,
+          })),
+          skipDuplicates: true,
+        });
+      }
+    });
+
+    return {
+      success: true,
+      message: 'Classroom exams updated successfully',
+    };
+  };
 }

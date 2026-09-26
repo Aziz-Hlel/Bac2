@@ -100,6 +100,6 @@ export class ExamAppService {
       exams: electiveExams.map(ExamMapper.toResponse),
     });
 
-    return data;
+    return { success: true, data };
   };
 }

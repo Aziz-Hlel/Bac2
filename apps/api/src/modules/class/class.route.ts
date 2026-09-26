@@ -16,5 +16,7 @@ export const createRouter = (classController: ClassController) => {
 
   router.get('/:classroomId/exams', requireAuth, asyncHandler(classController.findExams));
 
+  router.put('/:classroomId/exams', requireAuth, asyncHandler(classController.updateManyByExamIds));
+
   return router;
 };

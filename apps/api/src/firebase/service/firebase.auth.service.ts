@@ -1,10 +1,10 @@
-import { handleFirebaseError, isFirebaseError } from '../err/firebase.errors';
-import { CustomClaims } from '../../types/auth/Claims';
-import { Role, User } from '../../generated/prisma/client';
-import { StrictDecodedIdToken } from '../../types/auth/StrictDecodedIdToken';
+import { logger } from '@/bootstrap/logger.init';
+import { Role, User } from '@bac/db/prisma/client';
 import { Auth } from 'firebase-admin/auth';
 import { firebaseSession } from '../../bootstrap/firebase.init';
-import { logger } from '@/bootstrap/logger.init';
+import { CustomClaims } from '../../types/auth/Claims';
+import { StrictDecodedIdToken } from '../../types/auth/StrictDecodedIdToken';
+import { handleFirebaseError, isFirebaseError } from '../err/firebase.errors';
 
 class FirebaseAuthService {
   private firebaseSession: Auth = firebaseSession;

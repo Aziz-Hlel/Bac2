@@ -2,6 +2,7 @@ import getUrlParam from '@/utils/getUrlParam';
 import { createClassRequestSchema } from '@bac/contracts/schemas/class/createClassRequest';
 import { classQueryParams } from '@bac/contracts/schemas/class/queryParams';
 import { updateClassRequestSchema } from '@bac/contracts/schemas/class/updateClassRequest';
+import { updateClassroomExamReqSchema } from '@bac/contracts/schemas/class/updateClassroomExamReq';
 import { Request, Response } from 'express';
 import { ClassService } from './class.service';
 
@@ -68,5 +69,12 @@ export class ClassController {
     const classroomId = getUrlParam(req, 'classroomId');
     const result = await this.classService.findExams(classroomId);
     res.status(200).json({ data: result });
+  };
+
+  updateManyByExamIds = async (req: Request, res: Response) => {
+    const classroomId = getUrlParam(req, 'classroomId');
+    const data = updateClassroomExamReqSchema.parse(req.body);
+    const response = await this.classService.updateManyByExamIds(classroomId, data);
+    res.status(200).json(response);
   };
 }

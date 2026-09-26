@@ -1,6 +1,6 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import BreadcrumbHeader from '@/pages/Header';
-import { Button } from '../ui/button';
-import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import MainTable from './Table';
 import { useSelectedRow } from './context/selected-row-provider';
 import { TableData } from './core/core';

@@ -19,6 +19,8 @@ import { CurrentSchoolProvider } from './contexts/CurrentSchoolContext';
 import ClassroomPage from './pages/Classroom';
 import TeacherTable from './pages/TeacherTable';
 import { ThemeProvider } from './utils/theme-provider';
+import ClassroomOverview from './features/classrooms/overview';
+import ClassroomExamCalendar from './features/classrooms/classrom-exam-calendar';
 // import Product2Page from './pages/Products2';
 
 const queryClient = new QueryClient({
@@ -61,8 +63,9 @@ function App() {
                         <Route element={<CurrentSchoolProvider />}>
                           <Route path='teachers/' element={<TeacherTable />} />
                           <Route path='classrooms/' element={<Outlet />}>
-                            <Route index element={<ClassroomPage />} />
-                            <Route path=':classroomId/calendar' element={<Outlet />}>
+                            <Route index element={<ClassroomOverview />} />
+                            <Route path=':classroomId/calendar/month' element={<ClassroomExamCalendar />} />
+                            <Route path=':classroomId/calendar2' element={<Outlet />}>
                               <Route index path='agenda/' element={<CalendarMainMain view='agenda' />} />
                               <Route path='day/' element={<CalendarMainMain view='day' />} />
                               <Route path='month/' element={<CalendarMainMain view='month' />} />

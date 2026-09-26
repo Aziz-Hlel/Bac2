@@ -1,4 +1,4 @@
-import ClassroomIndex from '@/components/Classroom';
+import ClassroomIndex from '@/components/Classroom/ClassroomTabel';
 
 const ClassroomPage = () => <ClassroomIndex />;
 

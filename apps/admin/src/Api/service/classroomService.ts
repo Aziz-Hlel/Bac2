@@ -1,6 +1,7 @@
 import type { ClassResponse } from '@bac/contracts/schemas/class/classResponse';
 import type { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
 import type { UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
+import type { UpdateClassroomExamReq } from '@bac/contracts/schemas/class/updateClassroomExamReq';
 import type { ExamSessionRes } from '@bac/contracts/schemas/examSession/response';
 import type { Page2 } from '@bac/contracts/types/page/Page';
 import { apiService } from '../apiService';
@@ -23,6 +24,12 @@ const classroomService = {
 
   getExams: (params: { schoolId: string; id: string }) =>
     apiService.getThrowable<{ data: ExamSessionRes[] }>(apiRoutes.classroom.exams(params.schoolId, params.id)),
+
+  updateExams: (params: { schoolId: string; id: string; data: UpdateClassroomExamReq }) =>
+    apiService.putThrowable<{ success: boolean; message: string }>(
+      apiRoutes.classroom.exams(params.schoolId, params.id),
+      params.data,
+    ),
 };
 
 export default classroomService;

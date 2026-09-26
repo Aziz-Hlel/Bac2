@@ -43,7 +43,7 @@ export class ExamRepo {
     try {
       return await prisma.exam.findUnique({
         where: {
-          majorId_subject_term: {
+          majorId_term_subject: {
             subject: data.subject,
             term: data.term,
             majorId: data.majorId,
