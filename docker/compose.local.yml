@@ -9,6 +9,7 @@ services:
       - ${DB_PORT:?DB_PORT is required}:5432
     volumes:
       - db_volume:/var/lib/postgresql/data
+    restart : no
 
   redis:
     image: redis:latest
@@ -21,6 +22,7 @@ services:
       - redis_volume:/data
 
     command: ['redis-server', '--requirepass', '${REDIS_PASSWORD:-password}', '--appendonly', 'yes'] # enables persistence
+    restart : no
 
   minio:
     image: quay.io/minio/minio:latest
@@ -37,6 +39,7 @@ services:
       - minio_volume:/data
 
     command: server /data --console-address ":9001"
+    restart : no
 
   minio-init:
     image: minio/mc
@@ -54,13 +57,14 @@ services:
       - ${PROJECT_ROOT}/seed/minio:/seed:ro
 
     entrypoint: ['/bin/sh', '/init_minio.sh']
+    restart : no
 
   mailpit:
     image: axllent/mailpit
-    restart: unless-stopped
     ports:
       - ${SMTP_UI_PORT:?SMTP_UI_PORT is required}:8025 # Web UI
       - ${SMTP_PORT:?SMTP_PORT is required}:1025
+    restart : no
 
 volumes:
   db_volume:
