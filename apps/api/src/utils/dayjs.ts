@@ -1,9 +1,12 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
-export const parseCalendarDate = (dateStr: string) => dayjs(dateStr, 'YYYY-MM-DD').toDate();
+dayjs.extend(utc);
 
-export const parseTime = (timeStr: string): Date => dayjs(`1970-01-01 ${timeStr}`, 'YYYY-MM-DD HH:mm').toDate();
+export const parseCalendarDate = (dateStr: string) => dayjs.utc(dateStr, 'YYYY-MM-DD').toDate();
 
-export const toCalendarDate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
+export const parseTime = (timeStr: string): Date => dayjs.utc(`1970-01-01 ${timeStr}`, 'YYYY-MM-DD HH:mm').toDate();
 
-export const toTime = (date: Date) => dayjs(date).format('HH:mm');
+export const toCalendarDate = (date: Date) => dayjs.utc(date).format('YYYY-MM-DD');
+
+export const toTime = (date: Date) => dayjs.utc(date).format('HH:mm');

@@ -1,12 +1,13 @@
 import { firebaseUserService } from '@/firebase/service/firebase.user.service';
 import { TermEnum } from '@bac/db/prisma/enums';
-import classroomPrincipalAssignmentData from '../data/classroomAssignment/classroomPrincipalAssignment';
+import classroomExamSessionsData from '../data/classroomAssignment/classroomPrincipalAssignment';
 import classroomSeedData from '../data/classrooms/classroomData';
+import { electiveExamsData } from '../data/exams/exams/electiveExams';
 import { majorSeedData } from '../data/exams/majors';
 import { schoolSeedData } from '../data/schools/schoolData';
 import teacherSeedData from '../data/teachers/teachersData';
 import { ClassroomSeedService } from '../fakes/classroom.seed.service';
-import { ClassroomPrincipalAssignmentSeedService } from '../fakes/classroomPrincipalAssignment.seed.service';
+import { ClassroomExamSessionsSeedService } from '../fakes/classroomExamSessions.seed.service';
 import { ExamCreaInputSeed, ExamSeedService } from '../fakes/exam.seed.service';
 import { MajorSeedService } from '../fakes/major.seed.service';
 import { SchoolSeedService } from '../fakes/school.seed.service';
@@ -23,7 +24,7 @@ export class SeedDevService {
     private readonly schoolSeedService: SchoolSeedService,
     private readonly classroomSeedService: ClassroomSeedService,
     private readonly teacherSeedService: TeacherSeedService,
-    private readonly classroomPrincipalAssignmentSeedService: ClassroomPrincipalAssignmentSeedService,
+    private readonly classroomExamSessionsSeedService: ClassroomExamSessionsSeedService,
   ) {}
 
   // V1: old implementation
@@ -69,14 +70,40 @@ export class SeedDevService {
     const examsData: ExamCreaInputSeed[] = [];
     Object.values(majorSeedData).forEach(async (majorData) => {
       Object.values(majorData.exams).forEach(async (exam) => {
-        exam.PRINCIPAL &&
-          examsData.push({ ...exam.PRINCIPAL, isOptional: false, majorId: majorData.id, term: TermEnum.PRINCIPAL });
-        exam.RETAKE &&
-          examsData.push({ ...exam.RETAKE, isOptional: false, majorId: majorData.id, term: TermEnum.RETAKE });
+        if (exam.PRINCIPAL) {
+          examsData.push({
+            ...exam.PRINCIPAL,
+            isOptional: false,
+            majorId: majorData.id,
+            term: TermEnum.PRINCIPAL,
+          });
+        }
+        if (exam.RETAKE) {
+          examsData.push({
+            ...exam.RETAKE,
+            isOptional: false,
+            majorId: majorData.id,
+            term: TermEnum.RETAKE,
+          });
+        }
       });
     });
 
-    await Promise.all(examsData.map((exam) => this.examSeedService.run(exam)));
+    await Promise.all(examsData.map((exam) => this.examSeedService.runMajorExam(exam)));
+  };
+
+  private seedElectiveExams = async () => {
+    const examsData: ExamCreaInputSeed[] = [];
+    Object.values(electiveExamsData).forEach(async (exam) => {
+      if (exam.PRINCIPAL) {
+        examsData.push({
+          ...exam.PRINCIPAL,
+          isOptional: true,
+          term: TermEnum.PRINCIPAL,
+        });
+      }
+    });
+    await Promise.all(examsData.map((exam) => this.examSeedService.runElectiveExam(exam)));
   };
 
   private seedSchools = async () => {
@@ -100,9 +127,9 @@ export class SeedDevService {
     await Promise.all(teacherseeder);
   };
 
-  private seedClassroomPrincipalAssignment = async () => {
-    Object.values(classroomPrincipalAssignmentData).map(async (assignment) => {
-      await this.classroomPrincipalAssignmentSeedService.run(assignment);
+  private seedClassroomExamSessions = async () => {
+    Object.values(classroomExamSessionsData).map(async (assignment) => {
+      await this.classroomExamSessionsSeedService.run(assignment);
     });
   };
 
@@ -111,10 +138,11 @@ export class SeedDevService {
     await this.seedUsers();
     await this.seedMajors();
     await this.seedMajorExams();
+    await this.seedElectiveExams();
     await this.seedSchools();
     await this.seedClassrooms();
     await this.seedTeachers();
-    await this.seedClassroomPrincipalAssignment();
+    await this.seedClassroomExamSessions();
 
     console.log('✅ SUCCESS : Seeding completed.');
   };

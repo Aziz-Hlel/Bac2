@@ -11,7 +11,7 @@ import { SchoolCapacityStatModule } from '@/modules/schoolCapacityStat/schoolCap
 import { createTeacherModule } from '@/modules/teacher/teacher.module';
 import { SeedDevService } from '@/seeds/dev/seedDev.service';
 import { ClassroomSeedService } from '@/seeds/fakes/classroom.seed.service';
-import { ClassroomPrincipalAssignmentSeedService } from '@/seeds/fakes/classroomPrincipalAssignment.seed.service';
+import { ClassroomExamSessionsSeedService } from '@/seeds/fakes/classroomExamSessions.seed.service';
 import { ExamSeedService } from '@/seeds/fakes/exam.seed.service';
 import { MajorSeedService } from '@/seeds/fakes/major.seed.service';
 import { SchoolSeedService } from '@/seeds/fakes/school.seed.service';
@@ -59,7 +59,7 @@ const userSeed = new UserSeedService(userInternalService);
 const schoolSeed = new SchoolSeedService();
 const classroomSeed = new ClassroomSeedService();
 const teacherSeed = new TeacherSeedService();
-const classroomPrincipalAssignmentSeedService = new ClassroomPrincipalAssignmentSeedService();
+const classroomPrincipalAssignmentSeedService = new ClassroomExamSessionsSeedService();
 
 const devSeed = new SeedDevService(
   majorSeed,

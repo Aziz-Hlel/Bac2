@@ -1,12 +1,12 @@
 import { genUuid } from '@/seeds/helper/generateUuid';
 import { MajorEnum } from '@bac/db/prisma/enums';
-import { ecoExamSeed } from './majorExams/eco';
-import { informatiqueExamsData } from './majorExams/informatique';
-import { letterExamsData } from './majorExams/letter';
-import { mathExamsData } from './majorExams/math';
-import { scienceExamsData } from './majorExams/science';
-import { sportExamsData } from './majorExams/sport';
-import { techniqueExamsData } from './majorExams/technique';
+import { ecoExamSeed } from './exams/eco';
+import { informatiqueExamsData } from './exams/informatique';
+import { letterExamsData } from './exams/letter';
+import { mathExamsData } from './exams/math';
+import { scienceExamsData } from './exams/science';
+import { sportExamsData } from './exams/sport';
+import { techniqueExamsData } from './exams/technique';
 import { MajorSeed } from './types';
 
 export const majorSeedData: Record<MajorEnum, { id: string; name: MajorEnum; exams: MajorSeed }> = {

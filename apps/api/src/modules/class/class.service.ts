@@ -1,14 +1,14 @@
 import { prisma } from '@/bootstrap/db.init';
 import { ConflictError, NotFoundError } from '@/err/customErrors';
-import { UpdateClassroomExamReq } from '@bac/contracts/schemas/class/updateClassroomExamReq';
 import { PageMapper } from '@/helper/page.mapper';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
 import { CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
 import { ClassQueryParamsTypes } from '@bac/contracts/schemas/class/queryParams';
 import { UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
+import { UpdateClassroomExamReq } from '@bac/contracts/schemas/class/updateClassroomExamReq';
 import { Prisma } from '@bac/db/prisma/client';
 import { ExamSessionMapper } from '../ExamSession/examSession.mapper';
-import { includeExamAndTeacher } from '../ExamSession/includes/includeExamAndTeacher';
+import { includeExamAndMajorAndTeacher } from '../ExamSession/includes/includeExamAndTeacher';
 import { ClassMapper } from './class.mapper';
 import { ClassRepo } from './class.repo';
 
@@ -97,7 +97,7 @@ export class ClassService {
         classId: classroomId,
         exam: { term: currentTerm },
       },
-      include: includeExamAndTeacher,
+      include: includeExamAndMajorAndTeacher,
       orderBy: [
         {
           exam: { date: 'asc' },

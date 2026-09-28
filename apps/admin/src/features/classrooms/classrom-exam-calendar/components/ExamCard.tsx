@@ -30,6 +30,13 @@ export const ExamCard: React.FC<ExamCardProps> = ({ session }) => {
           <h4 className='text-foreground truncate text-sm font-bold tracking-tight' title={exam.subject}>
             {formatSubject(exam.subject)}
           </h4>
+          {exam.major?.name && (
+            <div className='mt-0.5 flex items-center'>
+              <span className='bg-primary/10 text-primary ring-primary/20 inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-medium ring-1 ring-inset'>
+                {exam.major.name}
+              </span>
+            </div>
+          )}
           <div className='text-muted-foreground mt-1 flex items-center gap-1.5 text-xs font-medium'>
             <Clock className='text-primary/80 h-3.5 w-3.5 shrink-0' />
             <span>

@@ -1,5 +1,5 @@
 import type { MajorEnum } from '../../types/enums/enums';
-import type { ElectiveExamEnum_V2 } from '../../types/enums/meta/selectiveExamsEnum';
+import type { ElectiveExamEnum_V2 } from '../../types/enums/selectiveExams';
 import type { SchoolResponse } from './schoolResponse';
 
 export type SchoolResponseWithDetails = SchoolResponse & {

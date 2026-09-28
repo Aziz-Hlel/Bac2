@@ -1,4 +1,6 @@
+import type { MajorEnum } from '@bac/db/prisma/enums';
+
 export type MajorResponse = {
   id: string;
-  name: string;
+  name: MajorEnum;
 };

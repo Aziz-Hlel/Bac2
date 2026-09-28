@@ -1,8 +1,8 @@
-import React from 'react';
-import dayjs from 'dayjs';
 import type { ExamSessionRes } from '@bac/contracts/schemas/examSession/response';
+import dayjs from 'dayjs';
+import React from 'react';
+import { CALENDAR_END_HOUR, CALENDAR_START_HOUR } from '../utils/calendarUtils';
 import { ExamCard } from './ExamCard';
-import { CALENDAR_START_HOUR, CALENDAR_END_HOUR } from '../utils/calendarUtils';
 
 interface CalendarGridProps {
   weekDays: dayjs.Dayjs[];
@@ -88,7 +88,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({ weekDays, examSessio
             return (
               <div
                 key={dayKey}
-                className={`border-border/50 relative border-r last:border-r-0 ${isToday ? 'bg-primary/[0.02]' : ''}`}
+                className={`border-border/50 relative border-r last:border-r-0 ${isToday ? 'bg-primary/2' : ''}`}
               >
                 {/* Background hour grid lines */}
                 {timeSlots.map((hour) => (

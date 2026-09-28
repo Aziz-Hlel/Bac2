@@ -21,7 +21,7 @@ export type ExamCreaInputSeed = {
 );
 
 export class ExamSeedService {
-  run = async (params: ExamCreaInputSeed) => {
+  runMajorExam = async (params: ExamCreaInputSeed) => {
     await prisma.exam.upsert({
       where: {
         id: params.id,
@@ -36,6 +36,25 @@ export class ExamSeedService {
         term: params.term,
         isOptional: params.isOptional,
         ...(!params.isOptional && { major: { connect: { id: params.majorId } } }),
+      },
+      update: {},
+    });
+  };
+
+  runElectiveExam = async (params: ExamCreaInputSeed) => {
+    await prisma.exam.upsert({
+      where: {
+        id: params.id,
+      },
+      create: {
+        id: params.id,
+        subject: params.subject,
+        timeOfDay: params.timeOfDay,
+        date: parseCalendarDate(params.date),
+        startTime: parseTime(params.startTime),
+        endTime: parseTime(params.endTime),
+        term: params.term,
+        isOptional: true,
       },
       update: {},
     });

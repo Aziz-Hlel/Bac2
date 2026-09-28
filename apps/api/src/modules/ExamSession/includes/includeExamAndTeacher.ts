@@ -1,7 +1,11 @@
 import { ExamSessionInclude } from '@bac/db/prisma/models';
 
-export const includeExamAndTeacher = {
-  exam: true,
+export const includeExamAndMajorAndTeacher = {
+  exam: {
+    include: {
+      major: true,
+    },
+  },
   teacherExamSession2: {
     include: {
       supervisor: true,
