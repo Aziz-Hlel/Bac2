@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -6,7 +6,8 @@ import { toast } from 'sonner';
 
 import classroomService from '@/Api/service/classroomService';
 import { useCurrentSchool } from '@/contexts/CurrentSchoolContext';
-import { createClassRequestSchema, type CreateClassRequest } from '@bac/contracts/schemas/class/createClassRequest';
+import type { ClassResponse } from '@bac/contracts/schemas/class/classResponse';
+import { updateClassRequestSchema, type UpdateClassRequest } from '@bac/contracts/schemas/class/updateClassRequest';
 import {
   Dialog,
   DialogClose,
@@ -21,41 +22,48 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 
-interface AddClassroomProps {
+interface EditClassroomProps {
+  classroom: ClassResponse;
   onClose: () => void;
 }
 
-export const AddClassroomDialog: React.FC<AddClassroomProps> = ({ onClose }) => {
+export const EditClassroomDialog: React.FC<EditClassroomProps> = ({ classroom, onClose }) => {
   const schoolId = useCurrentSchool();
   const queryClient = useQueryClient();
 
-  const form = useForm<CreateClassRequest>({
-    resolver: zodResolver(createClassRequestSchema),
+  const form = useForm<UpdateClassRequest>({
+    resolver: zodResolver(updateClassRequestSchema),
     defaultValues: {
-      name: '',
+      name: classroom.name,
     },
   });
 
+  useEffect(() => {
+    form.reset({
+      name: classroom.name,
+    });
+  }, [classroom, form]);
+
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (data: CreateClassRequest) =>
-      classroomService.create({
+    mutationFn: (data: UpdateClassRequest) =>
+      classroomService.update({
         schoolId,
+        id: classroom.id,
         data,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['classrooms'],
       });
-      toast.success('Classroom created successfully');
-      form.reset();
+      toast.success('Classroom updated successfully');
       onClose();
     },
     onError: (error: any) => {
-      toast.error(error?.message || 'Failed to create classroom');
+      toast.error(error?.message || 'Failed to update classroom');
     },
   });
 
-  const onSubmit: SubmitHandler<CreateClassRequest> = async (data) => {
+  const onSubmit: SubmitHandler<UpdateClassRequest> = async (data) => {
     try {
       await mutateAsync(data);
     } catch {
@@ -68,8 +76,8 @@ export const AddClassroomDialog: React.FC<AddClassroomProps> = ({ onClose }) => 
       <DialogContent className='sm:max-w-md'>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
           <DialogHeader>
-            <DialogTitle>Add Classroom</DialogTitle>
-            <DialogDescription>Create a new classroom to organize exams and manage schedules.</DialogDescription>
+            <DialogTitle>Edit Classroom</DialogTitle>
+            <DialogDescription>Update the name or details for this classroom.</DialogDescription>
           </DialogHeader>
 
           <FieldGroup>
@@ -78,12 +86,12 @@ export const AddClassroomDialog: React.FC<AddClassroomProps> = ({ onClose }) => 
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor='classroom-name-input'>Classroom Name</FieldLabel>
+                  <FieldLabel htmlFor='edit-classroom-name-input'>Classroom Name</FieldLabel>
                   <Input
                     {...field}
-                    id='classroom-name-input'
+                    id='edit-classroom-name-input'
                     aria-invalid={fieldState.invalid}
-                    placeholder='e.g. Grade 12 - Section A'
+                    placeholder='Classroom name'
                     autoFocus
                   />
                   {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -99,7 +107,7 @@ export const AddClassroomDialog: React.FC<AddClassroomProps> = ({ onClose }) => 
               </Button>
             </DialogClose>
             <Button type='submit' disabled={isPending} className='min-w-28 gap-2'>
-              {isPending ? <Spinner className='h-4 w-4' /> : 'Create'}
+              {isPending ? <Spinner className='h-4 w-4' /> : 'Save Changes'}
             </Button>
           </DialogFooter>
         </form>
@@ -108,4 +116,4 @@ export const AddClassroomDialog: React.FC<AddClassroomProps> = ({ onClose }) => 
   );
 };
 
-export default AddClassroomDialog;
+export default EditClassroomDialog;

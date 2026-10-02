@@ -14,9 +14,11 @@ import { MoreVertical, Pencil, Trash2, Calendar, DoorOpen, Building, DoorClosed 
 
 interface ClassroomCardProps {
   classroom: ClassResponse;
+  onEdit?: (classroom: ClassResponse) => void;
+  onDelete?: (classroom: ClassResponse) => void;
 }
 
-export const ClassroomCard: React.FC<ClassroomCardProps> = ({ classroom }) => {
+export const ClassroomCard: React.FC<ClassroomCardProps> = ({ classroom, onEdit, onDelete }) => {
   const navigate = useNavigate();
   const setCurrentClassroom = useClassroomStore((state) => state.setCurrentClassroom);
 
@@ -71,7 +73,7 @@ export const ClassroomCard: React.FC<ClassroomCardProps> = ({ classroom }) => {
                 className='cursor-pointer text-sm font-medium'
                 onClick={(e) => {
                   e.stopPropagation();
-                  // Display only - no logic
+                  onEdit?.(classroom);
                 }}
               >
                 <Pencil className='mr-2 h-4 w-4' />
@@ -81,7 +83,7 @@ export const ClassroomCard: React.FC<ClassroomCardProps> = ({ classroom }) => {
                 className='text-destructive focus:bg-destructive/10 focus:text-destructive cursor-pointer text-sm font-medium'
                 onClick={(e) => {
                   e.stopPropagation();
-                  // Display only - no logic
+                  onDelete?.(classroom);
                 }}
               >
                 <Trash2 className='mr-2 h-4 w-4' />

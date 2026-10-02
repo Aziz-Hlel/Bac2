@@ -10,6 +10,7 @@ interface ClassroomHeaderProps {
   pageSize: number;
   onPageSizeChange: (size: number) => void;
   totalClassrooms?: number;
+  onAdd?: () => void;
 }
 
 export const ClassroomHeader: React.FC<ClassroomHeaderProps> = ({
@@ -18,6 +19,7 @@ export const ClassroomHeader: React.FC<ClassroomHeaderProps> = ({
   pageSize,
   onPageSizeChange,
   totalClassrooms,
+  onAdd,
 }) => {
   return (
     <div className='flex flex-col gap-5'>
@@ -42,10 +44,8 @@ export const ClassroomHeader: React.FC<ClassroomHeaderProps> = ({
 
         <Button
           size='default'
-          className='flex items-center gap-2 self-start shadow-sm sm:self-auto'
-          onClick={() => {
-            // Display only - no logic
-          }}
+          className='flex cursor-pointer items-center gap-2 self-start shadow-sm sm:self-auto'
+          onClick={onAdd}
         >
           <Plus className='h-4 w-4' />
           <span>Add Classroom</span>

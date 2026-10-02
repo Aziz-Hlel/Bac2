@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import classroomService from '@/Api/service/classroomService';
 import { useCurrentSchool } from '@/contexts/CurrentSchoolContext';
+import type { ClassResponse } from '@bac/contracts/schemas/class/classResponse';
 import BreadcrumbHeader from '@/pages/Header';
 import { ClassroomCard } from './components/ClassroomCard';
 import { ClassroomHeader } from './components/ClassroomHeader';
 import { ClassroomPagination } from './components/ClassroomPagination';
 import { ClassroomSkeletons } from './components/ClassroomSkeletons';
 import { ClassroomEmptyState } from './components/ClassroomEmptyState';
+import { AddClassroomDialog } from './dialogs/add-classroom';
+import { EditClassroomDialog } from './dialogs/edit-classroom';
+import { DeleteClassroomDialog } from './dialogs/delete-classroom';
 
 const ClassroomOverview: React.FC = () => {
   const schoolId = useCurrentSchool();
@@ -16,6 +20,10 @@ const ClassroomOverview: React.FC = () => {
   const [pageSize, setPageSize] = useState<number>(16);
   const [search, setSearch] = useState<string>('');
   const [debouncedSearch, setDebouncedSearch] = useState<string>('');
+
+  const [isAddOpen, setIsAddOpen] = useState<boolean>(false);
+  const [editingClassroom, setEditingClassroom] = useState<ClassResponse | null>(null);
+  const [deletingClassroom, setDeletingClassroom] = useState<ClassResponse | null>(null);
 
   // Debounce search query changes
   useEffect(() => {
@@ -70,6 +78,7 @@ const ClassroomOverview: React.FC = () => {
           pageSize={pageSize}
           onPageSizeChange={handlePageSizeChange}
           totalClassrooms={pagination?.totalElements}
+          onAdd={() => setIsAddOpen(true)}
         />
 
         {/* Content Section */}
@@ -88,7 +97,12 @@ const ClassroomOverview: React.FC = () => {
           <div className='space-y-6'>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
               {classrooms.map((classroom) => (
-                <ClassroomCard key={classroom.id} classroom={classroom} />
+                <ClassroomCard
+                  key={classroom.id}
+                  classroom={classroom}
+                  onEdit={(item) => setEditingClassroom(item)}
+                  onDelete={(item) => setDeletingClassroom(item)}
+                />
               ))}
             </div>
 
@@ -103,6 +117,15 @@ const ClassroomOverview: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Dialogs */}
+      {isAddOpen && <AddClassroomDialog onClose={() => setIsAddOpen(false)} />}
+      {editingClassroom && (
+        <EditClassroomDialog classroom={editingClassroom} onClose={() => setEditingClassroom(null)} />
+      )}
+      {deletingClassroom && (
+        <DeleteClassroomDialog classroom={deletingClassroom} onClose={() => setDeletingClassroom(null)} />
+      )}
     </div>
   );
 };
