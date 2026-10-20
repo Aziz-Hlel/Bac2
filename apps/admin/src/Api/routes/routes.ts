@@ -64,6 +64,11 @@ const apiRoutes = {
     getCurrentTermExams: () => '/exams/term/current' as const,
   },
 
+  systemSetting: {
+    get: () => '/system-settings' as const,
+    update: () => '/system-settings' as const,
+  },
+
   images: () => ENV.BASE_URL + '/images/',
 };
 

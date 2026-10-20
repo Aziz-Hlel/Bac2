@@ -8,7 +8,9 @@ import { createMajorModule } from '@/modules/major/major.module';
 import { createRootModule } from '@/modules/root';
 import { createSchoolModule } from '@/modules/school/school.module';
 import { SchoolCapacityStatModule } from '@/modules/schoolCapacityStat/schoolCapacityStat.module';
+import { createSystemSettingModule } from '@/modules/systemSetting';
 import { createTeacherModule } from '@/modules/teacher/teacher.module';
+import { SeedService } from '@/seeds';
 import { SeedDevService } from '@/seeds/dev/seedDev.service';
 import { ClassroomSeedService } from '@/seeds/fakes/classroom.seed.service';
 import { ClassroomExamSessionsSeedService } from '@/seeds/fakes/classroomExamSessions.seed.service';
@@ -17,6 +19,7 @@ import { MajorSeedService } from '@/seeds/fakes/major.seed.service';
 import { SchoolSeedService } from '@/seeds/fakes/school.seed.service';
 import { TeacherSeedService } from '@/seeds/fakes/teacher.seed.service';
 import { UserSeedService } from '@/seeds/fakes/user.seed.service';
+import { SystemSettingSeedService } from '@/seeds/shared/systemSetting.seed';
 import { Router } from 'express';
 
 // * ROOT
@@ -52,6 +55,9 @@ const { examSessionRouter, examSessionService } = ExamSessionModule({ examRepo, 
 // * SCHOOL CAPACITY STATS
 const { schoolCapacityStatRoute } = SchoolCapacityStatModule({ examSessionService, examService });
 
+// * SYSTEM SETTING
+const { systemSettingRouter } = createSystemSettingModule();
+
 // * SEED
 const majorSeed = new MajorSeedService();
 const examSeed = new ExamSeedService();
@@ -70,10 +76,16 @@ const devSeed = new SeedDevService(
   teacherSeed,
   classroomPrincipalAssignmentSeedService,
 );
-devSeed.run();
+
+const systemSettingSeedService = new SystemSettingSeedService();
+
+const seedService = new SeedService(devSeed, systemSettingSeedService);
+
+seedService.run();
 
 export const container: { router: Router; resource: string }[] = [
   { router: rootRouter, resource: '' },
+  { router: systemSettingRouter, resource: 'system-settings' },
   { router: mediaRouter, resource: 'media' },
   { router: EmailRouter, resource: 'email' },
   { router: userRouter, resource: 'users' },

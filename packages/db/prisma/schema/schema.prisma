@@ -1,8 +1,6 @@
-
 generator client {
   provider = "prisma-client"
   output   = "../../src/generated"
-
 }
 
 datasource db {
@@ -17,42 +15,39 @@ enum Role {
 enum Status {
   ACTIVE
   INACTIVE
-  DISABLED 
+  DISABLED
   DELETED
 }
 
-
 model User {
-  id    String     @id @default(uuid())
-  authId String @unique
-  email String?  @unique
-  provider String
-  username String?
-  role Role @default(ADMIN)
+  id              String  @id @default(uuid())
+  authId          String  @unique
+  email           String? @unique
+  provider        String
+  username        String?
+  role            Role    @default(ADMIN)
   isEmailVerified Boolean @default(false)
-  status Status @default(ACTIVE)
+  status          Status  @default(ACTIVE)
 
-  school School?
+  school  School?
   profile Profile?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
 
 model Profile {
-  id String @id @default(uuid())
+  id          String  @id @default(uuid())
   phoneNumber String?
-  address String?
-  avatar String?
+  address     String?
+  avatar      String?
 
   userId String @unique
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
 
 enum MediaStatus {
   PENDING
@@ -61,26 +56,29 @@ enum MediaStatus {
   FAILED
 }
 
-
 model Media {
-  id           String      @id @default(uuid())
-  key          String     @unique
-  baseName     String
-  fileType     String
-  mimeType     String
-  fileSize     Int?
-  status       MediaStatus @default(PENDING)
+  id       String      @id @default(uuid())
+  key      String      @unique
+  baseName String
+  fileType String
+  mimeType String
+  fileSize Int?
+  status   MediaStatus @default(PENDING)
 
-
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime?
-  confirmedAt  DateTime?
-
-
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  confirmedAt DateTime?
 }
 
+model SystemSetting {
+  id     Int     @id @default(1)
+  isOnly Boolean @unique @default(true)
 
+  principalStartDate DateTime? @db.Date
+  principalEndDate   DateTime? @db.Date
+  retakeStartDate    DateTime? @db.Date
+  retakeEndDate      DateTime? @db.Date
 
-
-
+  updatedAt DateTime @updatedAt
+}

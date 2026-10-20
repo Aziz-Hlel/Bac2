@@ -1,5 +1,5 @@
+import { genUuid } from '@/seeds/helper/generateUuid';
 import { Role } from '@bac/db/prisma/browser';
-import { genUuid } from '../helper/generateUuid';
 
 export const userSeedData = {
   tigana: {

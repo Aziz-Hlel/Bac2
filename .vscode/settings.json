@@ -11,5 +11,10 @@
   "git.autofetch": true,
   "js/ts.experimental.useTsgo": true,
   "files.eol": "\n",
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+
+  // Terminal Settings
+  "terminal.integrated.suggest.enabled": true, // Activates the dropdown suggestion menu for CLI commands, flags, file paths, and scripts
+  "terminal.integrated.suggest.quickSuggestions": true, // Automatically pops up suggestions as you type without waiting for a trigger key.
+  "terminal.integrated.shellIntegration.enabled": true // Required for VS Code to communicate with your shell's environment
 }

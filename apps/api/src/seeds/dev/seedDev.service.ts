@@ -6,6 +6,8 @@ import { electiveExamsData } from '../data/exams/exams/electiveExams';
 import { majorSeedData } from '../data/exams/majors';
 import { schoolSeedData } from '../data/schools/schoolData';
 import teacherSeedData from '../data/teachers/teachersData';
+import { superAdminData } from '../data/users/superAdminData';
+import { userSeedData } from '../data/users/users.seed';
 import { ClassroomSeedService } from '../fakes/classroom.seed.service';
 import { ClassroomExamSessionsSeedService } from '../fakes/classroomExamSessions.seed.service';
 import { ExamCreaInputSeed, ExamSeedService } from '../fakes/exam.seed.service';
@@ -13,8 +15,6 @@ import { MajorSeedService } from '../fakes/major.seed.service';
 import { SchoolSeedService } from '../fakes/school.seed.service';
 import { TeacherSeedService } from '../fakes/teacher.seed.service';
 import { UserSeedService } from '../fakes/user.seed.service';
-import { superAdminData } from './userData';
-import { userSeedData } from './users.seed';
 
 export class SeedDevService {
   constructor(
@@ -61,9 +61,10 @@ export class SeedDevService {
   };
 
   private seedMajors = async () => {
-    Object.values(majorSeedData).forEach(async (majorData) => {
-      await this.majorSeedService.run({ id: majorData.id, majorName: majorData.name });
+    const seedMajors = Object.values(majorSeedData).map((majorData) => {
+      return this.majorSeedService.run({ id: majorData.id, majorName: majorData.name });
     });
+    await Promise.all(seedMajors);
   };
 
   private seedMajorExams = async () => {
@@ -128,9 +129,10 @@ export class SeedDevService {
   };
 
   private seedClassroomExamSessions = async () => {
-    Object.values(classroomExamSessionsData).map(async (assignment) => {
-      await this.classroomExamSessionsSeedService.run(assignment);
+    const seed = Object.values(classroomExamSessionsData).map((assignment) => {
+      return this.classroomExamSessionsSeedService.run(assignment);
     });
+    await Promise.all(seed);
   };
 
   run = async () => {

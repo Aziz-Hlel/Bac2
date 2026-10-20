@@ -74,6 +74,11 @@ const navRoutes: NavRoute[] = [
         url: '/settings/profile',
         isActive: true,
       },
+      {
+        title: 'System Settings',
+        url: '/system-settings',
+        isActive: true,
+      },
     ],
   },
 ];

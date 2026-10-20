@@ -1,5 +1,5 @@
 import { prisma } from '@/bootstrap/db.init';
-import { parseCalendarDate, parseTime } from '@/utils/dayjs';
+import { parseCalendarDate, parseTime } from '@bac/contracts/utils/date';
 import { SubjectEnum, TermEnum, TimeOfDayEnum } from '@bac/db/prisma/enums';
 
 export type ExamCreaInputSeed = {

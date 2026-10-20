@@ -22,7 +22,7 @@ catalogs:
       specifier: 5.71.0
       version: 5.71.0
     dayjs:
-      specifier: ^1.11.14
+      specifier: ^1.11.20
       version: 1.11.20
     dotenv:
       specifier: ^17.2.2
@@ -388,6 +388,9 @@ importers:
       '@bac/db':
         specifier: workspace:*
         version: link:../db
+      dayjs:
+        specifier: 'catalog:'
+        version: 1.11.20
 
   packages/db:
     dependencies:

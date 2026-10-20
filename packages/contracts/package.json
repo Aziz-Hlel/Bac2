@@ -11,6 +11,7 @@
     }
   },
   "dependencies": {
-    "@bac/db": "workspace:*"
+    "@bac/db": "workspace:*",
+    "dayjs": "catalog:"
   }
 }

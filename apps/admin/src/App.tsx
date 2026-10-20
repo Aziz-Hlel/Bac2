@@ -16,11 +16,11 @@ import UserPage from './pages/User';
 import CalendarMainMain from './components/Classroom/calendar/components/calendar-main';
 import { ScrollToTop } from './components/helpers/ScrollToTop';
 import { CurrentSchoolProvider } from './contexts/CurrentSchoolContext';
-import ClassroomPage from './pages/Classroom';
+import ClassroomExamCalendar from './features/classrooms/classrom-exam-calendar';
+import ClassroomOverview from './features/classrooms/overview';
+import SystemSettingsFeature from './features/system-settings';
 import TeacherTable from './pages/TeacherTable';
 import { ThemeProvider } from './utils/theme-provider';
-import ClassroomOverview from './features/classrooms/overview';
-import ClassroomExamCalendar from './features/classrooms/classrom-exam-calendar';
 // import Product2Page from './pages/Products2';
 
 const queryClient = new QueryClient({
@@ -56,6 +56,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route index path='/profile' element={<Profile />} />
                         <Route path='users/' element={<UserPage />} />
+                        <Route path='system-settings/' element={<SystemSettingsFeature />} />
 
                         {/* <Route path="products/" element={<ProductPage />} /> */}
                         {/* <Route path="products2/" element={<Product2Page />} /> */}

@@ -1,6 +1,6 @@
 import { prisma } from '@/bootstrap/db.init';
 import { DatabaseError } from '@/err/customErrors';
-import { parseCalendarDate, parseTime } from '@/utils/dayjs';
+import { parseCalendarDate, parseTime } from '@bac/contracts/utils/date';
 import { getCurrentTerm } from '@/utils/getCurrentTerm';
 import { CreateExamRequest } from '@bac/contracts/schemas/exam/creatExamRequest';
 import { SubjectEnum, TermEnum } from '@bac/db/prisma/enums';
