@@ -1,11 +1,9 @@
-import { default as dayjs, default as dayjsUTC } from 'dayjs';
+import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 
-dayjsUTC.extend(utc);
-
-export default dayjsUTC;
+export default dayjs;
 
 export function parseCalendarDate(dateStr: string): Date;
 export function parseCalendarDate(dateStr: null): null;
