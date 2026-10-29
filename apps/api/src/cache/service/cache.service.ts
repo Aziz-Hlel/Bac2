@@ -12,14 +12,28 @@ export class CacheService {
     return crypto.createHash('sha1').update(JSON.stringify(value)).digest('hex');
   }
 
-  async get<T>(props: getParams): Promise<T | null> {
-    const key = props.key;
+  async get<T>(key: string): Promise<T | null> {
     // const hashedKey = this.stableHash(value);
     try {
       const value = await redis.get(key);
       if (value) {
         this.cacheMetrics.recordHit();
         return JSON.parse(value);
+      }
+      this.cacheMetrics.recordMiss();
+      return null;
+    } catch (error) {
+      console.error('Cache get error:', error);
+      return null;
+    }
+  }
+
+  async hget(key: string): Promise<string | null> {
+    try {
+      const value = await redis.hget(key);
+      if (value) {
+        this.cacheMetrics.recordHit();
+        return value;
       }
       this.cacheMetrics.recordMiss();
       return null;
