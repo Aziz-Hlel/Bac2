@@ -6,8 +6,6 @@ import apiRoutes from '../routes/routes';
 const systemSettingService = {
   get: async () => apiService.getThrowable<SystemSettingResponse>(apiRoutes.systemSetting.get()),
 
-  find: async () => apiService.getThrowable<SystemSettingResponse>(apiRoutes.systemSetting.get()),
-
   update: async (data: UpdateSystemSettingInput) =>
     apiService.putThrowable<SystemSettingResponse>(apiRoutes.systemSetting.update(), data),
 };

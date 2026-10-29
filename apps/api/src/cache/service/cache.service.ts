@@ -1,6 +1,6 @@
 import redis from '@/bootstrap/redis.init';
-import { CacheMetrics } from './cache.metrics';
 import crypto from 'crypto';
+import { CacheMetrics } from './cache.metrics';
 
 type getParams = { key: string };
 type setParams<T> = { value: T; ttlSeconds: number } & getParams;
@@ -28,6 +28,7 @@ export class CacheService {
       return null;
     }
   }
+
   async set<T>(props: setParams<T>): Promise<void> {
     const key = props.key;
     // const hashedKey = this.stableHash(key);

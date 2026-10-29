@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AlertTriangle, Calendar, CalendarRange, Clock } from 'lucide-react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -12,6 +12,7 @@ import {
   type UpdateSystemSettingInput,
 } from '@bac/contracts/schemas/systemSetting/updateSystemSettingInput';
 
+import SingleDatePicker from '@/components/custom/single-day-picker';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -38,23 +39,12 @@ export const EditSystemSettingsDialog: React.FC<EditSystemSettingsDialogProps> =
   const form = useForm<UpdateSystemSettingInput>({
     resolver: zodResolver(updateSystemSettingInputSchema),
     defaultValues: {
-      principalStartDate: settings?.principalStartDate ?? '',
-      principalEndDate: settings?.principalEndDate ?? '',
-      retakeStartDate: settings?.retakeStartDate ?? '',
-      retakeEndDate: settings?.retakeEndDate ?? '',
+      principalStartDate: settings?.principalStartDate ?? undefined,
+      principalEndDate: settings?.principalEndDate ?? undefined,
+      retakeStartDate: settings?.retakeStartDate ?? undefined,
+      retakeEndDate: settings?.retakeEndDate ?? undefined,
     },
   });
-
-  useEffect(() => {
-    if (settings) {
-      form.reset({
-        principalStartDate: settings.principalStartDate ?? '',
-        principalEndDate: settings.principalEndDate ?? '',
-        retakeStartDate: settings.retakeStartDate ?? '',
-        retakeEndDate: settings.retakeEndDate ?? '',
-      });
-    }
-  }, [settings, form]);
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (data: UpdateSystemSettingInput) => systemSettingService.update(data),
@@ -122,18 +112,12 @@ export const EditSystemSettingsDialog: React.FC<EditSystemSettingsDialogProps> =
 
               <div className='grid grid-cols-1 gap-4 pt-1 sm:grid-cols-2'>
                 <Controller
-                  name='principalStartDate'
                   control={form.control}
+                  name='principalStartDate'
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel htmlFor='principalStartDate'>Start Date</FieldLabel>
-                      <SingleDayPicker
-                        id='principalStartDate'
-                        value={parseCalendarDate(field.value)}
-                        onSelect={(date) => field.onChange(toCalendarDate(date ?? null))}
-                        placeholder='Select start date'
-                        className='w-full'
-                      />
+                      <SingleDatePicker fieldProps={field} placeholder='Select start date' />
                       {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                     </Field>
                   )}

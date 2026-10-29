@@ -1,10 +1,17 @@
 import * as React from 'react';
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { DayPicker, getDefaultClassNames, type DayButton } from 'react-day-picker';
-
 import { cn } from '@/lib/utils';
 import { Button, buttonVariants } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
 
+type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  buttonVariant?: React.ComponentProps<typeof Button>['variant'];
+  yearRange?: {
+    from: number;
+    to: number;
+  };
+};
 function Calendar({
   className,
   classNames,
@@ -13,22 +20,35 @@ function Calendar({
   buttonVariant = 'ghost',
   formatters,
   components,
+  yearRange = {
+    from: 1990,
+    to: 2030,
+  },
   ...props
-}: React.ComponentProps<typeof DayPicker> & {
-  buttonVariant?: React.ComponentProps<typeof Button>['variant'];
-}) {
+}: CalendarProps) {
   const defaultClassNames = getDefaultClassNames();
+
+  const handleCalendarChange = (value: string | number, event: React.ChangeEventHandler<HTMLSelectElement>) => {
+    const newEvent = {
+      target: {
+        value: String(value),
+      },
+    } as React.ChangeEvent<HTMLSelectElement>;
+    event(newEvent);
+  };
 
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        'group/calendar bg-background p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent',
+        'group/calendar bg-background p-3 [--cell-size:--spacing(8)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent',
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className,
       )}
       captionLayout={captionLayout}
+      startMonth={new Date(yearRange.from, 0)}
+      endMonth={new Date(yearRange.to, 0)}
       formatters={{
         formatMonthDropdown: (date) => date.toLocaleString('default', { month: 'short' }),
         ...formatters,
@@ -119,8 +139,30 @@ function Calendar({
             </td>
           );
         },
+        Dropdown: (props) => (
+          <Select
+            onValueChange={(value) => {
+              if (props.onChange) {
+                handleCalendarChange(value, props.onChange);
+              }
+            }}
+            value={String(props.value)}
+          >
+            <SelectTrigger className='first:flex-1 last:shrink-0'>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {props.options?.map((option) => (
+                <SelectItem disabled={option.disabled} key={option.value} value={String(option.value)}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ),
         ...components,
       }}
+      hideNavigation
       {...props}
     />
   );

@@ -24,7 +24,7 @@ const SystemSettingsFeature: React.FC = () => {
     refetch,
   } = useQuery({
     queryKey: ['system-settings'],
-    queryFn: () => systemSettingService.find(),
+    queryFn: () => systemSettingService.get(),
   });
 
   const isConfigured = Boolean(
